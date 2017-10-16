@@ -1,7 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: /client_side
+  - source: ./client_side/home/login.html
     destination: /var/www
 hooks:
   AfterInstall:
