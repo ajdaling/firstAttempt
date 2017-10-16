@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  
+  
+  <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  
+<div class="container">
+  <p class="text-muted">Hover and click the pencil icon (<a href="https://codepen.io/jesperkc/pen/QNOEMJ" target="_blank">Updated version here</a>)</p>
+  <div class="row" data-bind="foreach: logs">
+    <div class="col-xs-4">
+      <div class="flip-container log-box" data-bind="css: css">
+        <div class="flipper embed-responsive embed-responsive-16by9">
+          <div class="front" data-bind="css: colorStyle">
+            <h3 data-bind="text: Name">Log name</h3>
+            <a href="#" class="log-box-button log-box-button-edit " data-bind="click: $parent.editLog, visible: Access() === 'Administrator'" title="Edit"><i class="fa fa-pencil"></i></a>
+            
+            <div class="sparkline" data-bind="sparkline: sparklinedata"></div>
+            <div class="log-box-buttons-buttom">
+              <div class="access" data-bind="text: Access() + ' access'">Administrator access</div>
+            </div>
+            <div class="log-box-buttons-buttom">
+              <a href="#" class="log-box-button log-box-button-install" data-bind="click: $parent.viewLogSearch"><i class="fa fa-search"></i></a><a href="#" class="log-box-button log-box-button-install" data-bind="click: $parent.viewInstallLog, visible: Access() === 'Administrator'" title="Settings"><i class="fa fa-cogs"></i></a>
+              </div>
+          </div>
+          <div class="back" data-bind="css: colorStyle">
+            <div class="row">
+              <form method="POST" data-bind="submit: $parent.saveLog">
+                <div class="col-xs-7 col-sm-8 col-md-8 col-lg-9">
+                  <input type="text" class="form-control" data-bind="value: Name" placeholder="Enter log name"><span class="validationMessage" style="display: none;"></span>
+                </div>
+                <div class="col-xs-5 col-sm-4 col-md-4 col-lg-3">
+                  <input type="submit" class="btn btn-default btn-block" data-bind="click: $parent.saveLog" value="Save">
+                </div>
+              </form>
+            </div>
+
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" data-bind="checked: DailyDigestEmail"> Daily Digest Email <span data-toggle="popover" data-trigger="hover" data-container="body" data-content="Daily Digest is a daily email containing a summary of the errors logged within the last 24 hours." class="fa fa-question-circle"></span>
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" data-bind="checked: NewErrorEmail"> New Error Email <span data-toggle="popover" data-container="body" data-trigger="hover" data-content="New Error is a transactional email sent every time a new error is logged." class="fa fa-question-circle"></span>
+                  </label>
+                </div>
+            
+            <ul class="colorpicker">
+              <li class="green-bg selected" data-bind="click: $parent.selectColor, css: {selected: Color() == 'green'}"><span class="fa fa-check"></span></li>
+              <li class="lightgreen-bg" data-bind="click: $parent.selectColor, css: {selected: Color() == 'lightgreen'}"><span class="fa fa-check"></span></li>
+              <li class="lime-bg" data-bind="click: $parent.selectColor, css: {selected: Color() == 'lime'}"><span class="fa fa-check"></span></li>
+              <li class="yellow-bg" data-bind="click: $parent.selectColor, css: {selected: Color() == 'yellow'}"><span class="fa fa-check"></span></li>
+              <li class="orange-bg" data-bind="click: $parent.selectColor, css: {selected: Color() == 'orange'}"><span class="fa fa-check"></span></li>
+              <li class="deeporange-bg" data-bind="click: $parent.selectColor, css: {selected: Color() == 'deeporange'}"><span class="fa fa-check"></span></li>
+              <li class="red-bg" data-bind="click: $parent.selectColor, css: {selected: Color() == 'red'}"><span class="fa fa-check"></span></li>
+              <li class="pink-bg" data-bind="click: $parent.selectColor, css: {selected: Color() == 'pink'}"><span class="fa fa-check"></span></li>
+              <li class="purple-bg" data-bind="click: $parent.selectColor, css: {selected: Color() == 'purple'}"><span class="fa fa-check"></span></li>
+              <li class="deeppurple-bg" data-bind="click: $parent.selectColor, css: {selected: Color() == 'deeppurple'}"><span class="fa fa-check"></span></li>
+              <li class="blue-bg" data-bind="click: $parent.selectColor, css: {selected: Color() == 'blue'}"><span class="fa fa-check"></span></li>
+              <li class="lightblue-bg" data-bind="click: $parent.selectColor, css: {selected: Color() == 'lightblue'}"><span class="fa fa-check"></span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js'></script>
+<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>

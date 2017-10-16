@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="author" content="superH">
+	<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+<meta http-equiv="pragma" content="no-cache" />
+
+<meta name="description" content="Data Visualization">
+<meta property="og:title" content="Sample Report">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Data Visualization">
+<meta property="og:url"
+content="//www.superhindex.com">
+<meta property="og:image"
+content="//link/test.png">
+<title>Visualization Report</title>
+
+<link type="text/css" href="lib/dc.css?tachyon.1.19" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="lib/colorbrewer.css?tachyon.1.19"/>
+<link rel = "stylesheet" type = "text/css" href="../home/dashboard.css?tachyon.1.19">
+<link rel="stylesheet" href="../home/style.css?tachyon.1.19">
+	<link rel="stylesheet" href="../hud/bootstrap-slider.css?tachyon.1.19">
+  <style>
+    #holder {
+      width:850px;
+      margin:20px auto;
+    }
+    #holder>div {
+      padding:30px 0;
+      clear:both;
+    }
+    .map {
+      width:600px;
+      height:400px;
+    }
+    .pie {
+      margin-left:30px;
+    }
+  </style>
+<link rel="stylesheet" href="lib/bs_panel.css?tachyon.1.19">
+
+<style>
+
+
+.dropdown-menu li.active > a,
+.dropdown-menu li.active > a:hover,
+.dropdown-menu li.active > a:focus{
+
+}
+
+</style>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js?tachyon.1.19"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css?tachyon.1.19" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css?tachyon.1.19" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js?tachyon.1.19"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js?tachyon.1.19/3.10.0/lodash.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js?tachyon.1.19"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/4.10.3/bootstrap-slider.min.js?tachyon.1.19"></script>
+    <script src="https://cdn.rawgit.com/cytoscape/cytoscape.js?tachyon.1.19-cola/1.6.0/cola.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.min.js?tachyon.1.19"></script>
+    <script src="https://cdn.rawgit.com/cytoscape/cytoscape.js?tachyon.1.19-qtip/2.7.0/cytoscape-qtip.js"></script>
+    <script src="https://cdn.rawgit.com/cytoscape/cytoscape.js?tachyon.1.19-cola/1.6.0/cytoscape-cola.js"></script>
+
+<script src="../../client_side/lib/d3/js/d3.v3.min.js?tachyon.1.19"></script>
+<script src="lib/crossfilter/js/crossfilter.min.js?tachyon.1.19"></script>
+  <script src="../../client_side/institution/lib/superformula.js?tachyon.1.19"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,b-1.0.3,b-colvis-1.0.3,b-flash-1.0.3,b-html5-1.0.3,b-print-1.0.3,cr-1.2.0,fh-3.0.0,kt-2.0.0,r-1.0.7,rr-1.0.0,sc-1.3.0,se-1.0.1/datatables.min.css?tachyon.1.19"/>
+<script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,b-1.0.3,b-colvis-1.0.3,b-flash-1.0.3,b-html5-1.0.3,b-print-1.0.3,cr-1.2.0,fh-3.0.0,kt-2.0.0,r-1.0.7,rr-1.0.0,sc-1.3.0,se-1.0.1/datatables.min.js?tachyon.1.19"></script>
+
+<script type="text/javascript" src="yadcf-master/jquery.dataTables.yadcf.min.js?tachyon.1.19"></script>
+<link rel="stylesheet" href="yadcf-master/jquery.dataTables.yadcf.css?tachyon.1.19">
+
+<link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css?tachyon.1.19" rel="stylesheet" type="text/css" />
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js?tachyon.1.19"></script>
+<script src="lib/dc.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/highcharts.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/modules/map.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/modules/data.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/modules/exporting.js?tachyon.1.19"></script>
+<script src="../../client_side/lib/HighCharts/draggable-legend.js?tachyon.1.19"></script>
+
+
+
+<style>
+.form-text{
+    padding:15px 0;
+}
+.dataTables_info{
+width:25%;
+min-width:20px;
+}
+select {
+width: 100px;
+}
+
+/* .container-fluid {
+    padding: 20px;
+} */
+.yadcf-filter {
+        width: 70%;
+}
+
+.yadcf-filter-wrapper {
+        width: 70%;
+}
+.myhidden
+{
+    display: none;
+}
+
+hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+
+
+.inner-container {
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, rgba(30, 87, 153, 0.2) 0%, rgba(125, 185, 232, 0) 50%);
+    background-repeat: repeat;
+    border-radius:10px;
+    margin: 30px;
+    padding: 30px;
+//   border: 30px solid transparent;
+}
+.classWithPad {
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, rgba(30, 87, 153, 0.2) 0%, rgba(125, 185, 232, 0) 50%);
+    background-repeat: repeat;
+    border-radius:10px;
+margin:10px;
+padding:10px; }
+
+</style>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    }
+    #cy {
+        width: 70%;
+        height: 400px;
+    }
+    #loading {
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 50%;
+    width: 70%;
+    text-align: center;
+    margin-top: -0.5em;
+    font-size: 2em;
+    color: #000;
+    }
+    #loading.loaded {
+    display: none;
+    }
+    #layoutButtons {
+        position: absolute;
+        top: 5%;
+        right: 2%;
+    }
+    input[type='button'] {
+        width: 70%;
+    }
+    #userSelection {
+        position: absolute;
+        top: 5%;
+        left: 2%;
+        width: 10%;
+        display: none;
+    }
+</style>
+
+
+
+
+<link href="../../client_side/lib/font-awesome/css/font-awesome.min.css?tachyon.1.19" rel="stylesheet" type="text/css">
+
+<!-- MetisMenu CSS -->
+<link href="../../client_side/lib/metisMenu/metisMenu.min.css?tachyon.1.19" rel="stylesheet">
+
+<link rel="stylesheet" href="../../client_side/home/style.css?tachyon.1.19">
+
+<link rel = "stylesheet" type = "text/css" href="../../client_side/home/dashboard.css?tachyon.1.19">
+
+  <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?tachyon.1.19" rel="stylesheet">
+
+<link rel = "stylesheet" href="reportPage.css?tachyon.1.19">
+
+
+<link href="../../client_side/lib/introjs/introjs.css?tachyon.1.19" rel="stylesheet">
+<link href="../../client_side/lib/introjs/themes/introjs-modern.css?tachyon.1.19" rel="stylesheet">
+
+</head>
+<body>
+
+  <!--BEGIN NAV -->
+  <div class="row" style="padding-top:3%;">
+  	<nav class="navbar navbar-fixed-top" role="banner">
+  		<div class="container-fluid" style ="background-color:rgba(255,255,255,0.8)">
+  				<a class="navbar-brand" href="//www.superHindex.com" target="_blank" style="display:"><img src="../../client_side/lib/images/super.png" style="color: blue; height: 44px; width:auto;"></a>
+  				<ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" id = drop1a data-toggle="dropdown" href="#">
+                    <i class="fa fa-envelope fa-fw" style="color:#283a75 "></i> <i class="fa fa-caret-down" style="color:#283a75 "></i>
+                </a>
+                <ul id = "drop1" class="dropdown-menu dropdown-messages" aria-labelledby="drop1">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                    <em>Yesterday</em>
+                                </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                    <em>Yesterday</em>
+                                </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                    <em>Yesterday</em>
+                                </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>Read All Messages</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-messages -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-tasks fa-fw" style="color:#283a75 "></i> <i class="fa fa-caret-down" style="color:#283a75 "></i>
+                </a>
+                <ul class="dropdown-menu dropdown-tasks">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 1</strong>
+                                    <span class="pull-right text-muted">40% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                        <span class="sr-only">40% Complete (success)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 2</strong>
+                                    <span class="pull-right text-muted">20% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                        <span class="sr-only">20% Complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 3</strong>
+                                    <span class="pull-right text-muted">60% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                        <span class="sr-only">60% Complete (warning)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 4</strong>
+                                    <span class="pull-right text-muted">80% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                        <span class="sr-only">80% Complete (danger)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>See All Tasks</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-tasks -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw" style="color:#283a75 "></i> <i class="fa fa-caret-down" style="color:#283a75 "></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                	<li><a class = "username-text"></a></li>
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href = "#" class = "login-link"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+
+  				</ul>
+
+  		</div>
+  	</nav>
+
+  </div>
+
+  <!-- END NAV -->
+
+
+<div class = "row hud-row" id="settings-row" ></div>
+  	<div class = "row hud-row" id="filters-row" ></div>
+  	<div class = "row hud-row" id="sessions-row" ></div>
+
+	<div class = "row" id = "content-row" >
+		<nav class="main-menu" id="sidebar" style="position:fixed">
+            <div class="scrollbar" id="style-1">
+	            <ul>
+	            <li>
+						<a id = "sidebar-filters">
+							<i class= " fa fa-filter fa-lg"> </i>
+							<span class="nav-text">Filters</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					<li>
+						<a id = "sidebar-settings">
+							<i class= " fa fa-cog fa-lg"> </i>
+							<span class="nav-text">Settings</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+
+					<!--
+					<li>
+										<a id = "sidebar-sessions">
+											<i class="fa fa-floppy-o fa-lg"></i>
+											<span class="nav-text">Save Session</span>
+											<i class="fa fa-caret-right fa-lg"></i>
+										</a>
+										</li>
+					-->
+
+					<hr>
+					<li>
+					<a class = "home-link">
+					<i class="fa fa-home fa-lg"></i>
+					<span class="nav-text">Home</span>
+					</a>
+					</li>
+
+					<li>
+					<a class = "newSearch-link">
+					<i class="fa fa-search fa-lg"></i>
+					<span class="nav-text">New Search</span>
+					</a>
+					</li>
+
+
+					<li>
+					<a class = "results-link">
+					<i class="fa fa-list fa-lg"></i>
+					<span class="nav-text">Search Results</span>
+					</a>
+					</li>
+
+					<li>
+					<a class="visualization-link">
+					<i class="fa fa-area-chart fa-lg"></i>
+					<span class="nav-text">Visualize</span>
+					</a>
+					</li>
+
+          <li>
+          <a class="cluster-link">
+          <i class="fa fa-pie-chart fa-lg"></i>
+          <span class="nav-text">Clusters</span>
+          </a>
+          </li>
+
+					<li>
+					<a class="report-link">
+					<i class="fa fa-paper-plane-o fa-lg"></i>
+					<span class="nav-text">Report</span>
+					</a>
+					</li>
+					<li>
+					<a class="save-link">
+					<i class="fa fa-floppy-o fa-lg"></i>
+					<span class="nav-text">Save Session</span>
+					</a>
+					</li>
+
+
+                    <li id="tutorial">
+                      <!--<a  href="javascript:void(0);" onclick="javascript:introJs().start();"></a>-->
+                      <a onclick="startIntro();">
+                        <i class="fa fa-question fa-lg"></i>
+                        <span class="nav-text">Tutorial</span>
+                    </a>
+                    </li>
+
+				</ul>
+			</div>
+        </nav>
+	</div>
+<div class = "col-xs-10 pull-right" id = "main-col" style="margin-right: 5%;">
+	<div class="row" >
+		<div class="page-header" style="padding-left:200px;">
+			<h2> <p id="title">Report Page</p> </h2>
+			<button onclick = "toggleAnnotations()" class = "annot-button disabled btn btn-primary btn-md">Toggle Annotations</button>
+<!-- 			<button onclick = "saveAnnotations()" class = "annot-button disabled btn btn-success btn-md">Save Annotations</button>
+ -->			<button onclick = "resetAnnotations()" style = "margin-left: 30px;" class = "disabled annot-button btn btn-danger btn-md">Reset Annotations</button>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class = "col-xs-10" style="padding-left:15%;">
+			<div class = "well">
+				<div id = "my_rate_spinner" class="spinner">
+    				<img id="img-spinner" src="../lib/images/dna_loader.gif" alt="Loading"/>
+				</div>
+				<div id=my_rate class = "rep-viz"></div>
+					<div class="form-group row annotation hide">
+			    		<label style = "margin-left:10%;" for="my_rate_text1">Figure 1.1</label>
+			    		<textarea class=" form-control " id="my_rate_text1" style = "width: 80%; margin-left: 10%;"></textarea>
+			  		</div>
+
+			</div>
+		</div>
+		<div class = "col-xs-10" style="padding-left:15%;">
+			<div class = "well">
+				<div id = "my_rateTopN_spinner" class="spinner">
+    				<img id="img-spinner" src="../lib/images/dna_loader.gif" alt="Loading"/>
+				</div>
+				<div id=my_rateTopN class = "rep-viz"></div>
+					<div class="form-group row annotation hide">
+			    		<label style = "margin-left:10%;" for="my_rate_text2">Figure 1.2</label>
+			    		<textarea class=" form-control " id="my_rate_text2"   style = "width: 80%; margin-left: 10%;"></textarea>
+			  		</div>
+
+			</div>
+		</div>
+	</div>
+	<div class = "row">
+		<div class = "well" id = "subrates-well" style="height:500px">
+			<div class="spinner">
+   				<img id="img-spinner" src="../lib/images/dna_loader.gif" alt="Loading"/>
+			</div>
+			<div class = "row">
+				<div class = "col-xs-6 pull-left" id = "rates-col0"></div>
+				<div class = "col-xs-6 pull-right" id= "rates-col1"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class = "col-xs-12" style="padding-left: 2%;">
+			<div class = "well" >
+			<div id = "bullseye_spinner" class="spinner">
+    				<img id="img-spinner" src="../lib/images/dna_loader.gif" alt="Loading"/>
+				</div>
+				<div class = "row">
+					<h4>IP Bullseye - Selected Organizations</h4>
+				</div>
+				<div class = "row">
+					<div class = "col-xs-8 pull-right">
+						<div id=bullseye class = "rep-viz"></div>
+					</div>
+					<div class = "col-xs-4 pull-left" style = "padding-left: 5%">
+						<div class = "row" style = "padding-top: 50%;">
+							<div id="bullseyeData">
+						</div>
+						<div class = "row" style = "padding-top: 30px;">
+							<div class="form-group row annotation hide">
+			    				<label  for="my_bullseye_text">Figure 3.1</label>
+			    				<textarea class=" form-control " id="my_bullseye_text" style = "height: 200px; width: 90%;"></textarea>
+			  				</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	</div>
+
+	<div class="row">
+		<div class = "col-xs-12" style="padding-left: 2%;">
+			<div class = "well" >
+			<div id = "bullseye_topN_spinner"  class="spinner">
+    				<img id="img-spinner" src="../lib/images/dna_loader.gif" alt="Loading"/>
+				</div>
+				<div class = "row">
+					<h4>IP Bullseye - Top N Organizations</h4>
+				</div>
+				<div class = "row">
+					<div class = "col-xs-8 pull-right">
+						<div id=bullseye_topN class = "rep-viz"></div>
+					</div>
+					<div class = "col-xs-4 pull-left" style = "padding-left: 5%">
+						<div class = "row" style = "padding-top: 50%;">
+							<div id="bullseyeData_topN">
+						</div>
+						<div class = "row" style = "padding-top: 30px;">
+							<div class="form-group row annotation hide">
+			    				<label  for="my_bullseye_topN_text">Figure 3.2</label>
+			    				<textarea class=" form-control " id="my_bullseye_topN_text" style = "height: 200px; width: 90%;"></textarea>
+			  				</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+<script src="raphael.js?tachyon.1.19" type="text/javascript"></script>
+<script src="raphael.bullseye.js?tachyon.1.19" type="text/javascript"></script>
+
+	<div class="row">
+		<div class = "well">
+		<div id = "accel_spinner" class="spinner">
+    				<img id="img-spinner" src="../lib/images/dna_loader.gif" alt="Loading"/>
+				</div>
+			<div class = "row">
+				<div id=accel class = "rep-viz"></div>
+			</div>
+			<div class = "row" style = "padding-top: 30px;">
+				<div class="form-group row annotation hide">
+	   				<label style = "margin-left: 10%;" for="my-accel-text">Figure 4.1</label>
+	   				<textarea class=" form-control " id="my_accel_text"  style = "width: 80%; margin-left: 10%;"></textarea>
+ 				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class = "well">
+		<div id = "accel_topN_spinner" class="spinner">
+    				<img id="img-spinner" src="../lib/images/dna_loader.gif" alt="Loading"/>
+				</div>
+			<div class = "row">
+				<div id=accel_topN class = "rep-viz"></div>
+			</div>
+			<div class = "row" style = "padding-top: 30px;">
+				<div class="form-group row annotation hide">
+	   				<label style = "margin-left: 10%;" for="my_accel_topN_text">Figure 4.2</label>
+	   				<textarea class=" form-control " id="my_accel_topN_text"  style = "width: 80%; margin-left: 10%;"></textarea>
+ 				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class = "well">
+		<div id = "vol_spinner" class="spinner">
+    				<img id="img-spinner" src="../lib/images/dna_loader.gif" alt="Loading"/>
+				</div>
+			<div class="row">
+				<div id=vol class = "rep-viz"></div>
+			</div>
+			<div class = "row" style = "padding-top: 30px;">
+				<div class="form-group row annotation hide">
+	   				<label style = "margin-left: 10%;" for="my_vol_text">Figure 5.1</label>
+	   				<textarea class=" form-control " id="my_vol_text"  style = "width: 80%; margin-left: 10%;"></textarea>
+ 				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class = "well">
+		<div id="vol_topN_spinner" class="spinner">
+    				<img id="img-spinner" src="../lib/images/dna_loader.gif" alt="Loading"/>
+				</div>
+			<div class="row">
+				<div id=vol_topN class = "rep-viz"></div>
+			</div>
+			<div class = "row" style = "padding-top: 30px;">
+				<div class="form-group row annotation hide">
+	   				<label style = "margin-left: 10%;" for="my_vol_topN_text">Figure 5.2</label>
+	   				<textarea class=" form-control " id="my_vol_topN_text"  style = "width: 80%; margin-left: 10%;"></textarea>
+ 				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+   		<div class="classWithPad panel panel-primary rep-viz">
+      		<div class="panel-heading"><strong>Publication Information for this Organizations</strong></div>
+      		<div class = "panel-body">
+      		<div id="table-spinner" class="spinner">
+    				<img id="img-spinner" src="../lib/images/dna_loader.gif" alt="Loading"/>
+				</div>
+      			<table id="resultsTable" class="display  table-bordered table-hover table-condensed dt-right">
+	        	 	<thead>
+	       	 			<tr class="header">
+						<th>Name</th>
+	                  	<th>Source</th>
+	                  	<th>Topic</th>
+	                  	<th>Peak Year</th>
+	                  	<th>Pubs</th>
+	                  	<th>Patents</th>
+	                  	<th>VC</th>
+	                  	<th>CTrials</th>
+	                  	<th>Grants</th>
+	                  	<th>Grant$</th>
+	                  	<th>FDA</th>
+	                  	<th>Rank</th>
+	    	 			</tr>
+	        	 	</thead>
+     			</table>
+     			<div class = "row" style = "padding-top: 30px;">
+					<div class="form-group row annotation hide">
+	   					<label style = "margin-left: 10%;" for="my-table-text">Figure 6</label>
+	   					<textarea class=" form-control " id="my_table_text" style = "width: 80%; margin-left: 10%;"></textarea>
+ 					</div>
+				</div>
+      		</div>
+      	</div>
+   	</div>
+
+</div><!--/container-fluid -->
+
+
+
+</div>
+
+<script src="../../client_side/lib/introjs/intro.js?tachyon.1.19"></script>
+<script type="text/javascript">
+
+function startIntro(){
+  var intro = introJs().setOption('showStepNumbers', 'false');
+
+  intro.setOptions({
+      steps: [
+				{
+				intro: "On this page, you can save and send your research!"
+			},
+			{
+			intro: "Note: This page will only display if you have 6 or more topics in your search."
+			}
+      ]
+    });
+    intro.start();
+
+}
+</script>
+  <script>
+
+  function introResumeFromViz(){
+    var intro = introJs().setOption('doneLabel', 'Next page').setOption('showStepNumbers', 'false');
+
+    intro.setOptions({
+        steps: [
+          {
+          intro: "On this page, you can save and send your research!"
+				},
+				{
+				intro: "Note: This page will only display if you have 6 or more topics in your search."
+				}
+        ]
+      });
+      /*intro.start().oncomplete(function() {
+        window.location.href = 'reportPageV2.html?multipage=true';
+      });*/
+  }
+
+     if (RegExp('multipage', 'gi').test(window.location.search)) {
+       introResumeFromViz();
+     }
+
+
+   </script>
+
+</body>
+
+<script src="../../config.js?tachyon.1.19"></script>
+<script src="reportPageV6.js?tachyon.1.19"></script>
+<script src="../hud/bootstrap-slider.js?tachyon.1.19"></script>
+<script src="../hud/hud.js?tachyon.1.19"></script>
+
+</html>

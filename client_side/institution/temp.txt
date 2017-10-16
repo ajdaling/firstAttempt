@@ -1,0 +1,157 @@
+.replace(u'’', u"'")
+
+
+
+ $.getJSON("./Data/boxplot.json", function(json) {
+  data = json,
+  success = function(data){
+    .container("#viz")
+    .data(data)
+        .type("box")
+        .id("name")
+        .x("building")
+        .y("total")
+        .time(false)
+        .height(800)
+        .ui([{ 
+            "label": "Visualization Type",
+            "method": "type", 
+            "value": ["scatter","box"]
+        }])
+        .draw()
+  }
+})
+</script>
+
+{nodes:[{id: "seo,s", name: "seo,s", type: "author", degree: "1", hlink: "authoInfo.html"},{id: "cuny city college", name: "cuny city college", type: "cuny city college", degree: "9", hlink: "authoInfo.html"},{id: "nicoll,s", name: "nicoll,s", type: "author", degree: "1", hlink: "authoInfo.html"},{id: "sadegh,a", name: "sadegh,a", type: "author", degree: "1", hlink: "authoInfo.html"},{id: "gilchrist,m", name: "gilchrist,m", type: "author", degree: "1", hlink: "authoInfo.html"},{id: "tu,r", name: "tu,r", type: "author", degree: "1", hlink: "authoInfo.html"},{id: "rodriguez-contreras,a", name: "rodriguez-contreras,a", type: "author", degree: "1", hlink: "authoInfo.html"},{id: "cardoso,l", name: "cardoso,l", type: "author", degree: "1", hlink: "authoInfo.html"},{id: "wang,s", name: "wang,s", type: "author", degree: "1", hlink: "authoInfo.html"},{id: "cowin,s", name: "cowin,s", type: "author", degree: "1", hlink: "authoInfo.html"}],
+connections:[{sourceId: "seo,s", linkName:"", weight:"1", targetId: "cuny city college"},{sourceId: "cuny city college", linkName:"", weight:"1", targetId: "nicoll,s"},{sourceId: "cuny city college", linkName:"", weight:"1", targetId: "sadegh,a"},{sourceId: "cuny city college", linkName:"", weight:"1", targetId: "gilchrist,m"},{sourceId: "cuny city college", linkName:"", weight:"1", targetId: "tu,r"},{sourceId: "cuny city college", linkName:"", weight:"1", targetId: "rodriguez-contreras,a"},{sourceId: "cuny city college", linkName:"", weight:"1", targetId: "cardoso,l"},{sourceId: "cuny city college", linkName:"", weight:"1", targetId: "wang,s"},{sourceId: "cuny city college", linkName:"", weight:"1", targetId: "cowin,s"}]}
+
+
+
+.format({ "text" : function( text , key ) {
+
+    if (key === "export_val") {
+      return "Export Value";
+    }
+    else {
+      return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();
+    }
+
+  }
+})
+
+
+
+
+
+
+
+Highcharts.chart('container', {
+    chart: {
+        zoomType: 'xy'
+    },
+    title: {
+        text: 'Average Monthly Temperature and Rainfall in Tokyo'
+    },
+    subtitle: {
+        text: 'Source: WorldClimate.com'
+    },
+    xAxis: [{
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        crosshair: true
+    }],
+    yAxis: [{ // Primary yAxis
+        labels: {
+            format: '{value}°C',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        },
+        title: {
+            text: 'Temperature',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        }
+    }, { // Secondary yAxis
+        title: {
+            text: 'Rainfall',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        labels: {
+            format: '{value} mm',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        opposite: true
+    }],
+    tooltip: {
+        shared: true
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'left',
+        x: 120,
+        verticalAlign: 'top',
+        y: 100,
+        floating: true,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+    },
+    series: [{
+        name: 'Rainfall',
+        type: 'column',
+        yAxis: 1,
+        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+        tooltip: {
+            valueSuffix: ' mm'
+        }
+
+    }, {
+        name: 'Temperature',
+        type: 'spline',
+        data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+        tooltip: {
+            valueSuffix: '°C'
+        }
+    }]
+});
+
+
+
+
+   $('#compRate').highcharts({
+		chart: {
+			type: 'column',
+			zoomType: 'x',
+			events: {
+   			selection: function (event) {
+					var text,
+					label;
+					if (event.xAxis) {
+						yearMinVal = event.xAxis[0].min;
+						yearMaxVal = event.xAxis[0].max;
+						yearMin = yearNames[Math.round(yearMinVal)];
+						yearMax = yearNames[Math.round(yearMaxVal)];
+//						location.href = 'vizDemo2.html?this_qry='+this_qry+'&main_qry='+main_qry+'&instName='+instName+'&resName='+resName+'&docType='+docType+'&yearMin='+yearMin+'&yearMax='+yearMax+'&selectedCountry='+selectedCountry+topic_url;
+//						console.log("cat min "+yearMinCat+"; max "+yearMaxCat);
+					} 
+   			}
+			},
+        },
+//		title: { 
+//			useHTML: true,
+//			text: 'Document Types ' + '<a href="vizDemo2.html?this_qry='+this_qry+'&main_qry='+main_qry+'&instName='+instName+'&resName='+resName+'&docType='+docType+'&yearMin=&yearMax=&selectedCountry='+selectedCountry+topic_url+'">Reset</a>' 
+//		},
+		xAxis: {
+            categories: yearNames
+        },
+		 series: [{
+            name: 'document',
+            data: yearValues
+        }]
+	});
+

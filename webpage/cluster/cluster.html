@@ -1,0 +1,22 @@
+<script>
+
+$(document).ready(function(){
+    $.ajax({
+      type: "GET",
+      xhrFields: { withCredentials: true },
+      crossDomain: true,
+      url: "//68.68.26.90:8501/cluster/cluster.sjs",
+      data: ajaxParams,
+      dataType: 'json',
+      success: function(data){
+        ret_facets = data.facets;
+        results = data.facets;
+    	callback2(ret_facets);
+      }
+    })
+})
+
+
+
+
+</script>

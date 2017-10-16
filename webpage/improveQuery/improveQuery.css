@@ -1,0 +1,12 @@
+tbody tr:hover > td{
+    background: #d3d3d3;
+}
+
+tbody tr.active > td{
+    background-color:#293973;
+    color: white;
+}
+
+tbody tr.added > td{
+    background-color: #F2752E;
+}

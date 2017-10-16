@@ -1,0 +1,10 @@
+topicN,topicDesc,topicSel
+'Topic0','Cancer','cancer'
+'Topic1','Neuro','"neuro"'
+'Topic2','Cardiac','"cardiac"'
+'Topic3','Alzheimers,'"alzheimers"'
+'Topic4','Brain','"brain"'
+'Topic5','Heart','"heart"'
+'Topic6','Cell','"cell"'
+'Topic7','None','"none"'
+'Topic8','OTHER','"OTHER"'

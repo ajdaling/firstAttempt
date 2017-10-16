@@ -1,0 +1,88 @@
+frequency,region,application,bandwidth,% of regional bandwidth,hd,sessions,% of regional sessions,category,subcategory,doctype,catnum,ports
+303.000000,"global","adobe-meeting",303,303.000000,303,303,303.000000,"Laser","Laser","Publications",0,test
+188.000000,"global","adobe-meeting",188,188.000000,188,188,188.000000,"Laser","Laser","Patents",0,test
+89.000000,"global","adobe-meeting",89,89.000000,89,89,89.000000,"Laser","Laser","Grants",0,test
+521.000000,"global","adobe-meeting",521,521.000000,521,521,521.000000,"Medical","Medical","Publications",1,test
+63.000000,"global","adobe-meeting",63,63.000000,63,63,63.000000,"Medical","Medical","Patents",1,test
+150.000000,"global","adobe-meeting",150,150.000000,150,150,150.000000,"Medical","Medical","Grants",1,test
+436.000000,"global","adobe-meeting",436,436.000000,436,436,436.000000,"Magnet","Magnet","Publications",2,test
+62.000000,"global","adobe-meeting",62,62.000000,62,62,62.000000,"Magnet","Magnet","Patents",2,test
+31.000000,"global","adobe-meeting",31,31.000000,31,31,31.000000,"Magnet","Magnet","Grants",2,test
+120.000000,"global","adobe-meeting",120,120.000000,120,120,120.000000,"Fused","Fused","Publications",3,test
+100.000000,"global","adobe-meeting",100,100.000000,100,100,100.000000,"Fused","Fused","Patents",3,test
+20.000000,"global","adobe-meeting",20,20.000000,20,20,20.000000,"Fused","Fused","Grants",3,test
+222.000000,"global","adobe-meeting",222,222.000000,222,222,222.000000,"robot","robot","Publications",4,test
+14.000000,"global","adobe-meeting",14,14.000000,14,14,14.000000,"robot","robot","Patents",4,test
+38.000000,"global","adobe-meeting",38,38.000000,38,38,38.000000,"robot","robot","Grants",4,test
+200.000000,"global","adobe-meeting",200,200.000000,200,200,200.000000,"Gels","Gels","Publications",5,test
+12.000000,"global","adobe-meeting",12,12.000000,12,12,12.000000,"Gels","Gels","Patents",5,test
+16.000000,"global","adobe-meeting",16,16.000000,16,16,16.000000,"Gels","Gels","Grants",5,test
+480.000000,"global","adobe-meeting",480,480.000000,480,480,480.000000,"Prototyping","Prototyping","Publications",6,test
+42.000000,"global","adobe-meeting",42,42.000000,42,42,42.000000,"Prototyping","Prototyping","Patents",6,test
+114.000000,"global","adobe-meeting",114,114.000000,114,114,114.000000,"Prototyping","Prototyping","Grants",6,test
+147.000000,"global","adobe-meeting",147,147.000000,147,147,147.000000,"Nozzle","Nozzle","Publications",7,test
+643.000000,"global","adobe-meeting",643,643.000000,643,643,643.000000,"Nozzle","Nozzle","Patents",7,test
+42.000000,"global","adobe-meeting",42,42.000000,42,42,42.000000,"Nozzle","Nozzle","Grants",7,test
+0.000000,"global","adobe-meeting",1914,1914.000000,1914,1914,1914.000000,"OTHER","OTHER","Publications",8,test
+0.000000,"global","adobe-meeting",1314,1314.000000,1314,1314,1314.000000,"OTHER","OTHER","Patents",8,test
+0.000000,"global","adobe-meeting",212,212.000000,212,212,212.000000,"OTHER","OTHER","Grants",8,test
+125.000000,"Europe","adobe-meeting",125,125.000000,125,125,125.000000,"Laser","Laser","Publications",0,test
+152.000000,"Europe","adobe-meeting",152,152.000000,152,152,152.000000,"Medical","Medical","Publications",1,test
+136.000000,"Europe","adobe-meeting",136,136.000000,136,136,136.000000,"Magnet","Magnet","Publications",2,test
+31.000000,"Europe","adobe-meeting",31,31.000000,31,31,31.000000,"Fused","Fused","Publications",3,test
+57.000000,"Europe","adobe-meeting",57,57.000000,57,57,57.000000,"robot","robot","Publications",4,test
+44.000000,"Europe","adobe-meeting",44,44.000000,44,44,44.000000,"Gels","Gels","Publications",5,test
+155.000000,"Europe","adobe-meeting",155,155.000000,155,155,155.000000,"Prototyping","Prototyping","Publications",6,test
+43.000000,"Europe","adobe-meeting",43,43.000000,43,43,43.000000,"Nozzle","Nozzle","Publications",7,test
+0.000000,"Europe","adobe-meeting",487,487.000000,487,487,487.000000,"OTHER","OTHER","Publications",8,test
+68.000000,"North America","adobe-meeting",68,68.000000,68,68,68.000000,"Laser","Laser","Publications",0,test
+88.000000,"North America","adobe-meeting",88,88.000000,88,88,88.000000,"Laser","Laser","Grants",0,test
+156.000000,"North America","adobe-meeting",156,156.000000,156,156,156.000000,"Medical","Medical","Publications",1,test
+144.000000,"North America","adobe-meeting",144,144.000000,144,144,144.000000,"Medical","Medical","Grants",1,test
+131.000000,"North America","adobe-meeting",131,131.000000,131,131,131.000000,"Magnet","Magnet","Publications",2,test
+25.000000,"North America","adobe-meeting",25,25.000000,25,25,25.000000,"Magnet","Magnet","Grants",2,test
+52.000000,"North America","adobe-meeting",52,52.000000,52,52,52.000000,"Fused","Fused","Publications",3,test
+19.000000,"North America","adobe-meeting",19,19.000000,19,19,19.000000,"Fused","Fused","Grants",3,test
+79.000000,"North America","adobe-meeting",79,79.000000,79,79,79.000000,"robot","robot","Publications",4,test
+38.000000,"North America","adobe-meeting",38,38.000000,38,38,38.000000,"robot","robot","Grants",4,test
+87.000000,"North America","adobe-meeting",87,87.000000,87,87,87.000000,"Gels","Gels","Publications",5,test
+16.000000,"North America","adobe-meeting",16,16.000000,16,16,16.000000,"Gels","Gels","Grants",5,test
+158.000000,"North America","adobe-meeting",158,158.000000,158,158,158.000000,"Prototyping","Prototyping","Publications",6,test
+109.000000,"North America","adobe-meeting",109,109.000000,109,109,109.000000,"Prototyping","Prototyping","Grants",6,test
+34.000000,"North America","adobe-meeting",34,34.000000,34,34,34.000000,"Nozzle","Nozzle","Publications",7,test
+36.000000,"North America","adobe-meeting",36,36.000000,36,36,36.000000,"Nozzle","Nozzle","Grants",7,test
+0.000000,"North America","adobe-meeting",538,538.000000,538,538,538.000000,"OTHER","OTHER","Publications",8,test
+0.000000,"North America","adobe-meeting",212,212.000000,212,212,212.000000,"OTHER","OTHER","Grants",8,test
+71.000000,"Asia","adobe-meeting",71,71.000000,71,71,71.000000,"Laser","Laser","Publications",0,test
+112.000000,"Asia","adobe-meeting",112,112.000000,112,112,112.000000,"Medical","Medical","Publications",1,test
+126.000000,"Asia","adobe-meeting",126,126.000000,126,126,126.000000,"Magnet","Magnet","Publications",2,test
+24.000000,"Asia","adobe-meeting",24,24.000000,24,24,24.000000,"Fused","Fused","Publications",3,test
+50.000000,"Asia","adobe-meeting",50,50.000000,50,50,50.000000,"robot","robot","Publications",4,test
+51.000000,"Asia","adobe-meeting",51,51.000000,51,51,51.000000,"Gels","Gels","Publications",5,test
+100.000000,"Asia","adobe-meeting",100,100.000000,100,100,100.000000,"Prototyping","Prototyping","Publications",6,test
+47.000000,"Asia","adobe-meeting",47,47.000000,47,47,47.000000,"Nozzle","Nozzle","Publications",7,test
+0.000000,"Asia","adobe-meeting",612,612.000000,612,612,612.000000,"OTHER","OTHER","Publications",8,test
+39.000000,"other","adobe-meeting",39,39.000000,39,39,39.000000,"Laser","Laser","Publications",0,test
+188.000000,"other","adobe-meeting",188,188.000000,188,188,188.000000,"Laser","Laser","Patents",0,test
+1.000000,"other","adobe-meeting",1,1.000000,1,1,1.000000,"Laser","Laser","Grants",0,test
+101.000000,"other","adobe-meeting",101,101.000000,101,101,101.000000,"Medical","Medical","Publications",1,test
+63.000000,"other","adobe-meeting",63,63.000000,63,63,63.000000,"Medical","Medical","Patents",1,test
+6.000000,"other","adobe-meeting",6,6.000000,6,6,6.000000,"Medical","Medical","Grants",1,test
+43.000000,"other","adobe-meeting",43,43.000000,43,43,43.000000,"Magnet","Magnet","Publications",2,test
+62.000000,"other","adobe-meeting",62,62.000000,62,62,62.000000,"Magnet","Magnet","Patents",2,test
+6.000000,"other","adobe-meeting",6,6.000000,6,6,6.000000,"Magnet","Magnet","Grants",2,test
+13.000000,"other","adobe-meeting",13,13.000000,13,13,13.000000,"Fused","Fused","Publications",3,test
+100.000000,"other","adobe-meeting",100,100.000000,100,100,100.000000,"Fused","Fused","Patents",3,test
+1.000000,"other","adobe-meeting",1,1.000000,1,1,1.000000,"Fused","Fused","Grants",3,test
+36.000000,"other","adobe-meeting",36,36.000000,36,36,36.000000,"robot","robot","Publications",4,test
+14.000000,"other","adobe-meeting",14,14.000000,14,14,14.000000,"robot","robot","Patents",4,test
+18.000000,"other","adobe-meeting",18,18.000000,18,18,18.000000,"Gels","Gels","Publications",5,test
+12.000000,"other","adobe-meeting",12,12.000000,12,12,12.000000,"Gels","Gels","Patents",5,test
+67.000000,"other","adobe-meeting",67,67.000000,67,67,67.000000,"Prototyping","Prototyping","Publications",6,test
+42.000000,"other","adobe-meeting",42,42.000000,42,42,42.000000,"Prototyping","Prototyping","Patents",6,test
+5.000000,"other","adobe-meeting",5,5.000000,5,5,5.000000,"Prototyping","Prototyping","Grants",6,test
+23.000000,"other","adobe-meeting",23,23.000000,23,23,23.000000,"Nozzle","Nozzle","Publications",7,test
+643.000000,"other","adobe-meeting",643,643.000000,643,643,643.000000,"Nozzle","Nozzle","Patents",7,test
+6.000000,"other","adobe-meeting",6,6.000000,6,6,6.000000,"Nozzle","Nozzle","Grants",7,test
+0.000000,"other","adobe-meeting",277,277.000000,277,277,277.000000,"OTHER","OTHER","Publications",8,test
+0.000000,"other","adobe-meeting",1314,1314.000000,1314,1314,1314.000000,"OTHER","OTHER","Patents",8,test

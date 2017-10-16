@@ -1,0 +1,22 @@
+#filters-modal{
+    width: 100%;
+}
+#filters-dialog{
+    width: 80%;
+}
+#filters-modal-body{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#filters-slider-well{
+    text-align: center;
+}
+
+#filters-modal ul{
+	list-style-type: none;
+}
+
+#filters-modal label{
+    margin-right: 10px;
+}

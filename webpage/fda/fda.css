@@ -1,0 +1,7 @@
+#dt1 tr:hover{
+    background-color: gray;
+}
+
+#dt1 tr.active{
+    background-color: orange;
+}

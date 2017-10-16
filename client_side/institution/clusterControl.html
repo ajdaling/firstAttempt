@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SuperH Index</title>
+<link href="../../client_side/lib/css/dashboard.css?tachyon.1.19">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css?tachyon.1.19" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css?tachyon.1.19" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <link href="../../client_side/lib/font-awesome/css/font-awesome.min.css?tachyon.1.19" rel="stylesheet" type="text/css">
+  <link href="../../client_side/lib/metisMenu/metisMenu.min.css?tachyon.1.19" rel="stylesheet">
+  <link rel="stylesheet" href="../home/style.css?tachyon.1.19">
+    <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?tachyon.1.19" rel="stylesheet">
+    <link href="../../client_side/lib/introjs/introjs.css?tachyon.1.19" rel="stylesheet">
+    <link href="../../client_side/lib/introjs/themes/introjs-modern.css?tachyon.1.19" rel="stylesheet">
+	<link rel="stylesheet" href="../hud/bootstrap-slider.css?tachyon.1.19">
+	<link rel="stylesheet" href="../hud/hud.css?tachyon.1.19">
+
+</head>
+
+<body>
+
+  <!--BEGIN NAV -->
+	<div class="row" id="content-row">
+		<nav class="navbar navbar-fixed-top" role="banner">
+  			<div class="container-fluid" style ="background-color:rgba(255,255,255,0.8)">
+				<a class="navbar-brand" href="//www.superHindex.com" target="_blank" style="display:"><img src="../../client_side/lib/images/super.png" style="color: blue; height: 44px; width:auto;"></a>
+  				<ul class = "nav navbar-nav navbar-left" style="margin-left: 20%;">
+  					<li>
+						<h2 style = "text-align: center" id="nav-session-title"></h2>
+					</li>
+  				</ul>
+  				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+                		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    		<i class="fa fa-user fa-fw" style="color:#283a75 "></i>
+                    		<i class="fa fa-caret-down" style="color:#283a75 "></i>
+                		</a>
+                		<ul class="dropdown-menu dropdown-user">
+                			<li><a class = "username-text"></a></li>
+                    		<li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+                    		<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
+                    		<li class="divider"></li>
+                    		<li><a href = "#" class = "login-link"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    		</li>
+						</ul>
+                	<!-- /.dropdown-user -->
+            		</li>
+            <!-- /.dropdown -->
+				</ul>
+  			</div>
+  		</nav>
+  	</div>
+  	<!-- END NAV -->
+
+	<!--main-->
+	<div class="container-fluid" id="content-container">
+<!-- Filters Modal -->
+	<div id="filters-modal" class="modal fade" role="dialog">
+		<div id = "filters-dialog" class="modal-dialog">
+			<div id = "filters-modal-content" class="modal-content">
+				<div id = "filters-modal-header" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id = "filters-modal-title" class="modal-title">Filters Header</h4>
+					<div id = "hud-loader" class="loader"></div>
+				</div>
+				<div id = "filters-modal-body" class="modal-body"></div>
+				<div id = "filters-modal-footer" class="modal-footer"></div>
+			</div>
+		</div>
+	</div>
+	<!-- Sessions Modal -->
+	<div id="sessions-modal" class="modal fade" role="dialog">
+		<div id = "sessions-dialog" class="modal-dialog">
+			<div id = "sessions-modal-content" class="modal-content">
+				<div id = "sessions-modal-header" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id = "sessions-modal-title" class="modal-title">Sessions Header</h4>
+				</div>
+				<div id = "sessions-modal-body" class="modal-body">
+				</div>
+				<div id = "sessions-modal-footer" class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Settings Modal -->
+	<div id="settings-modal" class="modal fade" role="dialog">
+		<div id = "settings-dialog" class="modal-dialog">
+			<div id = "settings-modal-content" class="modal-content">
+				<div id = "settings-modal-header" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id = "settings-modal-title" class="modal-title">Settings Header</h4>
+				</div>
+				<div id = "settings-modal-body" class="modal-body">
+				</div>
+				<div id = "settings-modal-footer" class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" id="content-row">
+		<!--SIDE NAV-->
+		<nav class="main-menu" id="sidebar"  data-spy="affix" data-offset-top="-1" style="position:fixed">
+			<div class="scrollbar" id="style-1" >
+				<ul>
+					<li>
+						<a id = "sidebar-filters">
+							<i class= " fa fa-filter fa-lg"> </i>
+							<span class="nav-text">Filters</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					<li>
+						<a class="save-link">
+							<i class="fa fa-floppy-o fa-lg"></i>
+							<span class="nav-text">Save Session</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					<li>
+						<a id = "sidebar-settings">
+							<i class= " fa fa-cog fa-lg"> </i>
+							<span class="nav-text">Settings</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					
+					<li id="tutorial">
+						<a onclick="introPartOne();">
+						<i class="fa fa-question fa-lg"></i>
+						<span class="nav-text">Tutorial</span>
+						</a>
+					</li>
+					<hr>
+					<li id="home">
+						<a class = "home-link">
+						<i class="fa fa-home fa-lg"></i>
+						<span class="nav-text">Home</span>
+						</a>
+					</li>
+					<li id="new">
+						<a class = "newSearch-link">
+						<i class="fa fa-search fa-lg"></i>
+						<span class="nav-text">New Search</span>
+						</a>
+					</li>
+					<li id="results">
+						<a class = "results-link">
+						<i class="fa fa-list fa-lg"></i>
+						<span class="nav-text">Search Results</span>
+						</a>
+					</li>
+					<li id="visualize">
+						<a class="visualization-link">
+						<i class="fa fa-area-chart fa-lg"></i>
+						<span class="nav-text">Visualize</span>
+						</a>
+					</li>
+					<li id="clusters">
+						<a class="cluster-link">
+						<i class="fa fa-pie-chart fa-lg"></i>
+						<span class="nav-text">Clusters</span>
+						</a>
+					</li>
+					<li id="report">
+						<a class="report-link" >
+						<i class="fa fa-paper-plane-o fa-lg"></i>
+						<span class="nav-text">Report</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- END NEW NAV -->
+
+      
+      <div class="kaeli_text" style="padding: 100px 100px 500px 100px">
+	<h2> Subtopic Clustering:</h2>
+	<font size="3"> Based on the query you have selected, we can dynamically create new subtopics that describe the data. By selecting the "submit" button below, the clustering algorithm will be run.</font>
+	<br>
+	<br>
+	<font size="3"> In addition, the advanced options below can specify how many documents you'd like to run over, and whether you'd like it to look at the abstract, the title, or the mesh terms associated with each document. </font>
+	<br>
+	<br>
+	<font size="3"> Helpful Hints: </font>
+	<ul>
+		<li>Running over 1,000 documents takes about 5-10 seconds</li>
+		<li>Running over 10,000 documents takes about 30 seconds</li>
+	</ul>
+	<form action="../institution/cluster.html" method="get" id="controls">
+	  Number of documents:
+	  <input type="text" name="docNum" value="5000"><br>
+	<br>  
+	Clustering inputs:<br>
+	  <input type="checkbox" name="abstract" value="abstract" checked="checked"> Abstract<br>
+	  <input type="checkbox" name="title" value="title" checked="checked"> Title<br>
+	  <input type="checkbox" name="meshterms" value="meshterms" unchecked> Mesh Terms<br>
+	<br>	  
+	<input type="submit" value="submit">
+	</form>
+							      
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js?tachyon.1.19"></script>
+<script src="lib/d3/d3.v3.min.js?tachyon.1.19"></script>
+<script src="../../config.js?tachyon.1.19"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js?tachyon.1.19"></script>
+	<script src="../hud/bootstrap-slider.js?tachyon.1.19"></script>
+	<script src="../hud/hud.js?tachyon.1.19"></script>
+
+</html>

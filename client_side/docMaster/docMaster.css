@@ -1,0 +1,46 @@
+.well{
+	background: white;
+}
+#filter-row {
+    height: 340px;
+    margin-bottom: 20px;
+}
+#filter-well{
+    height: 340px;
+}
+#filter-content{
+    height: 200px;
+    overflow: scroll;
+}
+
+#explore-row {
+    height: 340px;
+    margin-bottom: 20px;
+}
+#explore-well{
+    height: 340px;
+}
+#explore-content{
+    height: 240px;
+    overflow: scroll;
+}
+
+.table > tbody > tr > td{
+    background: transparent;
+} 
+
+.table > tbody > tr.active > td{
+    background-color: rgb(51, 122, 183);
+    color: white;
+}
+
+.table > tbody > tr:hover > td{
+    background-color: white;
+    color: black;
+}
+
+.table > tbody > tr{
+    color: black;
+    background-color: silver;
+}
+

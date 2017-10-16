@@ -1,0 +1,72 @@
+#top-nav-1{
+	height: 40px;
+}
+#top-nav-2{
+	height: 40px;
+	top: 40px;
+}
+
+#savedSearch-row{
+	height: 100%;
+}
+#content-row{
+	position: relative;
+}
+
+body {
+ padding-top:50px;
+}
+
+#rightCol{
+	padding-top: 50px;
+}
+
+
+
+#leftCol{
+	height: 1000px;
+	background-image: linear-gradient(#3c3c3c, #222);
+}
+
+.nav-sidebar{
+	
+}
+.col-fixed.affix{
+	position: fixed;
+	top: 100px;
+	right: 0;
+}
+.navbar-bright {
+ background-color:#111155;
+ color:#fff;
+}
+
+.affix-top,.affix{
+ position: static;
+}
+
+
+
+@media (min-width: 979px) {
+  #sidebar.affix-top {
+    position: static;
+  	margin-top:30px;
+  }
+  
+  #sidebar.affix {
+    position: fixed;
+    top:100px;
+  }
+}
+
+#sidebar li.active {
+  border:0 #eee solid;
+  border-right-width:5px;
+}
+
+$datatable-fixed.affix-top{
+	position: fixed;
+}
+
+
+

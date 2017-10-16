@@ -1,0 +1,176 @@
+.subunit-boundary {
+  fill: none;
+  stroke: #777;
+  stroke-dasharray: 2,2;
+  stroke-linejoin: round;
+}
+
+#datapoint-list {
+   font-size: 13px;
+   line-height: 1.5em;
+   width: 450px;
+   margin-right: 10px;
+}
+
+#lists {
+   white-space: nowrap;
+}
+#tag-list {
+  float: left;
+  width:185px;
+  font-size: 13px;
+  white-space: normal;
+  margin-right: 5px;
+}
+#datapoint-list {
+  float: left;
+}
+
+#datapoint-list .serialnumber{
+	width: 80px;
+  display: inline-block;
+  vertical-align: top;
+  padding:2px;
+
+}
+
+#datapoint-list .date {
+  width: 85px;
+  display: inline-block;
+  vertical-align: top;
+  padding:2px;
+}
+
+#datapoint-list .stage{
+	width: 60px;
+  display: inline-block;
+  vertical-align: top;
+  padding:2px;
+}
+
+
+
+
+#datapoint-list .title{
+  width: 200px;
+  display: inline-block;
+  vertical-align: top;
+  padding:2px;
+}
+
+#datapoint-list .datapoint {
+  white-space: normal;
+  vertical-align: top;
+  margin-bottom: 1px;
+  display: block;
+  background: #eee;
+  padding: 1.5px;
+}
+#mapcontainer .datapointTitle  {
+  font-weight:bold;
+  margin-bottom: 1px;
+  padding: 3px;
+  font-size: 13px;
+  vertical-align: top;
+}
+#datapoint-list .datapointTitle {
+  font-weight:bold;
+  white-space: normal;
+  margin-bottom: 1px;
+  padding: 1.5px;
+}
+.popover-content{
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 1.5em;
+}
+.popover-link {
+  color: black;
+}
+span.datapointsource {
+  display: block;
+}
+
+.background.bar {
+  fill: #ccc;
+}
+
+.foreground.bar {
+  fill: steelblue;
+}
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+.chart-label {
+  font: 12px sans-serif;
+  font-weight:bold;
+}
+
+.brush rect.extent {
+  fill: steelblue;
+  fill-opacity: .125;
+}
+
+.brush .resize path {
+  fill: #eee;
+  stroke: #666;
+}
+
+#charts {
+  padding: 10px 10px 15px 10px;
+  display:inline-block;
+}
+#totals {
+  display:inline-block;
+  margin-right:10px;
+  width:162px;
+  vertical-align: top;
+}
+#stagedropdown{
+  width:170px;
+}
+#map {
+  width:500px;
+  height: 450px;
+}
+#mapcontainer {
+  overflow: auto;
+}
+/*.leaflet-clickable:hover{
+  fill-opacity: .8;
+  stroke: red;
+  fill: red;
+}*/
+.subunit {
+  fill-opacity: .2;
+  stroke: #fff;
+  stroke-width: 1.5px;
+  stroke-opacity: .4;
+}
+
+.chart {
+  display: inline-block;
+  width: 5800px;
+  height: 400px;
+  margin-bottom: 30px;
+}
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    font-size:17.5px;
+    line-height: 20px;
+    color: #777;
+}

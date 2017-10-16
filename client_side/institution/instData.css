@@ -1,0 +1,156 @@
+    #holder {
+      width:850px;
+      margin:20px auto;
+    }
+    #holder>div {
+      padding:30px 0;
+      clear:both;
+    }
+    .map {
+      width:600px;
+      height:400px;
+    }
+    .pie {
+      margin-left:30px;
+    }
+
+body{
+  padding-top: 50px;
+}
+
+thead th {
+    background-color: #337ab7;
+    color: white;
+}
+
+
+
+.divide-nav{
+  height: 50px;
+  background-color: #428bca;
+}
+
+.divide-text{
+    color:#fff;
+    line-height: 20px;
+    font-size:20px;
+    padding: 15px 0;
+}
+
+.affix {
+  top: 50px;
+  width:100%;
+}
+
+.filler{
+  min-height: 2000px;
+}
+
+.navbar-form {
+   padding-left: 0;
+}
+
+.navbar-collapse{
+   padding-left:0; 
+}
+
+.navbar {
+   margin-bottom:0; 
+}
+
+.dropdown-menu li.active > a,
+.dropdown-menu li.active > a:hover,
+.dropdown-menu li.active > a:focus
+
+
+.form-text{
+    padding:15px 0;
+}
+.dataTables_info{
+width:25%;
+min-width:20px;
+}
+select {
+width: 100px; 
+}
+
+.container-fluid {
+    padding: 20px;
+}
+.yadcf-filter {
+        width: 100%;
+}
+
+.yadcf-filter-wrapper {
+        width: 100%;
+}
+.myhidden 
+{
+    display: none;
+}
+
+hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+} 
+
+
+.inner-container {
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, rgba(30, 87, 153, 0.2) 0%, rgba(125, 185, 232, 0) 100%);
+    background-repeat: repeat;
+    border-radius:10px;
+    margin: 30px;
+    padding: 30px;
+//   border: 30px solid transparent;
+}
+.classWithPad { 
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, rgba(30, 87, 153, 0.2) 0%, rgba(125, 185, 232, 0) 100%);
+    background-repeat: repeat;
+    border-radius:10px;
+margin:10px; 
+padding:10px; }
+
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    }
+    #cy {
+        width: 100%;
+        height: 400px;
+    }
+    #loading {
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    margin-top: -0.5em;
+    font-size: 2em;
+    color: #000;
+    }
+    #loading.loaded {
+    display: none;
+    }
+    #layoutButtons {
+        position: absolute;
+        top: 5%;
+        right: 2%;
+    }
+    input[type='button'] {
+        width: 100%;
+    }
+    #userSelection {
+        position: absolute;
+        top: 5%;
+        left: 2%;
+        width: 10%;
+        display: none;
+    }

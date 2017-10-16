@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="cache-control" content="max-age=0" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+  <meta http-equiv="pragma" content="no-cache" />
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SuperH Index</title>
+
+
+	<link rel="stylesheet" href="../hud/bootstrap-slider.css?tachyon.1.19">
+	<link rel="stylesheet" href="../hud/hud.css?tachyon.1.19">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css?tachyon.1.19" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css?tachyon.1.19" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <link href="../../client_side/lib/font-awesome/css/font-awesome.min.css?tachyon.1.19" rel="stylesheet" type="text/css">
+
+  <!-- MetisMenu CSS -->
+  <link href="/lib/metisMenu/metisMenu.min.css?tachyon.1.19" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../client_side/home/style.css?tachyon.1.19">
+
+  <link rel="stylesheet" type="text/css" href="../../client_side/home/dashboard.css?tachyon.1.19">
+
+  <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?tachyon.1.19" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../client_side/lib/jquery/jquery-ui.min.css?tachyon.1.19">
+  <link href="../../client_side/lib/introjs/introjs.css?tachyon.1.19" rel="stylesheet">
+  <link href="../../client_side/lib/introjs/themes/introjs-modern.css?tachyon.1.19" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+        <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!--BEGIN NAV -->
+	<div class="row" id="content-row">
+		<nav class="navbar navbar-fixed-top" role="banner">
+  			<div class="container-fluid" style ="background-color:rgba(255,255,255,0.8)">
+				<a class="navbar-brand" href="//www.superHindex.com" target="_blank" style="display:"><img src="../../client_side/lib/images/super.png" style="color: blue; height: 44px; width:auto;"></a>
+  				<ul class = "nav navbar-nav navbar-left" style="margin-left: 20%;">
+  					<li>
+						<h2 style = "text-align: center" id="nav-session-title"></h2>
+					</li>
+  				</ul>
+  				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown pull-right">
+                		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    		<i class="fa fa-user fa-fw" style="color:#283a75 "></i>
+                    		<i class="fa fa-caret-down" style="color:#283a75 "></i>
+                		</a>
+                		<ul class="dropdown-menu dropdown-user">
+                			<li><a class = "username-text"></a></li>
+                    		<li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+                    		<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
+                    		<li class="divider"></li>
+                    		<li><a href = "#" class = "login-link"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    		</li>
+						        </ul>
+                	<!-- /.dropdown-user -->
+            </li>
+
+
+            <!-- /.dropdown -->
+				</ul>
+  			</div>
+  		</nav>
+  	</div>
+  	<!-- END NAV -->
+
+	<!--main-->
+	<div class="container-fluid" id="content-container">
+<!-- Filters Modal -->
+	<div id="filters-modal" class="modal fade" role="dialog">
+		<div id = "filters-dialog" class="modal-dialog">
+			<div id = "filters-modal-content" class="modal-content">
+				<div id = "filters-modal-header" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id = "filters-modal-title" class="modal-title">Filters Header</h4>
+					<div id = "hud-loader" class="loader"></div>
+				</div>
+				<div id = "filters-modal-body" class="modal-body"></div>
+				<div id = "filters-modal-footer" class="modal-footer"></div>
+			</div>
+		</div>
+	</div>
+	<!-- Sessions Modal -->
+	<div id="sessions-modal" class="modal fade" role="dialog">
+		<div id = "sessions-dialog" class="modal-dialog">
+			<div id = "sessions-modal-content" class="modal-content">
+				<div id = "sessions-modal-header" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id = "sessions-modal-title" class="modal-title">Sessions Header</h4>
+				</div>
+				<div id = "sessions-modal-body" class="modal-body">
+				</div>
+				<div id = "sessions-modal-footer" class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Settings Modal -->
+	<div id="settings-modal" class="modal fade" role="dialog">
+		<div id = "settings-dialog" class="modal-dialog">
+			<div id = "settings-modal-content" class="modal-content">
+				<div id = "settings-modal-header" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id = "settings-modal-title" class="modal-title">Settings Header</h4>
+				</div>
+				<div id = "settings-modal-body" class="modal-body">
+				</div>
+				<div id = "settings-modal-footer" class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" id="content-row">
+		<!--SIDE NAV-->
+		<nav class="main-menu" id="sidebar"  data-spy="affix" data-offset-top="-1" style="position:fixed">
+			<div class="scrollbar" id="style-1" >
+				<ul>
+					<li>
+						<a id = "sidebar-filters">
+							<i class= " fa fa-filter fa-lg"> </i>
+							<span class="nav-text">Filters</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					<li>
+						<a class="save-link">
+							<i class="fa fa-floppy-o fa-lg"></i>
+							<span class="nav-text">Save Session</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					<li>
+						<a id = "sidebar-settings">
+							<i class= " fa fa-cog fa-lg"> </i>
+							<span class="nav-text">Settings</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					<li id="tutorial">
+						<a onclick="startIntro();">
+						<i class="fa fa-question fa-lg"></i>
+						<span class="nav-text">Tutorial</span>
+						</a>
+					</li>
+					<hr>
+					<li id="home">
+						<a class = "home-link">
+						<i class="fa fa-home fa-lg"></i>
+						<span class="nav-text">Home</span>
+						</a>
+					</li>
+					<li id="new">
+						<a class = "newSearch-link">
+						<i class="fa fa-search fa-lg"></i>
+						<span class="nav-text">New Search</span>
+						</a>
+					</li>
+					<li id="results">
+						<a class = "results-link">
+						<i class="fa fa-list fa-lg"></i>
+						<span class="nav-text">Search Results</span>
+						</a>
+					</li>
+					<li id="visualize">
+						<a class="visualization-link">
+						<i class="fa fa-area-chart fa-lg"></i>
+						<span class="nav-text">Visualize</span>
+						</a>
+					</li>
+					<li id="clusters">
+						<a class="cluster-link">
+						<i class="fa fa-pie-chart fa-lg"></i>
+						<span class="nav-text">Clusters</span>
+						</a>
+					</li>
+					<li id="report">
+						<a class="report-link" >
+						<i class="fa fa-paper-plane-o fa-lg"></i>
+						<span class="nav-text">Report</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+  <div class="container-fluid" >
+
+
+    <div class="row" style="padding:80px 0 0 130px; background-color: white">
+
+
+  </div>
+  <!-- /.container-fluid -->
+
+    <div class="row"  id="savedSearch-row" style="padding:20px 0 0 70px; background-color: #fff">
+<div class="row" style="padding:0 0 0 427px">
+      <button type="button" class="btn btn-outline btn-primary btn-lg">Raw Data</button>
+      <button type="button" class="btn btn-outline btn-primary btn-lg">Top Companies</button>
+      <button type="button" class="btn btn-outline btn-primary btn-lg">Top Experts</button>
+      <button type="button" class="btn btn-outline btn-primary btn-lg">Cluster Page</button>
+    </div>
+      <div class='dashboard' >
+
+      <div class='column'>
+
+
+        <a  id="chart1" class='item'href="http://localhost:8011/client_side/docMaster/docMaster.html"><div id="chart1" class='item'></div></a>
+
+        <div id="chart2" class='item'></div>
+
+        <div id="chart3" class='item'></div>
+
+        <div id="chart4" class='item'></div>
+
+      </div>
+
+    </div>
+
+
+	</div>
+
+  <!--<div class="tab-wrap">
+
+      <input type="radio" name="tabs" id="tab1" checked>
+      <div class="tab-label-content" id="tab1-content">
+        <label for="tab1">Tab 1</label>
+        <div class="tab-content">
+
+<div id="chart1" class='item'></div>
+
+        </div>
+      </div>
+
+      <input type="radio" name="tabs" id="tab2">
+      <div class="tab-label-content" id="tab2-content">
+        <label for="tab2">Tab 2</label>
+        <div class="tab-content">TAB 2 - Quisque egestas, purus in tempor vulputate, diam augue mollis quam, quis elementum ipsum ex a risus. Quisque sed augue porta, facilisis felis vitae, cursus mi. Nullam mollis magna eget tincidunt mollis. Sed suscipit placerat ultricies. Sed eget lorem et ipsum ultricies congue eu a enim. Nam quis ex nec lorem dignissim suscipit eu ut felis. Vivamus molestie felis id purus congue, vel ultrices sem molestie.</div>
+      </div>
+
+      <input type="radio" name="tabs" id="tab3">
+      <div class="tab-label-content" id="tab3-content">
+        <label for="tab3">Tab 3</label>
+        <div class="tab-content">TAB 3 - Donec vulputate ante ac ligula vestibulum, id mollis diam commodo. Integer at consequat magna. Sed elit sem, dictum nec porttitor ac, ultrices id enim. Morbi semper eros a enim malesuada, eu finibus erat dictum. Ut vitae orci a odio sagittis malesuada. Cras volutpat vel lorem in tempor. Duis ultricies lectus sit amet tellus vehicula faucibus. Etiam sed leo ac erat tempor feugiat at quis ipsum. Mauris pellentesque nisl lorem, ac finibus sapien sagittis vel. Donec et lobortis est. Vestibulum dignissim ligula nec erat interdum, quis sollicitudin metus pretium. Vestibulum quis dui sapien. Proin commodo justo ac orci elementum molestie. Aliquam mattis orci vitae volutpat commodo.</div>
+      </div>
+
+       <input type="radio" name="tabs" id="tab4">
+       <div class="tab-label-content" id="tab4-content">
+        <label for="tab4">Tab 4</label>
+        <div class="tab-content">TAB 4 - Quisque egestas, purus in tempor vulputate, diam augue mollis quam, quis elementum ipsum ex a risus. Quisque sed augue porta, facilisis felis vitae, cursus mi. Nullam mollis magna eget tincidunt mollis. Sed suscipit placerat ultricies. Sed eget lorem et ipsum ultricies congue eu a enim. Nam quis ex nec lorem dignissim suscipit eu ut felis. Vivamus molestie felis id purus congue, vel ultrices sem molestie.</div>
+      </div>
+
+      <div class="slide"></div>
+
+  </div>-->
+
+
+
+
+		</div><!-- End right col -->
+
+
+          <!-- /saved search row -->
+        </div>
+      </div>
+      <!--/row-->
+    </div>
+    <!--/container-->
+
+
+
+
+    <script type="text/javascript">
+      function startIntro() {
+        var intro = introJs().setOption('doneLabel', 'Next page').setOption('showStepNumbers', 'false');
+
+        intro.setOptions({
+          steps: [{
+              intro: "Welcome to the Super-H Search Tool!"
+            },
+            {
+              intro: "Let's first get familiar with the dashboard."
+            },
+            {
+              element: document.querySelector('#sidebar'),
+              intro: "This is your main navigation.",
+              position: 'right'
+            }, //home, new search, search results, visualize, clusters, report
+            {
+              element: document.querySelector('#home'),
+              intro: "Home: This will return you to your main dashboard at any time.",
+              position: 'right'
+            },
+            {
+              element: document.querySelector('#new'),
+              intro: "New Search: Create (or modify) your current search.",
+              position: 'right'
+            },
+            {
+              element: document.querySelector('#results'),
+              intro: "Search Results: Here you can view and refine the results of your current search.",
+              position: 'right'
+            },
+            {
+              element: document.querySelector('#visualize'),
+              intro: "Visualize: Explore and further understand your search with charts, graphs, and other visualizatinos.",
+              position: 'right'
+            },
+            {
+              element: document.querySelector('#clusters'),
+              intro: "Clusters: This data displays relational information on the top 10 words/phrases used per topic in any search.",
+              position: 'right'
+            },
+            {
+              element: document.querySelector('#clusters'),
+              intro: "For example: if your topic was \"Regenerative Robotic Research\", expect to see clusters such as \"robotic,\" \"bionic,\" \"innovative,\" and so on...",
+              position: 'right'
+            },
+            {
+              element: document.querySelector('#report'),
+              intro: "Report: Download your data set and any visualizations!",
+              position: 'right'
+            },
+            {
+
+              intro: "Now, lets explore the top navigation bar.",
+
+            },
+            {
+              element: document.querySelector('#messages'),
+              intro: "Messages: View important updates regarding your data and/or searches directly from Super-H.",
+
+            },
+            {
+              element: document.querySelector('#tasks'),
+              intro: "Tasks: View all of your simultaneous sessions.",
+
+            },
+            {
+              element: document.querySelector('#profile'),
+              intro: "Profile: Change your settings and log out here.",
+
+            },
+            {
+              element: '#step4',
+              intro: "And last, but not least...",
+              position: 'bottom'
+            },
+            {
+              element: document.querySelector('#savedSearch-row'),
+              intro: 'These are your saved searches. Click them at any time to resume, refine, and report.',
+              position: 'top'
+            }
+            ,
+            {
+              element: document.querySelector('#question'),
+              intro: 'Remember, click these litte question marks if you ever want to know more about a particular item on any given page!',
+              position: 'left'
+            },
+
+            {
+              intro: 'Let\'s make our first search.'
+            }
+          ]
+        });
+        intro.start().oncomplete(function() {
+          window.location.href = '../newSearch/newSearch.html?multipage=true';
+        });
+      }
+    </script>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js?tachyon.1.19"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?tachyon.1.19"></script>
+<script src="../../client_side/lib/d3/js/d3.v3.min.js?tachyon.1.19"></script>
+<script src="../../config.js?tachyon.1.19"></script>
+<script src="../../client_side/lib/bootstrap/js/bootstrap.min.js?tachyon.1.19"></script>
+<script src="../../client_side/home/dashboard.js?tachyon.1.19"></script>
+<script src="../../client_side/lib/introjs/intro.js?tachyon.1.19"></script>
+	<script src="../hud/bootstrap-slider.js?tachyon.1.19"></script>
+	<script src="../hud/hud.js?tachyon.1.19"></script>
+
+  <script src='https://cdn.zingchart.com/zingchart.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+
+</html>

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SuperH Index</title>
+
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css?tachyon.1.19" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css?tachyon.1.19" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link href="../lib/font-awesome/css/font-awesome.min.css?tachyon.1.19" rel="stylesheet" type="text/css">
+
+    <!-- MetisMenu CSS -->
+    <link href="../lib/metisMenu/metisMenu.min.css?tachyon.1.19" rel="stylesheet">
+  <link rel="stylesheet" href="../home/style.css?tachyon.1.19">
+
+    	<link rel = "stylesheet" type = "text/css" href="../home/dashboard.css?tachyon.1.19">
+<link rel="stylesheet" href="../../client_side/lib/slider/bootstrap-slider.css?tachyon.1.19">
+<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?tachyon.1.19" rel="stylesheet">
+<link href="../../client_side/lib/introjs/introjs.css?tachyon.1.19" rel="stylesheet">
+<link href="../../client_side/lib/introjs/themes/introjs-modern.css?tachyon.1.19" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+
+  <!--BEGIN NAV -->
+  <div class="row" id="content-row">
+
+
+
+
+  	<nav class="navbar navbar-fixed-top" role="banner">
+  		<div class="container-fluid" style="background:white">
+
+
+  				<a class="navbar-brand" href="//www.superHindex.com" target="_blank" style="display:"><img src="../../client_side/lib/images/super.png" style="color: blue; height: 44px; width:auto;"></a>
+
+
+  				<ul class="nav navbar-nav navbar-right">
+
+  <!--
+            <li> <a href="mailto:superHindex@gmail.com" style="display:inline-block;padding:0px;"><img src="../../client_side/lib/images/mail-icon.png" style="height: 28px; width:35px;"></a>  </li>
+  					<li> <a href="//facebook.com/superHindex" target="_blank" style="display:inline-block;padding:0px;"><img src="../../client_side/lib/images/facebooklogo.png" style="height: 32px; width:32px;"></a>  </li>
+  					<li> <a href="//twitter.com/superHindex" target="_blank" style="display:inline-block;padding:0px;"><img src="../../client_side/lib/images/twitter-bird-dark-bgs.png" style="height: 36px; width: 36px;"></a>   </li>
+  -->
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-envelope fa-fw" style="color:#283a75 "></i> <i class="fa fa-caret-down" style="color:#283a75 "></i>
+                </a>
+                <ul class="dropdown-menu dropdown-messages">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                    <em>Yesterday</em>
+                                </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                    <em>Yesterday</em>
+                                </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                    <em>Yesterday</em>
+                                </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>Read All Messages</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-messages -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-tasks fa-fw" style="color:#283a75 "></i> <i class="fa fa-caret-down" style="color:#283a75 "></i>
+                </a>
+                <ul class="dropdown-menu dropdown-tasks">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 1</strong>
+                                    <span class="pull-right text-muted">40% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                        <span class="sr-only">40% Complete (success)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 2</strong>
+                                    <span class="pull-right text-muted">20% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                        <span class="sr-only">20% Complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 3</strong>
+                                    <span class="pull-right text-muted">60% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                        <span class="sr-only">60% Complete (warning)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 4</strong>
+                                    <span class="pull-right text-muted">80% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                        <span class="sr-only">80% Complete (danger)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>See All Tasks</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-tasks -->
+            </li>
+            <!-- /.dropdown -->
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw" style="color:#283a75 "></i> <i class="fa fa-caret-down" style="color:#283a75 "></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a class = "login-link" href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+
+  				</ul>
+  		</div>
+  	</nav>
+  </div>
+
+  <!-- END NAV -->
+
+
+	<!--main-->
+	<div class="container-fluid">
+		<div class="row" id="content-row">
+
+            <!--SIDE NAV-->
+
+            <nav class="main-menu" id="sidebar" style="position:fixed">
+            <div class="scrollbar" id="style-1">
+              <ul>
+        				<li id="home">
+        					<a class = "home-link">
+              			<i class="fa fa-home fa-lg"></i>
+              			<span class="nav-text">Home</span>
+              		</a>
+              	</li>
+        				<li id="new">
+        					<a class = "newSearch-link">
+        						<i class="fa fa-search fa-lg"></i>
+        						<span class="nav-text">New Search</span>
+        					</a>
+        				</li>
+        				<li id="results">
+        					<a class = "results-link">
+        						<i class="fa fa-list fa-lg"></i>
+        						<span class="nav-text">Search Results</span>
+        					</a>
+        				</li>
+        				<li id="visualize">
+        					<a class="visualization-link">
+        						<i class="fa fa-area-chart fa-lg"></i>
+        						<span class="nav-text">Visualize</span>
+        					</a>
+        				</li>
+
+                <li id="clusters">
+                <a class="cluster-link">
+                <i class="fa fa-pie-chart fa-lg"></i>
+                <span class="nav-text">Clusters</span>
+                </a>
+                </li>
+
+        				<li id="report">
+        					<a class="report-link" >
+        						<i class="fa fa-paper-plane-o fa-lg"></i>
+        						<span class="nav-text">Report</span>
+        					</a>
+        				</li>
+
+                <li id="tutorial">
+        					<!--<a  href="javascript:void(0);" onclick="javascript:introJs().start();"></a>-->
+                  <a onclick="startIntro();">
+                    <i class="fa fa-question fa-lg"></i>
+        						<span class="nav-text">Tutorial</span>
+        </a>
+        				</li>
+        <!-- 				<li class="dropdown">
+        					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        						<i class= " fa fa-filter fa-lg"> </i>
+        						<span class="nav-text">Filters</span>
+        						<i class="fa fa-caret-right fa-lg"></i>
+        					</a>
+        					<ul class="dropdown-menu" id = "filters-drop">
+        						<li>
+        						</li>
+        					</ul>
+        				</li>
+         -->			</ul>
+
+			</div>
+
+        </nav>
+			<div class="col-lg-11 pull-right" >
+				<div class = "row" style="margin:0 0 0 -60px">
+					<!-- Begin left columns -->
+					<div class = "col-lg-1 well pull-left" id="fixed-col" style="position: fixed; padding-left: 2%;padding-right: 2%;top: 20%;width: 23%;">
+						<div class="row" >
+                    		<button  id = "clear-button" style="width:100%;" class="btn btn-lg btn-danger" style="">Clear Fields</button>
+                 		</div>
+
+                		<div class = "row" id="results-div" style="margin-top: 10px;">
+							<button id = "estimate-btn" style="width:100%;" class="btn-outline btn-success btn-lg"style="">Estimate Results</button>
+                			<h4 style="margin-left: 30px;">Estimated Results</h4>
+                			<h4 style="margin-left: 30px;" id = "results-text">0 documents</h4>
+                		</div>
+                		<div class="row" style="margin-top: 40px;">
+                  			<button id = "submit1" style="width:100%;" class="btn-outline btn-primary btn-lg"style="">Submit</button>
+                		</div>
+					</div>
+					<!-- Left column -->
+
+					<div class = "col-lg-9 pull-right" style="margin-top: 5%; margin-bottom: 5%;">
+					<div id="newQuery" class="panel panel-default">
+						<div  class="panel-heading">New Query</div>
+						<!-- Begin panel-body -->
+						<div class="panel-body">
+							 <form autocomplete="off" id = "queryForm" onSubmit = "JavaScript:handleSubmit()">
+								<div class = "form-group row" data-tip="Possible searches: 'cancer' 'cancer AND research' '(Mayo AND Harvard) OR (Columbia)'">
+									<!-- Main Query Well -->
+									<div class = "row">
+										<div id="mainQueryTutorial" class = "well" style="margin:-16px 15px 0 15px;">
+											<label style="color: black" for="mainQuery">Main Query: </label>
+											<textarea type="text" style="height:70px;" cols = "auto" rows = "10" class = "form-control"name = "mainQuery" id = "mainQuery" ></textarea>
+										</div>
+									</div>
+									<!-- /Main Query -->
+									<!-- Year Range Well -->
+									<div class = "row">
+
+										<div id="yearRange" style="margin-left: 15px; height: 126px" class = "col-lg-6 well" >
+											<div class = "row">
+				  								<h4 style="margin-left: 30%;">Year Range</h4>
+				  							</div>
+									    	<div class = "row"><!-- Year Slider row -->
+									    		<div class = "col-lg-2 pull-left">
+									    			<p style="margin-left: 10%;" id=start-year-label></p>
+									    		</div>
+										    	<div class="col-lg-8">
+													<input id="year-slider" type="text"/>
+										    	</div>
+										    	<div class="col-lg-2 pull-right">
+										    		<p  id=end-year-label></p>
+										    	</div>
+									    	</div>
+									    	<div class="row">
+												<h5 style="margin-left: 20%;" id = year-label></h5>
+									    	</div>
+										</div>
+
+										<!-- DocORigin well -->
+										<div id="documentTypes" class = "col-lg-6 well" style="margin:0 0 0 -30px; padding: 0 0px 0 0;">
+											<div class = "row">
+								    			<h4 style="margin-left: 30%;">Document Types</h4>
+								    		</div>
+								    		<div class = "row">
+								    			<ul id = "docOrigin-list" class = "columns" style="columns:2;" >
+								    			</ul>
+								    		</div>
+										</div>
+										<!-- /DocOrigin well -->
+									</div>
+									<!-- /Year Range Well -->
+
+								</div>
+
+								<!-- Mesh well -->
+								<div id="meshTerms" class = "form-group row well" style="margin:-35px -15px 0 -15px;">
+									<h4>MeSH Terms</h4>
+									<div class = "col-lg-6" >
+										<div class="input-group">
+	      									<input type="text" class="form-control mesh-search" placeholder="Search MeSH Terms" id = "mesh-search">
+											<span class="input-group-btn">
+										    	<button class="btn btn-primary" id = "mesh-search-button" type="button">Search</button>
+										    </span>
+										</div>
+										<ul id='mesh-suggestion' style='height: 100px; overflow: scroll; display: none; list-style-type: none; position:absolute; z-index:999; background: silver;' ></ul>
+									</div>
+									<div class = "col-lg-6" style="max-height: 80px; overflow: scroll;">
+										<ul class = "columns" style="columns:2" id = "mesh-list" style= "background :silver;"></ul>
+									</div>
+								</div>
+								<!-- /Mesh Well -->
+
+								<!-- Inst Row -->
+								<div id="institutionGroups" class = " row well" style="margin:-0px -15px 0 -15px;">
+									<div  class="row form-group" style="padding-top: 20px"id="inst-row0">
+										<h4>Organization Groups</h4>
+										<div id="instPlus" class="col-lg-1">
+											<button type="button" class="btn btn-default add-inst-button"><i class="glyphicon glyphicon-plus"></i></button>
+										</div>
+										<label style="color: black" class = "col-lg-1 control-label">Organization Label</label>
+										<div id="instLabel" class=" col-lg-3">
+											<div class = "row">
+												<input class="form-control label_" type="text" id = 'inst-label0' name="inst-label[]" >
+											</div>
+
+										</div>
+										<label style="color: black" class = "col-lg-1 control-label">Organization Value</label>
+										<div id="instValue" class="col-lg-6">
+											<div class = "row">
+												<input class="form-control inst-value" type="text" id = 'inst-value0' name="inst-value[]" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /Inst Row -->
+								<!-- Topics Row -->
+								<div id="topics" class = " row well" style="margin:-0px -15px 0 -15px;">
+									<div  class=" form-group row" style="padding-top: 20px" id = "topic-row0">
+										<h4> Topics</h4>
+										<div class="col-lg-1">
+											<button type="button" class="btn btn-default add-topic-button pull-left"><i class="glyphicon glyphicon-plus"></i></button>
+										</div>
+
+										<label style="color: black" class = "col-lg-1 control-label">Topic Label</label>
+										<div class = "col-lg-3">
+											<input type = "text" class = "form-control label_" id = "topic-label0" name = "label[]"/>
+										</div>
+										<label style="color: black" class="col-lg-1 control-label">Topic Value</label>
+										<div class="col-lg-6">
+											<input type="text" class="form-control topic_" id = "topic-value0" name="topic[]" />
+										</div>
+									</div>
+								</div>
+								<!-- /Topics Row -->
+								<!-- Researchers Row -->
+								<div id = resGroups class=" well row">
+	                 				<div class="row form-group" style="padding-top: 20px"id="res-row0">
+										<h4>Expert Groups</h4>
+										<div class="col-lg-1">
+											<button type="button" class="btn btn-default add-res-button"><i class="glyphicon glyphicon-plus"></i></button>
+										</div>
+										<label style="color: black" class = "col-lg-1 control-label">Expert Label</label>
+										<div class=" col-lg-3">
+											<div class = "row">
+												<input class="form-control label_" type="text" id = 'res-label0' name="res-label[]" >
+											</div>
+
+										</div>
+										<label style="color: black" class = "col-lg-1 control-label">Expert Value</label>
+										<div class="col-lg-6">
+											<div class = "row">
+												<input class="form-control res-value" type="text" id = 'res-value0' name="res-value[]" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /Researchers Row -->
+
+							</form>
+
+							<!-- templates -->
+								<div class="form-group row hide" id="topic-template">
+									<div class="col-lg-1">
+										<button type="button" class="btn btn-default remove-topic-button"><i class="glyphicon glyphicon-minus"></i></button>
+									</div>
+									<label style="color: black" class = "col-lg-1 control-label">Topic Label</label>
+									<div class=" col-lg-3">
+										<input class="form-control label_" type="text" id = 'temp-label-id' name="label[]" />
+									</div>
+									<label style="color: black" class = "col-lg-1 control-label">Topic Value</label>
+									<div class="col-lg-6">
+										<input class="form-control topic_" type="text" id = 'temp-topic-id' name="topic[]" />
+									</div>
+								</div>
+								<div class="form-group row hide" id="inst-template">
+									<div class="col-lg-1">
+										<button type="button" class="btn btn-default remove-inst-button"><i class="glyphicon glyphicon-minus"></i></button>
+									</div>
+									<label style="color: black" class = "col-lg-1 control-label">Organization Label</label>
+									<div class=" col-lg-3">
+										<input class="form-control label_" type="text" id = 'temp-inst-label' name="inst-label[]" />
+									</div>
+									<label style="color: black" class = "col-lg-1 control-label inst-value">Organization Value</label>
+									<div class="col-lg-6">
+										<input class="form-control topic_" type="text" id = 'temp-inst-value' name="inst-value[]" />
+									</div>
+								</div>
+								<div class="form-group row hide" id="res-template">
+									<div class="col-lg-1">
+										<button type="button" class="btn btn-default remove-res-button"><i class="glyphicon glyphicon-minus"></i></button>
+									</div>
+									<label style="color: black" class = "col-lg-1 control-label">Expert Label</label>
+									<div class=" col-lg-3">
+										<input class="form-control label_" type="text" id = 'res-inst-label' name="res-label[]" />
+									</div>
+									<label style="color: black" class = "col-lg-1 control-label res-value">Expert Value</label>
+									<div class="col-lg-6">
+										<input class="form-control topic_" type="text" id = 'temp-res-value' name="res-value[]" />
+									</div>
+								</div>
+								<!-- /templates -->
+
+
+							</div>
+						<!-- End panel-body -->
+						</div>
+					<!-- End panel -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!--/container-->
+
+<script src="../../client_side/lib/introjs/intro.js?tachyon.1.19"></script>
+  <script type="text/javascript">
+
+  function startIntro(){
+    var intro = introJs().setOption('doneLabel', 'Show me the results!').setOption('showStepNumbers', 'false');
+
+    intro.setOptions({
+        steps: [
+          {
+            intro: "Welcome to the search page!"
+          },
+
+          {
+            element: document.querySelector('#mainQueryTutorial'),
+            intro: "Main Query: Enter your search terms here.",
+            position: 'left'
+          },
+          {
+            element: document.querySelector('#yearRange'),
+            intro: "Year Range: Use this sliding bar to change the range of years you'd like to search over.",
+            position: 'left'
+          },
+          {
+            element: document.querySelector('#documentTypes'),
+            intro: "Document Types: By default, all boxes are checked (so that you search over the entire database). If you'd like to only search a specific database, uncheck all other boxes.",
+            position: 'left'
+          },
+          {
+            element: document.querySelector('#meshTerms'),
+            intro: "Mesh Terms: These are terms to be searched in conjunction the National Library of Medicine's control vocabulary thesarus.",
+            position: 'left'
+          },
+          {
+            element: document.querySelector('#institutionGroups'),
+            intro: "Organization Groups: Here, you can refine your search to only include these specific organizations, institutions, etc.",
+            position: 'left'
+          },
+          {
+            element: document.querySelector('#instValue'),
+            intro: "Here, you enter the actual name of the organzation: \"Harvard Medical School\".",
+            position: 'left'
+          },
+          {
+            element: document.querySelector('#instLabel'),
+            intro: "In this pane, you enfer a \"representation label\" for said organization: \"Harvard\".",
+            position: 'left'
+          },
+
+          {
+            element: document.querySelector('#instPlus'),
+            intro: "Click here to add more organizations.",
+            position: 'left'
+          },
+
+          {
+            element: document.querySelector('#topics'),
+            intro: "Topics: These are more refining limitations you want applied to your current search.",
+            position: 'top'
+
+          },
+          {
+            element: document.querySelector('#resGroups'),
+            intro: "Experts: Here, you can set restrictions on experts involved in your current search.",
+            position: 'top'
+
+          },
+          {
+            element: document.querySelector('#clear-button'),
+            intro: "Clear: This will reset this page and remove all search refinements.",
+            position: 'right'
+          },
+          {
+            element: document.querySelector('#results-div'),
+            intro: "Estimate: Estimates the number of socuments your current parameters will return.",
+            position: 'right'
+          },
+          {
+            element: document.querySelector('#results-text'),
+            intro: "View the number of documents here",
+            position: 'right'
+          },
+
+          {
+            element: document.querySelector('#submit1'),
+            intro: 'Once you are content with your search, submit here and you will be redirected to the results page.',
+            position: 'right'
+          }
+        ]
+      });
+      intro.start().oncomplete(function() {
+        window.location.href = '../docMaster/docMaster.html?multipage=true';
+      });
+  }
+
+     if (RegExp('multipage', 'gi').test(window.location.search)) {
+       startIntro();
+     }
+
+
+   </script>
+</body>
+	<script src="../../client_side/lib/jquery/jquery-3.2.1.js?tachyon.1.19"></script>
+	<script src="../../config.js?tachyon.1.19"></script>
+		<script src="../../client_side/lib/slider/bootstrap-slider.js?tachyon.1.19"></script>
+
+	<script src="../../client_side/lib/d3/js/d3.v3.min.js?tachyon.1.19"></script>
+    <script src="../../client_side/lib/bootstrap/js/bootstrap.min.js?tachyon.1.19"></script>
+	<script src="../../client_side/home/dashboard.js?tachyon.1.19"></script>
+	<script src="../../client_side/newSearch/newSearch.js?tachyon.1.19"></script>
+
+</html>

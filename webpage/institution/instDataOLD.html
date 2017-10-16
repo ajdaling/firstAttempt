@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="author" content="superH">
+<meta name="description" content="Data Visualization">
+<meta property="og:title" content="Sample Report">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Data Visualization">
+<meta property="og:url"
+content="//www.superhindex.com">
+<meta property="og:image"
+content="//link/test.png">
+<title>Visualization Report</title>
+
+<link type="text/css" href="lib/dc.css?tachyon.1.19" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="lib/colorbrewer.css?tachyon.1.19"/>
+  <style>
+    #holder {
+      width:850px;
+      margin:20px auto;
+    }
+    #holder>div {
+      padding:30px 0;
+      clear:both;
+    }
+    .map {
+      width:600px;
+      height:400px;
+    }
+    .pie {
+      margin-left:30px;
+    }
+  </style>
+
+<style>
+
+body{
+  padding-top: 50px;
+}
+
+thead th {
+    background-color: #337ab7;
+    color: white;
+}
+
+
+
+.divide-nav{
+  height: 50px;
+  background-color: #428bca;
+}
+
+.divide-text{
+    color:#fff;
+    line-height: 20px;
+    font-size:20px;
+    padding: 15px 0;
+}
+
+.affix {
+  top: 50px;
+  width:100%;
+}
+
+.filler{
+  min-height: 2000px;
+}
+
+.navbar-form {
+   padding-left: 0;
+}
+
+.navbar-collapse{
+   padding-left:0; 
+}
+
+.navbar {
+   margin-bottom:0; 
+}
+
+.dropdown-menu li.active > a,
+.dropdown-menu li.active > a:hover,
+.dropdown-menu li.active > a:focus
+
+</style>
+
+</head>
+
+<body>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js?tachyon.1.19"></script>
+
+
+    <link type="text/css" rel="stylesheet" href="css/jquery.qtip.min.css?tachyon.1.19" />
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css?tachyon.1.19" />
+
+
+		<link href="css/cytoscape.js?tachyon.1.19-panzoom.css?tachyon.1.1" rel="stylesheet" type="text/css" />
+		<link href="font-awesome-4.0.3/css/font-awesome.css?tachyon.1.19" rel="stylesheet" type="text/css" />
+
+		<script src="//code.jquery.com/jquery-2.0.3.min.js?tachyon.1.19"></script>
+		<script src="lib/cytoscape.js?tachyon.1.19"></script>
+
+		<!-- for testing with local version of cytoscape.js?tachyon.1.19 -->
+		<!-- <script src="../cytoscape.js?tachyon.1.19/build/cytoscape.js"></script> -->
+
+		<script src="lib/cytoscape-panzoom.js?tachyon.1.19"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css?tachyon.1.19">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css?tachyon.1.19">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/4.10.3/css/bootstrap-slider.min.css?tachyon.1.19">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css?tachyon.1.19">
+
+    <link href="//cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.min.css?tachyon.1.19" rel="stylesheet" type="text/css" />
+    <link href="css/style_cyto.css?tachyon.1.19" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js?tachyon.1.19"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js?tachyon.1.19/3.10.0/lodash.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js?tachyon.1.19"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/4.10.3/bootstrap-slider.min.js?tachyon.1.19"></script>
+    <script src="https://cdn.rawgit.com/cytoscape/cytoscape.js?tachyon.1.19-cola/1.6.0/cola.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.min.js?tachyon.1.19"></script>
+    <script src="https://cdn.rawgit.com/cytoscape/cytoscape.js?tachyon.1.19-qtip/2.7.0/cytoscape-qtip.js"></script>
+    <script src="https://cdn.rawgit.com/cytoscape/cytoscape.js?tachyon.1.19-cola/1.6.0/cytoscape-cola.js"></script>
+    <script src='myInstNetwork.js?tachyon.1.19'></script>
+
+
+
+
+<script src="lib/d3/js/d3.v3.min.js?tachyon.1.19"></script>
+<script src="lib/crossfilter/js/crossfilter.min.js?tachyon.1.19"></script>
+<script src="lib/dc.js?tachyon.1.19"></script>
+
+
+<script type="text/javascript" src="yadcf-master/jquery.dataTables.yadcf.min.js?tachyon.1.19"></script>
+<link rel="stylesheet" href="yadcf-master/jquery.dataTables.yadcf.css?tachyon.1.19">
+
+<link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css?tachyon.1.19" rel="stylesheet" type="text/css" />
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js?tachyon.1.19"></script>
+
+
+<script src="//code.highcharts.com/maps/highcharts.js?tachyon.1.19"></script>
+<script src="//code.highcharts.com/maps/modules/map.js?tachyon.1.19"></script>
+<script src="//code.highcharts.com/maps/modules/data.js?tachyon.1.19"></script>
+<script src="//code.highcharts.com/maps/modules/exporting.js?tachyon.1.19"></script>
+<script src="//code.highcharts.com/mapdata/custom/world.js?tachyon.1.19"></script>
+
+
+<style>
+.form-text{
+    padding:15px 0;
+}
+.dataTables_info{
+width:25%;
+min-width:20px;
+}
+select {
+width: 100px; 
+}
+
+.container-fluid {
+    padding: 20px;
+}
+.yadcf-filter {
+        width: 100%;
+}
+
+.yadcf-filter-wrapper {
+        width: 100%;
+}
+.myhidden 
+{
+    display: none;
+}
+
+hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+} 
+
+
+.inner-container {
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, rgba(30, 87, 153, 0.2) 0%, rgba(125, 185, 232, 0) 100%);
+    background-repeat: repeat;
+    border-radius:10px;
+    margin: 30px;
+    padding: 30px;
+//   border: 30px solid transparent;
+}
+.classWithPad { 
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, rgba(30, 87, 153, 0.2) 0%, rgba(125, 185, 232, 0) 100%);
+    background-repeat: repeat;
+    border-radius:10px;
+margin:10px; 
+padding:10px; }
+
+</style>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    }
+    #cy {
+        width: 100%;
+        height: 400px;
+    }
+    #loading {
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    margin-top: -0.5em;
+    font-size: 2em;
+    color: #000;
+    }
+    #loading.loaded {
+    display: none;
+    }
+    #layoutButtons {
+        position: absolute;
+        top: 5%;
+        right: 2%;
+    }
+    input[type='button'] {
+        width: 100%;
+    }
+    #userSelection {
+        position: absolute;
+        top: 5%;
+        left: 2%;
+        width: 10%;
+        display: none;
+    }
+</style>
+
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">	
+  
+	<div class="navbar-header">
+        <div class="navbar-header"><a class="navbar-brand" href="//www.superHindex.com" target="_blank" style="display:inline-block;padding:0px"><img src="images/superHsmall.png" style="height: 44px; width:auto;"></a></div>
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		</button>
+	</div>
+	
+	<div class="collapse navbar-collapse">
+		<ul class="nav navbar-nav pull-right">
+                        <li> <a href="mailto:superHindex@gmail.com" style="display:inline-block;padding:0px;"><img src="images/mail-icon.png" style="height: 28px; width:35px;"></a>  </li>
+                        <li> <a href="//facebook.com/superHindex" target="_blank" style="display:inline-block;padding:0px;"><img src="images/facebooklogo.png" style="height: 32px; width:32px;"></a>  </li>
+			<li> <a href="//twitter.com/superHindex" target="_blank" style="display:inline-block;padding:0px;"><img src="images/twitter-bird-dark-bgs.png" style="height: 36px; width: 36px;"></a>   </li>
+		</ul>
+   
+	</div>
+</div>
+<div class="navbar navbar-inverse navbar-static-top  second-navbar" role="navigation">	
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		</button>
+	</div>
+	
+	<div class="collapse navbar-collapse">
+		
+		
+	</div>
+</div>
+
+
+
+<!--  -->
+<!-- This row has the reset button/number selected data points, and the main title -->
+<!-- <button type="button" class="btn btn-primary" onclick=filter1()>Date Filter</button> -->
+<div class="container-fluid">
+<div class="row"> 
+
+   <div class="col-lg-12"> 
+      <div class="page-header">
+        <h2> <p id="title"> </p> </h2>
+      </div>
+   </div>
+
+</div>
+</div>
+
+<!--  -->
+<!-- This row contains the sidebar chart and the chart vs time -->
+<div class="container-fluid">
+<div class="row"> 
+
+   <div class="col-lg-2"> 
+      <div class="row"> 
+      <div class="panel panel-primary">
+         <table id="inst_summary_data" class="table table-bordered table-condensed">
+             <thead>
+             <tr class="header">
+                 <th colspan="2"><strong>Institution Summary Information</strong></th>
+             </tr>
+				 </thead>
+             <tbody>
+             <tr class="header"><th><strong>Item</strong></th><th><strong>Value</strong></th></tr>
+             <tr ><td>Total docs</td><td> val </td></tr>
+             <tr ><td>Pubmed</td><td> val </td></tr>
+             <tr ><td>Patents</td><td> val </td></tr>
+             <tr ><td>NIH</td><td> val </td></tr>
+             <tr ><td>NSF</td><td> val </td></tr>
+             <tr ><td>Clinical Trials</td><td> val </td></tr>
+             </tbody>
+         </table>
+      </div>
+      </div>
+   </div>
+
+   <div class="col-lg-10"> 
+      <div class="row"> 
+			<table  class="table table-bordered table-condensed">
+         	 <thead>
+         	 <tr class="header">
+            	  <th colspan="2"><strong>Time Dependent Information</strong></th>
+         	 </tr>
+				 </thead>
+      	</table>
+		</div>
+
+      <div class="row"> 
+			<div class="col-xs-5 col-md-5"> <div  id="compRate"> </div> </div>
+			<div class="col-xs-5 col-md-5"> <div  id="compMom">  </div> </div>
+		</div>
+
+      <div class="row"> 
+			<hr>
+			<table  class="table table-bordered table-condensed">
+         	 <thead>
+         	 <tr class="header">
+            	  <th colspan="2"><strong>Network</strong></th>
+         	 </tr>
+				 </thead>
+      	</table>
+		</div>
+
+      <div class="row"> 
+			<div class="col-xs-10 col-md-10"> 
+ 				<div  id="cy"> </div> 
+   			 <div id="loading">
+      			  <span class="fa fa-refresh fa-spin"></span>
+   			 </div>
+			</div>
+		</div>
+   </div>      
+</div><!--row-fluid -->
+<hr>
+<div class="row"> 
+   <div class="classWithPad panel panel-primary">
+      <div class="panel-heading"><strong>Publication Information for this Institution</strong></div>
+      	<table id="doc-subset-table" class="display  table-bordered table-hover table-condensed dt-right">
+         	 <thead>
+         	 <tr class="header">
+                        	<th>Year</th>
+                        	<th>Type</th>
+                        	<th>Institution</th>
+                        	<th>Investigator</th>
+                        	<th>Title</th>
+         	 </tr>
+         	 </thead>
+      	</table>
+   	</div>      
+   </div>      
+</div><!--row-fluid -->
+
+</div><!--/container-fluid -->
+
+</body>
+
+<script>
+</script>
+
+<script src="../../config.js?tachyon.1.19"></script>
+<script src="instData.js?tachyon.1.19"></script>
+
+
+</html>

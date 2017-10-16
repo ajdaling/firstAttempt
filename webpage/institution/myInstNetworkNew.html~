@@ -1,0 +1,124 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <meta charset='utf-8'></meta>
+    <title>Tutorial 3: Twitter</title>
+    <link type="text/css" rel="stylesheet" href="css/jquery.qtip.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+
+		<link href="css/cytoscape.js-panzoom.css" rel="stylesheet" type="text/css" />
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="lib/cytoscape.js"></script>
+ 	 <script src="lib/cytoscape-panzoom.js"></script>
+ 
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/4.10.3/bootstrap-slider.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+ 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/4.10.3/css/bootstrap-slider.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/style_cyto.css" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/4.10.3/bootstrap-slider.min.js"></script>
+    <script src="https://cdn.rawgit.com/cytoscape/cytoscape.js-cola/1.6.0/cola.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.min.js"></script>
+    <script src="https://cdn.rawgit.com/cytoscape/cytoscape.js-qtip/2.7.0/cytoscape-qtip.js"></script>
+    <script src="https://cdn.rawgit.com/cytoscape/cytoscape.js-cola/1.6.0/cytoscape-cola.js"></script>
+    <script src="../../../config.js"></script>
+    <!--<script src='myInstNetwork.js'></script>-->
+<script src='../../../../TopicsNetwork/topicsNetwork.js'></script>
+    
+    
+</head>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    }
+    #cy {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+    #loading {
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    margin-top: -0.5em;
+    font-size: 2em;
+    color: #000;
+    }
+    #loading.loaded {
+    display: none;
+    }
+    #layoutButtons {
+        position: absolute;
+        top: 5%;
+        right: 2%;
+    }
+    input[type='button'] {
+        width: 100%;
+    }
+    #userSelection {
+        position: absolute;
+        top: 5%;
+        left: 2%;
+        width: 10%;
+        display: none;
+    }
+</style>
+
+<body>
+	
+<div class="row"  id="network-row"> 
+    <div class="panel panel-primary">
+		<nav id="myNavbar" class="navbar navbar-default my-nav-bar" role="navigation">
+      	<div class="container">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a id="save-as-png" href="#">Save as PNG</a>
+				</li>
+				<li class="btn-group" id="layout">
+					<p class="navbar-btn" data-toggle="buttons">
+  						<label class="btn btn-primary active" id="cola" >
+    								<input type="radio" name="options" autocomplete="off" checked> Cola
+  						</label>
+  						<label class="btn btn-primary" id="concentric" >
+ 							<input type="radio" name="options" autocomplete="off"> Concentric
+ 						</label>
+					</p>
+				</li>
+				<form class="navbar-form navbar-left">
+					<div class="form-group">
+						<div id="search-wrapper">
+    							<input type="text" class="form-control" id="search" placeholder="&#xf002; Search">
+  						</div>
+        	  			</div>
+        	  		</form>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+  		</nav>
+	<div  id="cy"> </div> 
+	<div id="loading"> 
+		<span class="fa fa-refresh fa-spin"></span>
+	</div>
+</div>
+</div>
+</body>
+</html>

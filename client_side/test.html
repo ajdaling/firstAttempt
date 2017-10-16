@@ -1,0 +1,45 @@
+
+<html>
+<head>
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+</head>
+
+
+<body id = "results">
+
+
+<script>
+
+
+var y = {
+	title: "test-title",
+	topics: {
+		topic1:{topic: "tt1", label: "tl1"},
+		topic2:{topic: "tt2",label:"tl2"}
+	}
+};
+console.log(y);
+$.ajax({
+	url: "http://localhost:8501/sessions/saveSessionRequest.sjs",
+	type: "GET",
+	xhrFields: { withCredentials: true },
+	contentType: "application/json",
+    crossDomain: true,
+    data: JSON.stringify(y),
+	success: function(retdata){
+		console.log(retdata);
+		$("#results").text(retdata);
+	}
+//	error: function() {
+//		alert("error");
+//	}
+});
+
+</script>
+
+
+ </body>
+
+
+</html>

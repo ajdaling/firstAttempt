@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="author" content="superH">
+<meta name="description" content="Data Visualization">
+<meta property="og:title" content="Sample Report">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Data Visualization">
+<meta property="og:url"
+content="//www.superhindex.com">
+<meta property="og:image"
+content="//link/test.png">
+<title>Visualization Report</title>
+
+<link type="text/css" href="lib/dc.css?tachyon.1.19" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="lib/colorbrewer.css?tachyon.1.19"/>
+<link rel = "stylesheet" type = "text/css" href="../home/dashboard.css?tachyon.1.19">
+<link rel="stylesheet" href="../home/style.css?tachyon.1.19">
+  <style>
+    #holder {
+      width:850px;
+      margin:20px auto;
+    }
+    #holder>div {
+      padding:30px 0;
+      clear:both;
+    }
+    .map {
+      width:600px;
+      height:400px;
+    }
+    .pie {
+      margin-left:30px;
+    }
+  </style>
+<link rel="stylesheet" href="lib/bs_panel.css?tachyon.1.19">
+
+<style>
+
+body{
+  padding-top: 50px;
+}
+
+thead th {
+    background-color: #337ab7;
+    color: white;
+}
+
+
+
+.divide-nav{
+  height: 50px;
+  background-color: #428bca;
+}
+
+.divide-text{
+    color:#fff;
+    line-height: 20px;
+    font-size:20px;
+    padding: 15px 0;
+}
+
+.affix {
+  top: 50px;
+  width:100%;
+}
+
+.filler{
+  min-height: 2000px;
+}
+
+.navbar-form {
+   padding-left: 0;
+}
+
+.navbar-collapse{
+   padding-left:0;
+}
+
+.navbar {
+   margin-bottom:0;
+}
+
+.dropdown-menu li.active > a,
+.dropdown-menu li.active > a:hover,
+.dropdown-menu li.active > a:focus{
+
+}
+
+</style>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js?tachyon.1.19"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js?tachyon.1.19"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js?tachyon.1.19/3.10.0/lodash.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js?tachyon.1.19"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/4.10.3/bootstrap-slider.min.js?tachyon.1.19"></script>
+    <script src="https://cdn.rawgit.com/cytoscape/cytoscape.js?tachyon.1.19-cola/1.6.0/cola.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.min.js?tachyon.1.19"></script>
+    <script src="https://cdn.rawgit.com/cytoscape/cytoscape.js?tachyon.1.19-qtip/2.7.0/cytoscape-qtip.js"></script>
+    <script src="https://cdn.rawgit.com/cytoscape/cytoscape.js?tachyon.1.19-cola/1.6.0/cytoscape-cola.js"></script>
+
+<script src="../../client_side/lib/d3/js/d3.v3.min.js?tachyon.1.19"></script>
+<script src="lib/crossfilter/js/crossfilter.min.js?tachyon.1.19"></script>
+  <script src="../../client_side/institution/lib/superformula.js?tachyon.1.19"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,b-1.0.3,b-colvis-1.0.3,b-flash-1.0.3,b-html5-1.0.3,b-print-1.0.3,cr-1.2.0,fh-3.0.0,kt-2.0.0,r-1.0.7,rr-1.0.0,sc-1.3.0,se-1.0.1/datatables.min.css?tachyon.1.19"/>
+<script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,b-1.0.3,b-colvis-1.0.3,b-flash-1.0.3,b-html5-1.0.3,b-print-1.0.3,cr-1.2.0,fh-3.0.0,kt-2.0.0,r-1.0.7,rr-1.0.0,sc-1.3.0,se-1.0.1/datatables.min.js?tachyon.1.19"></script>
+
+<script type="text/javascript" src="yadcf-master/jquery.dataTables.yadcf.min.js?tachyon.1.19"></script>
+<link rel="stylesheet" href="yadcf-master/jquery.dataTables.yadcf.css?tachyon.1.19">
+
+<link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css?tachyon.1.19" rel="stylesheet" type="text/css" />
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js?tachyon.1.19"></script>
+<script src="../../config.js?tachyon.1.19"></script>
+<script src="lib/dc.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/highcharts.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/modules/map.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/modules/data.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/modules/exporting.js?tachyon.1.19"></script>
+<script src="../../client_side/lib/HighCharts/draggable-legend.js?tachyon.1.19"></script>
+
+
+
+<style>
+.form-text{
+    padding:15px 0;
+}
+.dataTables_info{
+width:25%;
+min-width:20px;
+}
+select {
+width: 100px;
+}
+
+.container-fluid {
+    padding: 20px;
+}
+.yadcf-filter {
+        width: 70%;
+}
+
+.yadcf-filter-wrapper {
+        width: 70%;
+}
+.myhidden
+{
+    display: none;
+}
+
+hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+
+
+.inner-container {
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, rgba(30, 87, 153, 0.2) 0%, rgba(125, 185, 232, 0) 50%);
+    background-repeat: repeat;
+    border-radius:10px;
+    margin: 30px;
+    padding: 30px;
+//   border: 30px solid transparent;
+}
+.classWithPad {
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, rgba(30, 87, 153, 0.2) 0%, rgba(125, 185, 232, 0) 50%);
+    background-repeat: repeat;
+    border-radius:10px;
+margin:10px;
+padding:10px; }
+
+</style>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    }
+    #cy {
+        width: 70%;
+        height: 400px;
+    }
+    #loading {
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 50%;
+    width: 70%;
+    text-align: center;
+    margin-top: -0.5em;
+    font-size: 2em;
+    color: #000;
+    }
+    #loading.loaded {
+    display: none;
+    }
+    #layoutButtons {
+        position: absolute;
+        top: 5%;
+        right: 2%;
+    }
+    input[type='button'] {
+        width: 70%;
+    }
+    #userSelection {
+        position: absolute;
+        top: 5%;
+        left: 2%;
+        width: 10%;
+        display: none;
+    }
+</style>
+
+
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css?tachyon.1.19" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css?tachyon.1.19" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<link href="../../client_side/lib/font-awesome/css/font-awesome.min.css?tachyon.1.19" rel="stylesheet" type="text/css">
+
+<!-- MetisMenu CSS -->
+<link href="../../client_side/lib/metisMenu/metisMenu.min.css?tachyon.1.19" rel="stylesheet">
+
+<link rel="stylesheet" href="../../client_side/home/style.css?tachyon.1.19">
+
+<link rel = "stylesheet" type = "text/css" href="../../client_side/home/dashboard.css?tachyon.1.19">
+
+  <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?tachyon.1.19" rel="stylesheet">
+
+
+
+</head>
+<body>
+
+
+  <!--BEGIN NAV -->
+  <div class="row">
+	
+<nav class="navbar navbar-fixed-top" role="banner">
+  		<div class="container-fluid" style="background:white">
+
+
+  				<a class="navbar-brand" href="//www.superHindex.com" target="_blank" style="display:"><img src="../../client_side/lib/images/superlogo.png" style="color: blue; height: 44px; width:auto;"></a>
+
+
+  				<ul class="nav navbar-nav navbar-right">
+
+  <!--
+            <li> <a href="mailto:superHindex@gmail.com" style="display:inline-block;padding:0px;"><img src="../../client_side/lib/images/mail-icon.png" style="height: 28px; width:35px;"></a>  </li>
+  					<li> <a href="//facebook.com/superHindex" target="_blank" style="display:inline-block;padding:0px;"><img src="../../client_side/lib/images/facebooklogo.png" style="height: 32px; width:32px;"></a>  </li>
+  					<li> <a href="//twitter.com/superHindex" target="_blank" style="display:inline-block;padding:0px;"><img src="../../client_side/lib/images/twitter-bird-dark-bgs.png" style="height: 36px; width: 36px;"></a>   </li>
+  -->
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-envelope fa-fw" style="color:#283a75 "></i> <i class="fa fa-caret-down" style="color:#283a75 "></i>
+                </a>
+                <ul class="dropdown-menu dropdown-messages">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                    <em>Yesterday</em>
+                                </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                    <em>Yesterday</em>
+                                </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                    <em>Yesterday</em>
+                                </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>Read All Messages</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-messages -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-tasks fa-fw" style="color:#283a75 "></i> <i class="fa fa-caret-down" style="color:#283a75 "></i>
+                </a>
+                <ul class="dropdown-menu dropdown-tasks">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 1</strong>
+                                    <span class="pull-right text-muted">40% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                        <span class="sr-only">40% Complete (success)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 2</strong>
+                                    <span class="pull-right text-muted">20% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                        <span class="sr-only">20% Complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 3</strong>
+                                    <span class="pull-right text-muted">60% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                        <span class="sr-only">60% Complete (warning)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 4</strong>
+                                    <span class="pull-right text-muted">80% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                        <span class="sr-only">80% Complete (danger)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>See All Tasks</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-tasks -->
+            </li>
+            <!-- /.dropdown -->
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw" style="color:#283a75 "></i> <i class="fa fa-caret-down" style="color:#283a75 "></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a class = "login-link" href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+
+  				</ul>
+
+  		</div>
+  	</nav>
+  </div>
+
+  <!-- END NAV -->
+
+
+<!--  -->
+<!-- This row has the reset button/number selected data points, and the main title -->
+<!-- <button type="button" class="btn btn-primary" onclick=filter1()>Date Filter</button> -->
+
+	<div class="container-fluid">
+		<div class = "row" id = "content-row">
+			<nav class="main-menu" id="sidebar" style="position:fixed">
+	            <div class="scrollbar" id="style-1">
+	            <ul>
+					<li>
+					<a class = "home-link">
+					<i class="fa fa-home fa-lg"></i>
+					<span class="nav-text">Home</span>
+					</a>
+					</li>
+					
+					<li>
+					<a class = "newSearch-link">
+					<i class="fa fa-search fa-lg"></i>
+					<span class="nav-text">New Search</span>
+					</a>
+					</li>
+					
+					
+					<li>
+					<a class = "results-link">
+					<i class="fa fa-list fa-lg"></i>
+					<span class="nav-text">Search Results</span>
+					</a>
+					</li>
+					
+					<li>
+					<a class="visualization-link">
+					<i class="fa fa-area-chart fa-lg"></i>
+					<span class="nav-text">Visualize</span>
+					</a>
+					</li>
+					
+					<li>
+					<a class="report-link">
+					<i class="fa fa-paper-plane-o fa-lg"></i>
+					<span class="nav-text">Report</span>
+					</a>
+					</li>
+					<li>
+					<a class="save-link">
+					<i class="fa fa-floppy-o fa-lg"></i>
+					<span class="nav-text">Save Session</span>
+					</a>
+					</li>
+				</ul>
+			</div>
+        </nav>
+	</div>
+
+	<div class="row">
+		<div class="page-header" style="padding-left:200px;">
+			<h2> <p id="title">Report Page</p> </h2>
+			<input type="checkbox" onclick="asd()"> Show Annotations
+		</div>
+	</div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="container">
+			<div id=my_rate class = "rep-viz"></div>
+<!-- Kaeli start -->
+		<div id="my_rate_desc" style="display: none">
+			<p>
+				<label> Add a description of plot: </label>
+				<form name = "my_rate_form" action="" method="get">
+				<textarea name="my_rate_text" id="my_rate_text" cols="50" rows = "4"></textarea>
+				<input type="button" name="button" value="Save" onClick="my_rate_save(this.form)">
+				</form>
+			</p>
+		</div> 
+<!--Kaeli end--> 
+		</div>
+	</div>
+</div>
+</div>
+
+<hr>
+
+
+<div class="container-fluid">
+<div class="row">
+<div class="container-fluid">
+  <div class="col-lg-3">
+		<div id=my_rate0 class = "rep-viz"></div>
+<!-- Kaeli start -->
+		<div id="my_rate0_desc" style="display: none">
+		<p>
+		<label> Add a description of plot: </label>
+		<form name = "my_rate0_form" action="" method="get">
+		<textarea name="my_rate0_text" id="my_rate0_text" cols="50" rows = "4"></textarea>
+		<input type="button" name="button" value="Save" onClick="my_rate0_save(this.form)">
+		</form>
+		</p>
+		</div> 
+<!--Kaeli end--> 
+  </div>
+  <div class="col-lg-3">
+		<div id=my_rate1 class = "rep-viz"></div>
+<!-- Kaeli start -->
+		<div id="my_rate1_desc" style="display: none">
+		<p>
+		<label> Add a description of plot: </label>
+		<form name = "my_rate1_form" action="" method="get">
+		<textarea id="my_rate1_text" name="my_rate1_text" cols="50" rows = "4"></textarea>
+		<input type="button" name="button" value="Save" onClick="my_rate1_save(this.form)">
+		</form>
+		</p>
+		</div> 
+<!--Kaeli end--> 
+  </div>
+  <div class="col-lg-5">
+		<div id=my_rate2 class = "rep-viz"></div>
+<!-- Kaeli start -->
+		<div id="my_rate2_desc" style="display: none">
+		<p>
+		<label> Add a description of plot: </label>
+		<form name = "my_rate2_form" action="" method="get">
+		<textarea id="my_rate2_text" name="my_rate2_text" cols="50" rows = "4"></textarea>
+		<input type="button" name="button" value="Save" onClick="my_rate2_save(this.form)">
+		</form>
+		</p>
+		</div> 
+<!--Kaeli end--> 
+  </div>
+</div>
+</div>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+  		<div class="col-lg-3">
+			<div id=my_rate3 class = "rep-viz"></div>
+<!-- Kaeli start -->
+			<div id="my_rate3_desc" style="display: none">
+			<p>
+			<label> Add a description of plot: </label>
+			<form name = "my_rate3_form" action="" method="get">
+			<textarea id="my_rate3_text" name="my_rate3_text" cols="50" rows = "4"></textarea>
+			<input type="button" name="button" value="Save" onClick="my_rate3_save(this.form)">
+			</form>
+			</p>
+			</div> 
+<!--Kaeli end--> 
+  		</div>
+  		<div class="col-lg-3">
+			<div id=my_rate4 class = "rep-viz"></div>
+<!-- Kaeli start -->
+			<div id="my_rate4_desc" style="display: none">
+			<p>
+			<label> Add a description of plot: </label>
+			<form name = "my_rate4_form" action="" method="get">
+			<textarea id="my_rate4_text" name="my_rate4_text" cols="50" rows = "4"></textarea>
+			<input type="button" name="button" value="Save" onClick="my_rate4_save(this.form)">
+			</form>
+			</p>
+			</div> 
+<!--Kaeli end--> 
+  		</div>
+  		<div class="col-lg-5">
+			<div id=my_rate5 class = "rep-viz"></div>
+      		<div class="footer">
+	<!-- Kaeli start -->
+			<div id="my_rate5_desc" style="display: none">
+			<p>
+			<label> Add a description of plot: </label>
+			<form name = "my_rate5_form" action="" method="get">
+			<textarea id="my_rate5_text" name="my_rate5_text" cols="50" rows = "4"></textarea>
+			<input type="button" name="button" value="Save" onClick="my_rate5_save(this.form)">
+			</form>
+			</p>
+			</div> 
+	<!--Kaeli end--> 
+		</div>
+	</div>
+	<hr>
+		<div class="container-fluid">
+		<div class="row">
+		  <div class="container">
+				<div id=accel class = "rep-viz"></div>
+		<!-- Kaeli start -->
+				<div id="my_accel_desc" style="display: none">
+				<p>
+				<label> Add a description of plot: </label>
+				<form name = "my_accel_form" action="" method="get">
+				<textarea id="my_accel_text" name="my_accel_text" cols="50" rows = "4"></textarea>
+				<input type="button" name="button" value="Save" onClick="my_accel_save(this.form)">
+				</form>
+				</p>
+				</div> 
+		<!--Kaeli end--> 
+		  </div>
+		</div>
+		</div>
+	<hr>
+
+	<div class="container-fluid">
+		<div class="row">
+		  	<div class="container">
+				<div id=vol class = "rep-viz"></div>
+		<!-- Kaeli start -->
+				<div id="my_vol_desc" style="display: none">
+				<p>
+				<label> Add a description of plot: </label>
+				<form name = "my_vol_form" action="" method="get">
+				<textarea id="my_vol_text" name="my_vol_text" cols="50" rows = "4"></textarea>
+				<input type="button" name="button" value="Save" onClick="my_vol_save(this.form)">
+				</form>
+				</p>
+				</div> 
+		<!--Kaeli end--> 
+		  	</div>
+		</div>
+	</div>
+
+
+
+<hr>
+<div class="container-fluid">
+	<div class="row">
+		<div class="container">
+			<div id=canvas class = "rep-viz"></div>
+			<div id="output">
+			</div>
+		</div>
+	</div>
+		<!-- Kaeli start -->
+		<div id="my_bullseye_desc" style="display: none">
+		<p>
+		<label> Add a description of plot: </label>
+		<form name = "my_bullseye_form" action="" method="get">
+		<textarea id="my_bullseye_text" name="my_bullseye_text" cols="50" rows = "4"></textarea>
+		<input type="button" name="button" value="Save" onClick="my_bullseye_save(this.form)">
+		</form>
+		</p>
+		</div> 
+<!--Kaeli end--> 
+<script src="raphael.js?tachyon.1.19" type="text/javascript"></script>
+<script src="raphael.bullseye.js?tachyon.1.19" type="text/javascript"></script>
+
+
+<hr>
+<!-- Kaeli start -->
+		<div id="my_table_desc" style="display: none">
+			<p>
+			<label> Add a description of following table: </label>
+			<form name = "my_table_form" action="" method="get">
+				<textarea id="my_table_text" name="my_table_text" cols="50" rows = "4"></textarea>
+				<input type="button" name="button" value="Save" onClick="my_table_save(this.form)">
+			</form>
+			</p>
+		</div> 
+<!--Kaeli end--> 
+<div class="row">
+   <div class="classWithPad panel panel-primary rep-viz">
+      <div class="panel-heading"><strong>Publication Information for this Institution</strong></div>
+      	<table id="resultsTable" class="display  table-bordered table-hover table-condensed dt-right">
+         	 <thead>
+         	 <tr class="header">
+                        	<th>Name</th>
+                        	<th>Type</th>
+                        	<th>Topic</th>
+                        	<th>Peak Year</th>
+                        	<th>Pubs</th>
+                        	<th>Patents</th>
+                        	<th>VC</th>
+                        	<th>CTrials</th>
+                        	<th>Grants</th>
+                        	<th>Grant$</th>
+          	 </tr>
+         	 </thead>
+      	</table>
+   	</div>
+   </div>
+</div><!--row-fluid -->
+
+</div><!--/container-fluid -->
+
+</body>
+
+
+<script src="reportPageV3.js?tachyon.1.19"></script>
+	<script src="../../client_side/home/dashboard.js?tachyon.1.19"></script>
+
+</html>

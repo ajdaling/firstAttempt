@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="author" content="superH">
+<meta name="description" content="Data Visualization">
+<meta property="og:title" content="Sample Report">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Data Visualization">
+<meta property="og:url"
+content="//www.superhindex.com">
+<meta property="og:image"
+content="//link/test.png">
+<title>Visualization Report</title>
+
+
+<link rel="stylesheet" href="stylesheets/reset.css?tachyon.1.19">
+
+<link type="text/css" href="lib/dc.css?tachyon.1.19" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="lib/colorbrewer.css?tachyon.1.19"/>
+  <style>
+    #holder {
+      width:850px;
+      margin:20px auto;
+    }
+    #holder>div {
+      padding:30px 0;
+      clear:both;
+    }
+    .map {
+      width:600px;
+      height:400px;
+    }
+    .pie {
+      margin-left:30px;
+    }
+  </style>
+<link rel="stylesheet" href="myChart.css?tachyon.1.19">
+
+
+
+<link rel="stylesheet" href="lib/bs_panel.css?tachyon.1.19">
+
+<style>
+
+body{
+  padding-top: 50px;
+}
+
+thead th {
+    background-color: #337ab7;
+    color: white;
+}
+
+
+
+.divide-nav{
+  height: 50px;
+  background-color: #428bca;
+}
+
+.divide-text{
+    color:#fff;
+    line-height: 20px;
+    font-size:20px;
+    padding: 15px 0;
+}
+
+.affix {
+  top: 50px;
+  width:100%;
+}
+
+.filler{
+  min-height: 2000px;
+}
+
+.navbar-form {
+   padding-left: 0;
+}
+
+.navbar-collapse{
+   padding-left:0; 
+}
+
+.navbar {
+   margin-bottom:0; 
+}
+
+.dropdown-menu li.active > a,
+.dropdown-menu li.active > a:hover,
+.dropdown-menu li.active > a:focus
+
+</style>
+
+</head>
+
+<body>
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js?tachyon.1.19"></script>-->
+<script src="lib/d3/js/d3.v3.min.js?tachyon.1.19"></script>
+<script src="lib/crossfilter/js/crossfilter.min.js?tachyon.1.19"></script>
+<script src="lib/dc.js?tachyon.1.19"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,b-1.0.3,b-colvis-1.0.3,b-flash-1.0.3,b-html5-1.0.3,b-print-1.0.3,cr-1.2.0,fh-3.0.0,kt-2.0.0,r-1.0.7,rr-1.0.0,sc-1.3.0,se-1.0.1/datatables.min.css?tachyon.1.19"/>
+<script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,b-1.0.3,b-colvis-1.0.3,b-flash-1.0.3,b-html5-1.0.3,b-print-1.0.3,cr-1.2.0,fh-3.0.0,kt-2.0.0,r-1.0.7,rr-1.0.0,sc-1.3.0,se-1.0.1/datatables.min.js?tachyon.1.19"></script>
+
+<script type="text/javascript" src="yadcf-master/jquery.dataTables.yadcf.min.js?tachyon.1.19"></script>
+<link rel="stylesheet" href="yadcf-master/jquery.dataTables.yadcf.css?tachyon.1.19">
+
+
+<script>
+
+$('.navbar-lower').affix({
+  offset: {top: 50}
+});
+
+</script>
+
+<script>
+
+//$(function(){
+// $("#divNewNotifications").on('click', 'li a', function(){
+//  console.log("here drop");
+//    $("#dropdownMenu1:first-child").text($(this).text());
+//      $("#dropdownMenu1:first-child").val($(this).text());
+////window.location.reload();
+//   });
+//});
+
+
+</script>
+
+
+
+<style>
+.form-text{
+    padding:15px 0;
+}
+.dataTables_info{
+width:25%;
+min-width:20px;
+}
+select {
+width: 100px; 
+}
+
+.container-fluid {
+    padding: 20px;
+}
+.yadcf-filter {
+        width: 100%;
+}
+
+.yadcf-filter-wrapper {
+        width: 100%;
+}
+.myhidden 
+{
+    display: none;
+}
+
+hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+} 
+
+
+.inner-container {
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, rgba(30, 87, 153, 0.2) 0%, rgba(125, 185, 232, 0) 100%);
+    background-repeat: repeat;
+    border-radius:10px;
+    margin: 30px;
+    padding: 30px;
+//   border: 30px solid transparent;
+}
+.classWithPad { 
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, rgba(30, 87, 153, 0.2) 0%, rgba(125, 185, 232, 0) 100%);
+    background-repeat: repeat;
+    border-radius:10px;
+margin:10px; 
+padding:10px; }
+
+</style>
+
+
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">	
+  
+	<div class="navbar-header">
+        <div class="navbar-header"><a class="navbar-brand" href="//www.superHindex.com" target="_blank" style="display:inline-block;padding:0px"><img src="images/superHsmall.png" style="height: 44px; width:auto;"></a></div>
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		</button>
+	</div>
+	
+	<div class="collapse navbar-collapse">
+		<ul class="nav navbar-nav pull-right">
+                        <li> <a href="mailto:superHindex@gmail.com" style="display:inline-block;padding:0px;"><img src="images/mail-icon.png" style="height: 28px; width:35px;"></a>  </li>
+                        <li> <a href="//facebook.com/superHindex" target="_blank" style="display:inline-block;padding:0px;"><img src="images/facebooklogo.png" style="height: 32px; width:32px;"></a>  </li>
+			<li> <a href="//twitter.com/superHindex" target="_blank" style="display:inline-block;padding:0px;"><img src="images/twitter-bird-dark-bgs.png" style="height: 36px; width: 36px;"></a>   </li>
+		</ul>
+   
+	</div>
+</div>
+<div class="navbar navbar-inverse navbar-static-top  second-navbar" role="navigation">	
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		</button>
+	</div>
+	
+	<div class="collapse navbar-collapse">
+		
+<div class="btn-group">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Dataset 
+    <span class="caret"></span>
+  </button>
+  <ul ID="divNewNotifications" class="dropdown-menu">
+  </ul>
+</div>
+		
+	</div>
+</div>
+
+
+
+<!--  -->
+<!-- This row has the reset button/number selected data points, and the main title -->
+<!-- <button type="button" class="btn btn-primary" onclick=filter1()>Date Filter</button> -->
+<div class="container-fluid">
+<div class="row"> 
+
+
+
+   <div class="col-lg-12"> 
+      <div class="page-header">
+        <h2> <p id="title"> </p> </h2>
+      </div>
+   </div>
+
+</div>
+</div>
+
+
+<!--  -->
+<!-- This row contains the sidebar chart and the chart vs time -->
+<div class="container-fluid">
+<div class="row"> 
+
+   <div class="col-lg-3"> 
+
+      <div class="row"> 
+      <div class="panel panel-primary">
+         <table id="inst_summary_data" class="table table-bordered table-condensed">
+             <thead>
+             <tr class="header">
+                 <th colspan="2"><strong>Institution Summary Information</strong></th>
+             </tr>
+				 </thead>
+             <tbody>
+             <tr class="header"><th><strong>Item</strong></th><th><strong>Value</strong></th></tr>
+             <tr ><td>Total docs</td><td> val </td></tr>
+             <tr ><td>Pubmed</td><td> val </td></tr>
+             <tr ><td>Patents</td><td> val </td></tr>
+             <tr ><td>NIH</td><td> val </td></tr>
+             <tr ><td>NSF</td><td> val </td></tr>
+             <tr ><td>Clinical Trials</td><td> val </td></tr>
+             </tbody>
+         </table>
+      </div>
+      </div>
+
+
+   </div>
+
+<div class="container-fluid">
+   <div class="col-lg-9"> 
+      <div class="row"> 
+      <div class="classWithPad panel panel-primary">
+         <div class="panel-heading"><strong>Publication Information for this Institution</strong></div>
+         <table id="doc-subset-table" class="display  table-bordered table-hover table-condensed dt-right">
+             <thead>
+             <tr class="header">
+                 <th>Year</th>
+                 <th>Type</th>
+                 <th>Inst</th>
+                 <th>Title</th>
+             </tr>
+             </thead>
+         </table>
+      </div>      
+      </div>      
+
+   </div>      
+   </div>      
+
+</div><!--row-fluid -->
+</div><!--/container-fluid -->
+ 
+<script src="docSubset.js?tachyon.1.19"></script>
+<script>
+
+
+</script>
+
+</body>
+
+<script>
+
+function getSearchParameters() {
+      var prmstr = window.location.search.substr(1);
+      return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+}
+
+function transformToAssocArray( prmstr ) {
+    var params = {};
+    var prmarr = prmstr.split("&");
+    for ( var i = 0; i < prmarr.length; i++) {
+        var tmparr = prmarr[i].split("=");
+        params[tmparr[0]] = tmparr[1];
+    }
+    return params;
+}
+var pars = getSearchParameters()
+console.log(pars.instName);
+$(function() {
+
+oTable = $('#doc-subset-table').dataTable({
+    "bServerSide": true,
+//	 "fnSetFilteringDelay": 2000,
+//    "sAjaxSource": "//localhost:8931/datatables_inst.sjs?instName="+pars.instName,
+    "sAjaxSource": "//10.1.10.58:8501/datatables_inst.sjs?instName="+pars.instName,
+ "columnDefs": [
+
+               {
+                // The `data` parameter refers to the data for the cell (defined by the
+                // `data` option, which defaults to the column being worked with, in
+                // this case `data: 0`.
+                "render": function ( data, type, row ) {
+                  return '<a href="' + row[4] + '" target="_blank">' + data + '</a>';
+                },
+                "targets": 3
+                }]              
+
+
+  });
+
+});
+var dataReturned = "";
+ $.ajax({
+        url: "//localhost:8931/inst_info2.sjs?instName="+pars.instName,
+        type: "GET",
+		  dataType: 'json',
+        success: function(retdata){
+		   
+		   	console.log("complete");
+            console.log(retdata);
+				//console.log(retdata["instName"]);
+				numTotal = retdata["total"];
+				numPubmed = retdata["numPubmed"];
+				numPatent = retdata["numPatent"];
+				numNsf = retdata["numNsf"];
+				var numNih = retdata["numNih"];
+				console.log("numNih " +numNih);
+				numCTrials = retdata["numCTrials"];
+				numTotal = retdata["total"];
+				if (numPubmed === undefined) numPubmed = 0;
+				if (numPatent === undefined) numPatent = 0;
+				if (numNsf === undefined) numNsf = 0;
+				if (numCTrials === undefined) numCTrials = 0;
+				if (numNih === undefined) numNih = 0;
+				
+				
+				//console.log(Object.getOwnPropertyNames(instData));
+				var x = document.getElementById("inst_summary_data").rows[2].cells;
+				x[1].innerHTML = numTotal
+				x = document.getElementById("inst_summary_data").rows[3].cells;
+				x[1].innerHTML = numPubmed;
+				x = document.getElementById("inst_summary_data").rows[4].cells;
+				x[1].innerHTML = numPatent;
+				x = document.getElementById("inst_summary_data").rows[5].cells;
+				x[1].innerHTML = numNih;
+				x = document.getElementById("inst_summary_data").rows[6].cells;
+				x[1].innerHTML = numNsf;
+				x = document.getElementById("inst_summary_data").rows[7].cells;
+				x[1].innerHTML = numCTrials;
+        }
+		  //error: function() {
+		  // alert("error");
+		  //}
+		});
+document.getElementById("title").innerHTML = "Detailed Data for Institution: "+decodeURI(pars.instName);
+</script>
+
+
+</html>

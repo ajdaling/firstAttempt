@@ -1,0 +1,10 @@
+topicN,topicDesc,topicSel
+'Topic0','Laser','"laser"'
+'Topic1','Medical','"medical" "surgical" "surgery" "medicine"'
+'Topic2','Magnet','"magnet"'
+'Topic3','Fused','"fuse" "fused"'
+'Topic4','robot','"robot" "robotics"'
+'Topic5','Gels','"hydrogel" "thermogel" "%gel "'
+'Topic6','Prototyping','"Prototyping" "Prototype"'
+'Topic7','Nozzle','"nozzle" "head"'
+'Topic8','OTHER','"OTHER"'

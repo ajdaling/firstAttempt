@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+*, *:before, *:after {
+    box-sizing: border-box;
+    outline: none;
+}
+ #bull-well {
+    margin: 0;
+    background-color: #f2f2f2;
+    color: #333333;
+}
+
+/*body.has-overlay:before {*/
+/*content: '';*/
+/*position: fixed;*/
+/*z-index: 10;*/
+/*width: 100vw;*/
+/*height: 100vh;*/
+/*background-color: rgba(51, 51, 51, 0.7);*/
+/*top: 0;*/
+/*left: 0;*/
+/*}*/
+
+.chart {
+    padding: 30px;
+    /* width: 100vw; */
+    height: 90vh;
+}
+
+.tooltip {
+    position: absolute;
+    padding: 15px 15px 15px 45px;
+    font: 16px "Raleway";
+    background: #ffffff;
+    border-radius: 4px;
+    pointer-events: none;
+    box-shadow: 2px 2px 2px 0 rgba(51, 51, 51, .2);
+    z-index: 30;
+}
+
+.tooltip.on-left {
+    padding: 15px 45px 15px 15px;
+}
+
+.tooltip-data {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.tooltip-label {
+    margin: 0 0 15px 0;
+    font-weight: bold;
+}
+
+.tooltip-arrow {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-20px, -50%);
+}
+
+.tooltip.on-left .tooltip-arrow {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: auto;
+    transform: translate(20px, -50%) rotate(-180deg);
+}
+
+.tooltip-label-heading {
+    display: block;
+    margin: 0 0 5px 0;
+    font-size: 0.825em;
+    color: #bdbdbd;
+    font-weight: normal;
+}
+
+.controls {
+    background-color: #ffffff;
+    box-shadow: 2px 2px 2px 0 rgba(51, 51, 51, .2);
+    position: relative;
+    /* width: 300px; */
+    /* position: fixed; */
+    /* left: 15px; */
+    /* top: 15px; */
+    border-radius: 4px;
+    padding: 15px;
+    z-index: 40;
+}
+
+.controls.is-open .controls-content {
+    display: block;
+}
+
+.controls-content {
+    display: none;
+    margin: 15px 0 0 0;
+}
+
+.controls-content_group {
+    margin: 0 0 15px 0;
+}
+
+.controls-content_group:last-child {
+    margin-bottom: 0;
+}
+
+.controls-label {
+    display: block;
+    margin: 0 0 5px 0;
+    font-size: 0.825em;
+    color: #bdbdbd;
+    font-family: 'Raleway';
+}
+
+.logo {
+    width: 150px;
+    height: 30px;
+    display: inline-block;
+    position: relative;
+}
+
+.logo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.toggle {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    float: right;
+    height: 30px;
+    width: 30px;
+    position: relative;
+}
+
+.toggle svg {
+    display: block;
+    fill: #bdbdbd;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform .2s ease-in;
+}
+
+.controls.is-open .toggle svg {
+    transform: translate(-50%, -50%) rotate(180deg);
+    transition: transform .2s ease-in;
+}
+
+#bull-well .dropdown {
+    padding: 10px;
+    border: 1px solid rgba(51, 51, 51, 0.3);
+    border-radius: 4px;
+    position: relative;
+    background-color: #ffffff;
+    transition: border-radius .3s ease-in;
+    font-family: 'Raleway';
+    cursor: pointer;
+}
+
+#bull-well .dropdown:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#bull-well .dropdown.is-open {
+    border-radius: 4px 4px 0 0;
+    transition: border-radius .3s ease-in;
+}
+
+#bull-well .dropdown.is-open .dropdown-list {
+    opacity: 1;
+    margin: 0 -1px;
+    border-top: 0;
+    transition: opacity .2s ease-in;
+    display: block;
+}
+
+#bull-well .dropdown.is-open .dropdown-toggle svg {
+    transform: rotate(180deg);
+    transition: transform .3s ease-in;
+}
+
+#bull-well .dropdown-selected {
+    display: block;
+    font-weight: 700;
+    float: left;
+    width: calc(100% - 30px);
+    line-height: 20px;
+}
+
+#bull-well .dropdown-toggle {
+    float: left;
+    width: 15px;
+    height: 20px;
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+}
+
+#bull-well .dropdown-toggle svg {
+    fill: #bdbdbd;
+    display: block;
+    width: 15px;
+    height: 6px;
+    transition: transform .3s ease-in;
+}
+
+#bull-well .dropdown-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 0;
+    right: 0;
+    opacity: 0;
+    background-color: #ffffff;;
+    border: 1px solid #bdbdbd;
+    border-radius: 0 0 4px 4px;
+    transition: opacity .2s ease-in;
+    display: none;
+    z-index: 40;
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+#bull-well .dropdown-list_item a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333333;
+}
+
+#bull-well .dropdown-list_item a:hover,
+#bull-well .dropdown-list_item a:focus {
+    text-decoration: none;
+    background-color: #f2f2f2;
+    color: #333333;
+}
+
+#bull-well .dropdown-list_item a .dropdown-color {
+    height: 10px;
+    width: 10px;
+    border-radius: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px 0 0;
+}
+
+#bull-well .dropdown-list_item a .dropdown-name {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#bull-well .dropdown-list--added {
+    margin: 15px 0 0 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.selectedItem {
+    position: relative;
+    background-color: #ccc;
+    border-radius: 30px;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+}
+
+.selectedItem-color {
+    display: inline-block;
+    vertical-align: middle;
+    height: 16px;
+    width: 16px;
+    border-radius: 16px;
+    margin-right: 5px;
+}
+
+.selectedItem-name {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0.875em;
+    font-family: "Raleway";
+}
+
+.selectedItem-close {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+}
+
+.deselected{
+    opacity: 0.3;
+}

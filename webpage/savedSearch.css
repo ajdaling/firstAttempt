@@ -1,0 +1,36 @@
+#savedSearches {
+    height: 200px;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+
+        thead, tbody, tr, td, th { display: block; }
+
+        tr:after {
+            content: ' ';
+            display: block;
+            visibility: hidden;
+            clear: both;
+        }
+
+        thead th {
+            height: 30px;
+
+            /*text-align: left;*/
+        }
+
+        tbody {
+            height: 150px;
+            overflow-y: auto;
+        }
+
+        thead {
+            /* fallback */
+        }
+
+
+        tbody td, thead th {
+            width: 12.48%;
+            float: left;
+        }

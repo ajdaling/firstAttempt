@@ -1,0 +1,491 @@
+var dataReturned = "";
+var countryData = ""
+var InstitutionNames = "";
+var InstitutionValues = "";
+var ResearcherNames = "";
+var ResearcherValues = "";
+var docNames = "";
+var docValues = "";
+var yearNames;
+var yearValues;
+var yearNamesOne;
+var yearValuesOne;
+var momNames;
+var momValues;
+var momNamesOne ;
+var momValuesOne;
+var oTable;
+
+var selectedCountry = "";
+
+var keyword;
+
+var sessionData = JSON.parse(localStorage.getItem("sessionData"));
+if(!sessionData.vizData){
+	sessionData.vizData = {};
+	sessionData.vizData.start_year = sessionData.start_year;
+	sessionData.vizData.end_year = sessionData.end_year;
+	updateSessionData(sessionData);
+}
+
+var allNodes = null;
+var allEles = null;
+var lastHighlighted = null;
+var lastUnhighlighted = null;
+
+var layout;
+var sublayout;
+
+var animTime = 500;
+var easing = 'linear';
+
+var isZoomed = false;
+
+var topic_layout;
+var out_layout;
+
+
+var this_qry = sessionData.mainQuery;
+var main_qry = sessionData.mainQuery;
+var instName = sessionData.intitution;
+var resName = sessionData.researcher;
+var thisCompName = sessionData.instData.compName.toLowerCase();
+var docType = sessionData.docType;
+var yearMin = sessionData.start_year;
+var yearMax = sessionData.end_year;
+var selectedCountry = sessionData.selectedCountry;
+var topics = {};
+for(var i = 0; i < 99; i++){
+	var topStr = "topic"+String(i);
+	var labStr = "label"+String(i);
+	var tmpObj = {};
+	if(sessionData.topStr){
+		tmpObj.topic = sessionData[topStr];
+		if(sessionData.labStr){
+			tmpObj.label = sessionData[labStr];
+		}
+		topics[topStr] = tmpObj;
+	}
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+function capitalize(tstring) {
+    return tstring.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+};
+
+var infoTemplate = Handlebars.compile([
+    '<p class="ac-name">{{id}}</p>',
+    '<p class="ac-node-type"><i class="fa fa-info-circle"></i> {{type}}</p>'
+  ].join(''));
+
+
+//
+// Query to get data for a specific institution
+var edges_inst = $.ajax({
+	url:'inst_out.json',
+    type: 'GET',
+//	xhrFields: { withCredentials: true },
+//	data: JSON.stringify(sessionData),
+//    crossDomain: true,
+    dataType: 'json'
+});
+var edges_word = $.ajax({
+	url:'wordweight.json',
+    type: 'GET',
+//	xhrFields: { withCredentials: true },
+//	data: JSON.stringify(sessionData),
+//    crossDomain: true,
+    dataType: 'json'
+});
+var edges_year = $.ajax({
+	url:'year_out.json',
+    type: 'GET',
+//	xhrFields: { withCredentials: true },
+//	data: JSON.stringify(sessionData),
+//    crossDomain: true,
+    dataType: 'json'
+});
+//
+// Query to get layout info
+var myStyle = fetch('cy-style.json', {mode: 'no-cors'})
+.then(function(res) {
+	return res.json()
+});
+
+$("#institution").click(function(evt){
+	cy.destroy();
+	Promise.all([myStyle,edges_inst,'Institution'])
+	.then( makeNet )
+	.then(function() {
+		FastClick.attach( document.body );
+	});
+});
+
+$("#word").click(function(evt){
+	cy.destroy();
+	Promise.all([myStyle,edges_word, 'word'])
+	.then( makeNet )
+	.then(function() {
+		FastClick.attach( document.body );
+	});
+});
+
+$("#year").click(function(evt){
+	cy.destroy();
+	Promise.all([myStyle,edges_year, 'Year'])
+	.then( makeNet )
+	.then(function() {
+		FastClick.attach( document.body );
+	});
+});
+
+Promise.all([myStyle,edges_inst,'Institution'])
+.then( makeNet )
+.then(function() {
+	FastClick.attach( document.body );
+});
+
+/*----------------------------------------------------------------------------------------*/
+
+
+function makeNet(dataArray) {
+//var dataArray = [myStyle,institutions,edges];
+	var cy = window.cy = cytoscape({
+		container: document.getElementById('cy'),
+		style: dataArray[0],
+/*		layout: {
+   			name: 'cola',
+	    		infinite: false,
+	    		fit: false
+  		},*/
+		ready: function(){}
+	});
+	cy.panzoom({
+		// options here...
+	});
+
+//
+// Iterate over data returned
+//	networkData = dataArray[1];
+//	resNodes = networkData['researcherNodes'];
+	edges = dataArray[1];
+	keyword=dataArray[2];
+//
+// Find min and max
+/*	var minVal = 10000.0;
+	var maxVal = 0.0; 
+	for(nodeKey in outNodes){
+		if (nodeKey.trim() != thisCompName) {
+			var val = parseInt(outNodes[nodeKey]);
+			if (val < minVal) minVal = val;
+			if (val > maxVal) maxVal = val;
+		}
+	}*/
+//
+// Add all of the institution nodes
+	var myMin = 10.0;
+	var myMax = 60.0;
+//	Draw all topic nodes
+	for(var i=0; i<10; i++){
+		cy.add({
+				data: { id: i , type: "topic",  name: i},
+				position: {x: i,y: i},
+				type: "topic"});
+	}
+			
+// Add edges and nodes for researchers
+	minVal = 10000.0;
+	maxVal = 0.0; 
+// Add remaining
+	for(var i=0; i<edges.length; i++){
+		thisEdge = edges[i];
+		instname = thisEdge[keyword];
+		edgeid = thisEdge['Topic'].toString()+thisEdge[keyword].toString();
+		if(keyword=='word') {weight = thisEdge['weight'];}
+		else{weight = thisEdge['Number'];}
+		if(cy.$id(edgeid).size()==0){
+			if(cy.$id(instname).size()==0){
+				cy.add({
+					data: {id:thisEdge[keyword].toString(),type: "inst" },
+					position: {x: 1,y: 1},
+					type: "inst"
+				});
+			}
+			cy.add({
+				data: {
+					id: thisEdge['Topic'].toString()+thisEdge[keyword].toString(), 
+					source: thisEdge['Topic'].toString(),
+					target: thisEdge[keyword].toString(),
+					weight: weight
+				}
+   			});
+		}
+	}
+	topicNodes = cy.nodes("[type='topic']");
+	outNodes = cy.nodes("[type='inst']");
+	
+	
+    // Causes qtips to only show up after the mouse hovers over a node for half a second
+	var hoverTimeout;
+	var hoverDelay = 500;
+	var hoverElt = cy.collection(); // empty set so no null checks needed
+
+	cy.on('mouseover', 'node', function(evt){
+		hoverElt = this;
+		clearTimeout( hoverTimeout );  
+		hoverTimeout = setTimeout(function(){hoverElt.trigger('hover');},
+						hoverDelay);
+	})
+	.on('mouseout', 'node', function(){
+		clearTimeout( hoverTimeout );
+		hoverElt.trigger('hovercancel');
+	});
+
+    cy.nodes().forEach(function(n){
+		var g = n.data('id');
+		var weight = n.data('weight');
+		n.qtip({
+			content: {
+//				name: weight,
+            		text: (n.data('type')=='inst')? keyword + ': ' + capitalize(g): 'Topic: ' + capitalize(g),
+//				url: 'xxx'
+          	},
+        		position: {
+          		my: 'top center',
+          		at: 'bottom center'
+        		},
+        		show: {
+        			event: 'hover',
+//        			solo: (isZoomed)? false: true
+        		},
+        		hide: {
+ //       			target: false,
+        			event: 'hovercancel',
+        		},
+			style: {
+				classes: 'qtip-bootstrap',
+				tip: {
+					width: 16,
+					height: 8
+				}
+			}
+		});
+	});
+	
+	// Making default layout
+	topic_layout = topicNodes.makeLayout({
+		name: 'circle',
+		animate: true,
+		animationDuration: animTime,
+		animationEasing: easing,
+	});
+	out_layout = outNodes.layout({
+		name: 'circle',
+		animate:true,
+		animationDuration: animTime,
+		animationEasing: easing,
+	});
+	out_layout.run();
+	topic_layout.run();
+	
+	cy.on('click', function(e){		
+		var sel = e.target;
+		if(sel!==cy && sel.isNode()){
+		//	showInfo(sel);
+			selection(sel);
+		}
+		else{
+			reset();
+		}	
+	});
+
+    // and finally, clear the loading animation
+	var loading = document.getElementById('loading');
+	loading.classList.add('loaded');
+// cytoscape panzooom
+   // the default values of each option are outlined below:
+
+};
+
+/*----------------------------------------------------------------------------------------*/
+//For searchbox
+$('#search').typeahead({
+	minLength: 1,
+	highlight: true,
+	},
+  	{
+    		name: 'search-dataset',
+    		display: 'id',
+    		source: function( query, cb ){
+      		function matches( str, q ){
+        			str = (str || '').toLowerCase();
+        			q = (q || '').toLowerCase();
+
+		        return str.match( q );
+      		}
+      		var fields = ['id', 'type'];
+
+      		function anyFieldMatches( n ){
+        			for( var i = 0; i < fields.length; i++ ){
+        		  		var f = fields[i];
+        		  		if( matches( n.data(f), query ) ){
+			            return true;
+			          }
+		        }
+		        return false;
+			}
+			function getData(n){
+        			var data = n.data();
+
+		        return data;
+      		}
+
+      		function sortByName(n1, n2){
+        			if( n1.data('id') < n2.data('id') ){
+          			return -1;
+        			} else if( n1.data('id') > n2.data('id') ){
+          			return 1;
+        		}
+
+        		return 0;
+      	}
+      	var res = allNodes.stdFilter( anyFieldMatches ).sort( sortByName ).map( getData );
+		cb( res );
+    },
+    templates: {
+      suggestion: infoTemplate
+    }
+}).on('typeahead:selected', function(e, entry, dataset){
+	var n = cy.getElementById(entry.id);
+	
+	cy.batch(function(){
+		allNodes.unselect();
+		n.select();
+//		showInfo(n);
+		selection(n);
+		})
+});
+
+/*----------------------------------------------------------------------------------------*/
+//For highlighting selected nodes and their connections
+function selection(sel){	
+
+	if(isZoomed){
+		sublayout.stop();
+		isZoomed=false;
+	}
+	var nbhd = sel.closedNeighborhood();
+	var others = cy.elements().not( nbhd );
+	cy.elements().removeClass('semitransp');
+	cy.elements().removeClass('highlight');
+    others.addClass('semitransp');
+	nbhd.addClass('highlight');
+	// Fits the network window to the current selection
+	var fit= function(){
+		console.log('fit');
+		console.log(nbhd.size());
+		cy.animation({
+			fit: {
+				eles: nbhd,
+				padding: 10
+			},
+			easing: easing,
+			duration: animTime
+		}).play().promise();
+	}
+	// Gets the neighborhood of a selected node
+	var pullNbhd = function(){
+		console.log("pull");
+		topic_layout.stop();
+		out_layout.stop();
+		var pos = sel.position();
+		sublayout = nbhd.makeLayout({
+			name: 'concentric',
+			fit: false,
+			animate: true,
+			animationDuration: animTime,
+			animationEasing: easing,
+			avoidOverlap: true,
+			concentric: function( ele ){
+				if( ele.same( sel ) ){
+					return 2;
+				} else{
+					return 1;
+				}
+			},
+			levelWidth: function(){ return 1; },
+		});
+		var promise = cy.promiseOn('layoutstop');
+		sublayout.run();
+		isZoomed = true;
+		return promise;
+	};
+	return Promise.resolve()
+	 .then( pullNbhd )
+	 .then( fit )
+}
+/*----------------------------------------------------------------------------------------*/
+// Resets the network
+function reset(){
+	if(isZoomed){
+		sublayout.stop();
+		isZoomed=false;
+	}
+	cy.batch(function(){
+//		console.log("reset");
+		cy.elements().removeClass('semitransp');
+		cy.elements().removeClass('highlight');
+	});
+	out_layout.run();
+	topic_layout.run();
+//	fit(cy.elements());
+//	Promise.resolve();
+	cy.animation({
+		fit: {
+			eles: cy.nodes("[type='inst']"),
+			padding: 20
+		},
+		easing: easing,
+		duration: animTime
+	}).play();
+};
+/*----------------------------------------------------------------------------------------*/
+// Show info of selected node
+/*function showInfo(sel) {
+    var target = $('.qtip.jgrowl:visible:last');
+
+	var g = sel.data('id');
+	
+
+    $('#info').qtip({
+        content: {
+            text: capitalize(g)+'<br>Number of connections: '+(sel.closedNeighborhood().nodes().size()-1),
+            title: {
+                text: (sel.data('type')=='inst')? keyword : 'Topic',
+                button: false
+            }
+        },
+        position: {
+            target: $('#myNavbar'),
+            container: $('#info'),
+            at: 'bottom right',
+            my: 'top right'
+        },
+        show: {
+            event: false,
+            ready: true,
+            effect: function() {
+                $(this).stop(0, 1).animate({ height: 'toggle' }, 400, 'swing');
+            },
+            delay: 0,
+        },
+        hide: 'unfocus',
+        style: {
+            width: 'auto',
+            classes: 'qtip-tipped',
+            tip: false
+        }
+    });
+}*/

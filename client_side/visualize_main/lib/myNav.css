@@ -1,0 +1,55 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000000;    // Changed
+    }
+
+
+
+/* set the background-color to red */
+.navbar-inner {
+  background-color: #1b1b1b;
+  /* remove the gradient */
+  background-image: none;
+  /* set font color to white */
+  color: white;
+}   
+/* set the background-color to red */
+.navbar-inner2 {
+/*  background-color: #ffffff;  */
+  background-color: #a0a0a0; 
+  /* remove the gradient */
+  background-image: none;
+  /* set font color to white */
+  color: white;
+}   
+
+/* menu items */
+
+/* set hover and focus to lightblue */
+.navbar .nav > li > a {
+  color: white;
+}
+
+
+/* set hover and focus to lightblue */
+.navbar .nav > li > a:focus,
+.navbar .nav > li > a:hover {
+  background-color: lightblue;
+  color: black;
+}
+
+/* set active item to darkgreen */
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  background-color: darkgreen;
+  color: white;
+}
+
+/* set font color and background of the project name (brand) */
+.navbar .brand {
+  background-color: orange;
+  color: navy;
+}

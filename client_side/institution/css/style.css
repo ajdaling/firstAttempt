@@ -1,0 +1,52 @@
+html {
+  padding-top: 10px;
+  font: 10px sans-serif;
+}
+body {
+  position: relative;
+  width:1300px;
+  margin: auto;
+}
+.main {
+  width:1200px;
+  height:650px;
+  margin: auto;
+  padding:10px;
+  border-radius: 5px;
+  border:1px solid grey;
+}
+.menu-back {
+  position: absolute;
+  top:630px;
+  left:720px;
+}
+.menu-explore {
+  position: absolute;
+  top:605px;
+  left:1100px;
+}
+button {
+  border-radius: 5px;
+  border-style: none;
+  border:1px solid grey;
+  width: 100px;
+  height:20px;
+  margin-bottom: 5px;
+  background: #fff;
+  color:grey;
+  transition-duration:.2s;
+}
+button:hover {
+  border-color: orange;
+  color:orange;
+}
+.usregion, .continent {
+  height:40px;
+}
+
+svg text{
+  font-size:12px;
+}
+rect{
+  shape-rendering:crispEdges;
+}

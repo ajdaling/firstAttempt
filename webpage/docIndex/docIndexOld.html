@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Document Index</title>
+  <link rel='stylesheet prefetch' href='https://ppl.wdsserve.com/1.0/ppl/ppl.min.css?tachyon.1.19'>
+  <script src="https://code.jquery.com/jquery.min.js?tachyon.1.19"></script>
+  <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css?tachyon.1.19" rel="stylesheet" type="text/css" />
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css?tachyon.1.19" rel="stylesheet" type="text/css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js?tachyon.1.19"></script>
+  <script src="https://code.jquery.com/jquery-3.1.0.js?tachyon.1.19"></script>
+  <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js?tachyon.1.19"></script>
+  <script src="https://d3js.org/d3.v4.min.js?tachyon.1.19"></script>
+  <link rel='stylesheet prefetch' href='https://ppl.wdsserve.com/1.0/ppl/ppl.min.css?tachyon.1.19'>
+  <link rel="stylesheet" href="facet.css?tachyon.1.19">
+  <script src="../config.js?tachyon.1.19"></script>
+
+</head>
+<body>
+
+
+  <!--BEGIN HEADER-->
+  <div class="navbar navbar-default wds-navbar-1">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-custom-collapse">
+        <i class="fa fa-user fa-fw"></i>
+        <span class="badge">4</span>
+      </button>
+
+      <a class="navbar-brand" href="/../../app_layout/pages/dashboard.php"><span>Super<strong>H</strong></span></a>
+
+
+    </div>
+
+    <div class="navbar-collapse collapse pull-right navbar-custom-collapse">
+      <div class="nav navbar-nav navbar-right">
+        <div class="navbar-right--wrapper clearfix">
+
+          <ul class = "nav navbar-nav">
+				<li class = "dropdown">
+					<a class = "dropdown-toggle" data-toggle="dropdown" href="#">View
+					<span class = "caret"></span></a>
+					<ul class = "dropdown-menu">
+						<li><a href="../../../app_layout/pages/dashboard.php">Home</a></li>
+						<li><a href="../search_page/report_query.html">New Search</a></li>
+						<li><a href="../datatables-alec-test/docMaster.html">Search Results</a></li>
+						<li><a href="#">Visualize</a></li>
+					</ul>
+				</li>
+			</ul>
+        </div>
+      </div><!--/.navbar-right-->
+    </div>
+
+    <div class="navbar-collapse collapse pull-left" id="mainNav">
+      
+    </div>
+
+  </div>
+  <!--END HEADER-->
+
+  <!--BEGIN MAIN BODY-->
+  <div class = "container-fluid">
+    <div class="flex-container">
+
+      <!--BEGIN NAVIGATION-->
+      <!--
+      <div class="flex-side">
+        <div class="navside-topbar">
+          <a href="#" class="btn btn-default pull-right" id="hamburger-btn"><i class="fa fa-bars"></i></a>
+          <div class="input-group collapsed-content">
+            <span class="input-group-addon"><div class="fa fa-search"></div></span>
+            <input class="form-control" type="text" placeholder="Search reports">
+          </div>
+
+        <div class="panel-group wds-panel-group-1 collapsed-content" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel wds-panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <p class="panel-title"><a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="" aria-controls="collapseOne">Main Nav 1</a></p>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+              <ul class="panel-body list-group wds-list-menu-1">
+                <a href="#" class="list-group-item wds-active">Sub Nav 1</a>
+                <a href="#" class="list-group-item">Sub Nav 2</a>
+                <a href="#" class="list-group-item">Sub Nav 3</a>
+              </ul>
+            </div>
+          </div>
+          <div class="panel wds-panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+              <p class="panel-title"><a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Main Nav 2</a></p>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+              <ul class="panel-body list-group wds-list-menu-1">
+                <a href="#" class="list-group-item">Sub Nav 1</a>
+                <a href="#" class="list-group-item">Sub Nav 2</a>
+                <a href="#" class="list-group-item">Sub Nav 3</a>
+              </ul>
+            </div>
+          </div>
+          <div class="panel wds-panel panel-default">
+            <div class="panel-heading" role="tab" id="headingThree">
+              <p class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Main Nav 3</a></p>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+              <ul class="panel-body list-group wds-list-menu-1">
+                <a href="#" class="list-group-item">Active Sub Category 3a</a>
+                <a href="#" class="list-group-item">Sub Category 3b</a>
+                <a href="#" class="list-group-item">Sub Category 3c</a>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+       -->
+      <!--END NAVIGATION-->
+
+
+      <!--BEGIN ROW 2-->
+      <div class="flex-content">
+        <div class = "row">
+
+          <!--BEGIN FACETS-->
+          <div id="refine" class="col-lg-3">
+          
+          <div class = "card__wrapper">
+          	<div class = "card__title">
+          		Selected Document
+          	<div>
+          		<a href = "#" id = "doc-link">Link</a>
+          	</div>
+          	</div>
+          	<div class = "card__content">
+          		<section class = "refine__filters">
+          			<h4 href = "#" class = "refine__section-head">Document Info</h4>
+
+          			<div class = "refine__body" style = "display:none">
+          				<div class = "table-responsive">
+          					<table class = "table table-hover">
+          						<tbody id = "selected-doc-table"></tbody>
+          					</table>
+          				</div>
+          			</div>
+          		</section>
+          	</div>
+          </div>
+          
+            <div class="card__wrapper">
+              <div class="card__title">
+                <a href="#" class="pull-right"></a>Facets
+              </div>
+              <div class="card__content">
+<!--             <button id = "refine_button" type="button" class="btn btn-default btn-lrg">Refine</button>
+            <button id = "clear_button" type = "button" class = "btn btn-default btn-lrg">Clear Filters</button>
+ -->            <button id = "vis_btn" type="button" class="btn btn-default btn-lrg">Visualize</button>
+
+<!--             <button id = "save_btn" type="button" class="btn btn-default btn-lrg" action="savesearch.php" method="post">Save</button>
+            <button id = "download_btn" type="button" class="btn btn-default btn-lrg" >Download CSV</button>
+ -->
+              <!-- Year Facet Table Section -->
+                <section class="refine__filters">
+                <h4 class="refine__section-head">Refine By Year</h4>
+                  <div class="refine__body" style = "display: none">
+                    <div  class = "table-responsive" >
+                      <table  class = "table table-hover ">
+                        <thead>
+                          <tr>
+                            <th>Year</th>
+                            <th>Documents</th>
+                          </tr>
+                        </thead>
+                        <tbody id="yearFacetTable"></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </section>
+				<!-- Institution Facet Table Section -->
+                <section class="refine__filters fixedHeightContent">
+                <h4 class="refine__section-head">Refine By Institution</h4>
+                  <div  class="refine__body" style = "display: none">
+                    <div  class = "table-responsive">
+                      <table class = "table table-hover ">
+                        <thead>
+                          <tr>
+                            <th>Institution</th>
+                            <th>Documents</th>
+                          </tr>
+                        </thead>
+                        <tbody id="institutionFacetTable"></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </section>
+                <!-- DocOrigin Facet Table Section -->
+                <section class="refine__filters">
+                <h4 class="refine__section-head">Refine By Document Origins</h4>
+                  <div  class="refine__body" style = "display: none">
+                    <div  class = "table-responsive">
+                      <table class = "table table-hover ">
+                        <thead>
+                          <tr>
+                            <th>Document Origin</th>
+                            <th>Documents</th>
+                          </tr>
+                        </thead>
+                        <tbody id="docOriginFacetTable"></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+
+          </div>
+          <!--END FACETS-->
+
+          <!--BEGIN DATATABLE-->
+          <div class="col-lg-9">
+            <div class="card__wrapper">
+              <div class="card__title">
+                 <a href="#" class="pull-right"></a>Datatable
+              </div>
+              <div class="card__content">
+                <div class="panel panel-default">
+                  <table id="example" class="display" cellspacing="0" width="50%">
+                    <thead>
+                      <tr>
+                      	<th>Score</th>
+                        <th>Year</th>
+                        <th>Type</th>
+                        <th>Institution</th>
+                        <th>Investigator</th>
+                        <th>Title</th>
+                      </tr>
+                    </thead>
+                    <tfoot>
+                      <tr>
+                      	<th>Score</th>
+                        <th>Year</th>
+                        <th>Type</th>
+                        <th>Institution</th>
+                        <th>Investigator</th>
+                        <th>Title</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--END DATATABLE-->
+
+        </div>
+      </div>
+      <!--END ROW 2-->
+
+    </div>
+  </div>
+
+<!--END MAIN BODY-->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js?tachyon.1.19'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.resize.min.js?tachyon.1.19'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.5/chartist.min.js?tachyon.1.19'></script>
+  <script src='https://code.highcharts.com/highcharts.js?tachyon.1.19'></script>
+  <script src='https://code.highcharts.com/modules/treemap.js?tachyon.1.19'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.pie.min.js?tachyon.1.19'></script>
+  <script src="facet.js?tachyon.1.19"></script>
+  <script src="docIndex.js?tachyon.1.19"></script>
+
+</body>
+</html>

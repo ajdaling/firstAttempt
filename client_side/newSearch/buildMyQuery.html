@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SuperH Index</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css?tachyon.1.19" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css?tachyon.1.19" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link href="../lib/font-awesome/css/font-awesome.min.css?tachyon.1.19" rel="stylesheet" type="text/css">
+    <link href="../lib/metisMenu/metisMenu.min.css?tachyon.1.19" rel="stylesheet">
+	<link rel="stylesheet" href="../home/style.css?tachyon.1.19">
+	<link rel = "stylesheet" type = "text/css" href="../home/dashboard.css?tachyon.1.19">
+	<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?tachyon.1.19" rel="stylesheet">
+		<link href="buildMyQuery.css?tachyon.1.19" rel="stylesheet">
+		<link rel = "stylesheet" href = "../../client_side/lib/query-builder/dist/css/query-builder.default.css?tachyon.1.19">
+	<link rel="stylesheet" href="../../client_side/lib/slider/bootstrap-slider.css?tachyon.1.19">
+	
+	<link href="../../client_side/lib/introjs/introjs.css?tachyon.1.19" rel="stylesheet">
+	<link href="../../client_side/lib/introjs/themes/introjs-modern.css?tachyon.1.19" rel="stylesheet">
+	<link href="../../client_side/lib/custombox/custombox.min.css?tachyon.1.19" rel="stylesheet">
+</head>
+<body>
+	<div class = "row">
+		<!--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#qw-modal">Help me build my search</button> -->
+		<button  id="qw-btn" type="button" class="btn btn-info btn-lg" data-toggle="modal">Help me build my search</button>
+	</div>
+	<div class = "row">
+		<!--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#qw-modal">Help me build my search</button> -->
+		<button  id="test" type="button" class="btn btn-info btn-lg" data-toggle="modal">Test2</button>
+	</div>
+	<div id="qw-modal" class="modal fade" role="dialog">
+		<div class="modal-dialog" style="width:80%;">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" id="qw-header">
+					<div class="progress">
+						<div id = "qw-progress" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:1%">1%</div>
+					</div>
+					<div id = "qw-level-group" class = "btn-group pull-right" style="display:none">
+						<button id = "qw-basic" class = "btn qw-level-button btn-default ">Basic</button>
+						<button id = "qw-friendly" class = "btn qw-level-button btn-default active">Friendly</button>
+						<button id = "qw-advanced" class = "btn qw-level-button btn-default">Advanced</button>
+					</div>
+					<h1 id = "qw-title"></h1>
+				</div>
+				<div class="modal-body"  style="margin-left:5%; margin-right:5%;" id = "qw-body">
+					<div class = "row">
+						<p>This is the query wizard. This will take you through a series of steps to generate your search and organize your results. Select from the options below.
+					</div>
+					
+					<div class = "row">
+						<form id = "level-form">
+							<h4 class = "modal-title-left"> Select the type of search you would like to perform. Note, you may change this at any time.</h4>
+							<div class = "row">
+								<input id = "qw-radio-Basic" type = "radio" name = "qw-level" value = "Basic">
+								<label for = "qw-radio-Basic">Basic: Select this if you want to perform a quick search with simple boolean logic.</label>
+							</div>
+							<div class = "row">
+								<input id = "qw-radio-Friendly" checked = "checked" type="radio" name="qw-level" value = "Friendly">
+								<label for="qw-radio-Friendly">Friendly: Select this if you want to construct a complex query but would like help constructing the boolean logic.</label>
+							</div>
+							<div class = "row">
+								<input id= "qw-radio-Advanced" type = "radio" name = "qw-level" value = "Advanced"> 
+								<label for="qw-radio-Advanced">Advanced: Select this if you are comfortable constructing complex queries.</label>
+							</div>
+						</form>
+					</div>
+					<br>
+					<div class = "row">
+						<form id = "mode-form">
+							<h4 class = "modal-title-left"> Select the type of data you are interested in.</h4>
+							<div class = "row">
+								<input id = "qw-radio-CI" checked = "checked" type = "checkbox" name = "qw-mode" value = "CI">
+								<label for = "qw-radio-CI">Competitive Intelligence and Strategy</label>
+							</div>
+							<div class = "row">
+								<input id = "qw-radio-RD" checked = "checked" type="checkbox" name="qw-mode" value = "RD">
+								<label for="qw-radio-RD">Research and Development</label>
+							</div>
+							<div class = "row">
+								<input id= "qw-radio-MA" checked = "checked" type = "checkbox" name = "qw-mode" value = "MA"> 
+								<label for="qw-radio-MA">Merger and Acquisition</label>
+							</div>
+							<div class = "row">
+								<input id= "qw-radio-IP" checked = "checked" type = "checkbox" name = "qw-mode" value = "IP"> 
+								<label for="qw-radio-IP">Intellectual Property</label>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer" id = "qw-footer">
+					<button id = "qw-advance" type="button" class="btn btn-success">This is exciting. Let's Get Started!</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Nevermind, I want to do it the hard way.</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id = "res">
+	
+	</div>
+	
+</body>
+
+<script src="../../client_side/lib/jquery/jquery-3.2.1.js?tachyon.1.19"></script>
+<script src="../../config.js?tachyon.1.19"></script>
+<script src="../../client_side/lib/slider/bootstrap-slider.js?tachyon.1.19"></script>
+<script src="../../client_side/lib/d3/js/d3.v3.min.js?tachyon.1.19"></script>
+<script src="../../client_side/lib/bootstrap/js/bootstrap.min.js?tachyon.1.19"></script>
+<script src="../../client_side/lib/custombox/custombox.min.js?tachyon.1.19"></script>
+<script src="../../client_side/lib/query-builder/dist/js/query-builder.standalone.js?tachyon.1.19"></script>
+<script src="../../client_side/newSearch/buildMyQuery.js?tachyon.1.19"></script>

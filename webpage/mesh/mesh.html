@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SuperH Index</title>
+
+
+  <link rel='stylesheet prefetch' href='https://ppl.wdsserve.com/1.0/ppl/ppl.min.css?tachyon.1.19'>
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css?tachyon.1.19">
+  <link rel='stylesheet prefetch' href='https://ppl.wdsserve.com/1.0/ppl/ppl.min.css?tachyon.1.19'>
+  <link rel="stylesheet" href="../../client_side/lib/css/facet.css?tachyon.1.19">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css?tachyon.1.19" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css?tachyon.1.19" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <link href="../../client_side/lib/font-awesome/css/font-awesome.min.css?tachyon.1.19" rel="stylesheet" type="text/css">
+  <link href="../../client_side/lib/metisMenu/metisMenu.min.css?tachyon.1.19" rel="stylesheet">
+  <link rel="stylesheet" href="../home/style.css?tachyon.1.19">
+  <link rel="stylesheet" type="text/css" href="../home/dashboard.css?tachyon.1.19">
+  <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?tachyon.1.19" rel="stylesheet">
+	<link rel="stylesheet" href="../hud/hud.css?tachyon.1.19">
+  <link href="../../client_side/lib/introjs/introjs.css?tachyon.1.19" rel="stylesheet">
+  <link href="../../client_side/lib/introjs/themes/introjs-modern.css?tachyon.1.19" rel="stylesheet">
+  <link rel="stylesheet" href="../hud/bootstrap-slider.js?tachyon.1.19">
+</head>
+
+<body>
+
+
+  <!--BEGIN NAV -->
+	<div class="row" id="content-row">
+		<nav class="navbar navbar-fixed-top" role="banner">
+  			<div class="container-fluid" style ="background-color:rgba(255,255,255,0.8)">
+				<a class="navbar-brand" href="//www.superHindex.com" target="_blank" style="display:"><img src="../../client_side/lib/images/super.png" style="color: blue; height: 44px; width:auto;"></a>
+  				
+  				<ul class = "nav navbar-nav navbar-left" style="margin-left: 20%;">
+  					<li>
+						<h2 style = "text-align: center" id="nav-session-title"></h2>
+					</li>
+  				</ul>
+  				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+                		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    		<i class="fa fa-user fa-fw" style="color:#283a75 "></i>
+                    		<i class="fa fa-caret-down" style="color:#283a75 "></i>
+                		</a>
+                		<ul class="dropdown-menu dropdown-user">
+                			<li><a class = "username-text"></a></li>
+                    		<li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+                    		<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
+                    		<li class="divider"></li>
+                    		<li><a href = "#" class = "login-link"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    		</li>
+						</ul>
+                	<!-- /.dropdown-user -->
+            		</li>
+            <!-- /.dropdown -->
+				</ul>
+  			</div>
+  		</nav>
+  	</div>
+  	<!-- END NAV -->
+
+	<!--main-->
+	<div class="container-fluid" id="content-container">
+<!-- Filters Modal -->
+	<div id="filters-modal" class="modal fade" role="dialog">
+		<div id = "filters-dialog" class="modal-dialog">
+			<div id = "filters-modal-content" class="modal-content">
+				<div id = "filters-modal-header" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id = "filters-modal-title" class="modal-title">Filters Header</h4>
+					<div id = "hud-loader" class="loader"></div>
+				</div>
+				<div id = "filters-modal-body" class="modal-body"></div>
+				<div id = "filters-modal-footer" class="modal-footer"></div>
+			</div>
+		</div>
+	</div>
+	<!-- Sessions Modal -->
+	<div id="sessions-modal" class="modal fade" role="dialog">
+		<div id = "sessions-dialog" class="modal-dialog">
+			<div id = "sessions-modal-content" class="modal-content">
+				<div id = "sessions-modal-header" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id = "sessions-modal-title" class="modal-title">Sessions Header</h4>
+				</div>
+				<div id = "sessions-modal-body" class="modal-body">
+				</div>
+				<div id = "sessions-modal-footer" class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Settings Modal -->
+	<div id="settings-modal" class="modal fade" role="dialog">
+		<div id = "settings-dialog" class="modal-dialog">
+			<div id = "settings-modal-content" class="modal-content">
+				<div id = "settings-modal-header" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id = "settings-modal-title" class="modal-title">Settings Header</h4>
+				</div>
+				<div id = "settings-modal-body" class="modal-body">
+				</div>
+				<div id = "settings-modal-footer" class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" id="content-row" style="margin-top: 5%;">
+		<!--SIDE NAV-->
+		<nav class="main-menu" id="sidebar"  data-spy="affix" data-offset-top="-1" style="position:fixed">
+			<div class="scrollbar" id="style-1" >
+				<ul>
+					<li>
+						<a id = "sidebar-filters">
+							<i class= " fa fa-filter fa-lg"> </i>
+							<span class="nav-text">Filters</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					<li>
+						<a class="save-link">
+							<i class="fa fa-floppy-o fa-lg"></i>
+							<span class="nav-text">Save Session</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					<li>
+						<a id = "sidebar-settings">
+							<i class= " fa fa-cog fa-lg"> </i>
+							<span class="nav-text">Settings</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					<li id="tutorial">
+						<a onclick="introPartOne();">
+						<i class="fa fa-question fa-lg"></i>
+						<span class="nav-text">Tutorial</span>
+						</a>
+					</li>
+					<hr>
+					<li id="home">
+						<a class = "home-link">
+						<i class="fa fa-home fa-lg"></i>
+						<span class="nav-text">Home</span>
+						</a>
+					</li>
+					<li id="new">
+						<a class = "newSearch-link">
+						<i class="fa fa-search fa-lg"></i>
+						<span class="nav-text">New Search</span>
+						</a>
+					</li>
+					<li id="results">
+						<a class = "results-link">
+						<i class="fa fa-list fa-lg"></i>
+						<span class="nav-text">Search Results</span>
+						</a>
+					</li>
+					<li id="visualize">
+						<a class="visualization-link">
+						<i class="fa fa-area-chart fa-lg"></i>
+						<span class="nav-text">Visualize</span>
+						</a>
+					</li>
+					<li id="clusters">
+						<a class="cluster-link">
+						<i class="fa fa-pie-chart fa-lg"></i>
+						<span class="nav-text">Clusters</span>
+						</a>
+					</li>
+					<li id="report">
+						<a class="report-link" >
+						<i class="fa fa-paper-plane-o fa-lg"></i>
+						<span class="nav-text">Report</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- END NEW NAV -->
+	<div id = "results-well" class = "col-md-10 container-fluid pull-right" style = "margin-right: 20px;">
+		<div class = "row well">
+			<label style="color: black" for="mainQuery">Main Query: </label>
+			<textarea type="text" style="height:70px;" cols = "auto" rows = "10" class = "form-control"name = "mainQuery" id = "mainQuery" ></textarea>
+			<h4 id = "results-text"> </h4>
+			<button class = "btn btn-success" id = "refresh-btn">Submit</button>
+		</div>
+		<div class = "row well">
+			<ul class = "columns four-columns" style = "list-style-type: none" id = "all-mesh-list"></ul>
+		</div>
+	</div>
+
+
+    </div>
+    <!--/container-->
+
+
+
+</body>
+<script src="../../client_side/lib/jquery/jquery-3.2.1.js?tachyon.1.19"></script>
+<script src="../../client_side/lib/js/facet.js?tachyon.1.19"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css?tachyon.1.19">
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js?tachyon.1.19"></script>
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.colVis.min.js?tachyon.1.19"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js?tachyon.1.19"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js?tachyon.1.19"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js?tachyon.1.19"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js?tachyon.1.19"></script>
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js?tachyon.1.19"></script>
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js?tachyon.1.19"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css?tachyon.1.19">
+
+<script src="../../client_side/lib/d3/js/d3.v3.min.js?tachyon.1.19"></script>
+<script src="../../config.js?tachyon.1.19"></script>
+<script src="../../client_side/lib/bootstrap/js/bootstrap.min.js?tachyon.1.19"></script>
+<script src="../../client_side/mesh/mesh.js?tachyon.1.19"></script>
+<script src="../hud/bootstrap-slider.js?tachyon.1.19"></script>
+<script src="../hud/hud.js?tachyon.1.19"></script>
+
+</html>

@@ -1,0 +1,15 @@
+#top-nav-2{
+	position: relative;
+}
+
+#top-nav-2.affix{
+	position:fixed; 
+	top: 0;
+}
+
+#logo-cont{
+	float: middle;
+	height: 50px;
+}
+
+

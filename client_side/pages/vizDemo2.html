@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SuperH Index</title>
+
+	<link rel="stylesheet" href="../../client_side/lib/DataTables/media/css/jquery.dataTables.min.css?tachyon.1.19">
+
+
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css?tachyon.1.19">
+
+	<link rel="stylesheet" href="../hud/bootstrap-slider.css?tachyon.1.19">
+
+	<style type="text/css">
+	#mapContainer {
+	    height: 500px;
+	    min-width: 310px;
+	    max-width: 800px;
+	    margin: 0 auto;
+	}
+	#mybar {
+	    height: 400px;
+	    width: 300px;
+	    margin: 0 auto;
+	}
+	.loading {
+	    margin-top: 10em;
+	    text-align: center;
+	    color: gray;
+      .table-row{
+  		cursor:pointer;
+	}
+	</style>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css?tachyon.1.19" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css?tachyon.1.19" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <link href="../../client_side/lib/font-awesome/css/font-awesome.min.css?tachyon.1.19" rel="stylesheet" type="text/css">
+
+  <!-- MetisMenu CSS -->
+  <link href="/lib/metisMenu/metisMenu.min.css?tachyon.1.19" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../client_side/home/style.css?tachyon.1.19">
+
+<link rel = "stylesheet" type = "text/css" href="../../client_side/home/dashboard.css?tachyon.1.19">
+
+  <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?tachyon.1.19" rel="stylesheet">
+
+
+  <link href="../../client_side/lib/introjs/introjs.css?tachyon.1.19" rel="stylesheet">
+  <link href="../../client_side/lib/introjs/themes/introjs-modern.css?tachyon.1.19" rel="stylesheet">
+
+</head>
+
+<body>
+  <!--BEGIN NAV -->
+  <div class="row" id="content-row">
+
+
+
+
+  	<nav style="background-color: white" class="navbar navbar-fixed-top" role="banner">
+  		<div class="container-fluid">
+
+
+  				<a class="navbar-brand" href="//www.superHindex.com" target="_blank" style="display:"><img src="../../client_side/lib/images/super.png" style="color: blue; height: 44px; width:auto;"></a>
+
+
+  				<ul class="nav navbar-nav navbar-right">
+
+  <!--
+            <li> <a href="mailto:superHindex@gmail.com" style="display:inline-block;padding:0px;"><img src="../../client_side/lib/images/mail-icon.png" style="height: 28px; width:35px;"></a>  </li>
+  					<li> <a href="//facebook.com/superHindex" target="_blank" style="display:inline-block;padding:0px;"><img src="../../client_side/lib/images/facebooklogo.png" style="height: 32px; width:32px;"></a>  </li>
+  					<li> <a href="//twitter.com/superHindex" target="_blank" style="display:inline-block;padding:0px;"><img src="../../client_side/lib/images/twitter-bird-dark-bgs.png" style="height: 36px; width: 36px;"></a>   </li>
+
+  -->
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-envelope fa-fw" style="color:#283a75 "></i> <i class="fa fa-caret-down" style="color:#283a75 "></i>
+                </a>
+                <ul class="dropdown-menu dropdown-messages">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                    <em>Yesterday</em>
+                                </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                    <em>Yesterday</em>
+                                </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                    <em>Yesterday</em>
+                                </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>Read All Messages</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-messages -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-tasks fa-fw" style="color:#283a75 "></i> <i class="fa fa-caret-down" style="color:#283a75 "></i>
+                </a>
+                <ul class="dropdown-menu dropdown-tasks">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 1</strong>
+                                    <span class="pull-right text-muted">40% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                        <span class="sr-only">40% Complete (success)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 2</strong>
+                                    <span class="pull-right text-muted">20% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                        <span class="sr-only">20% Complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 3</strong>
+                                    <span class="pull-right text-muted">60% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                        <span class="sr-only">60% Complete (warning)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 4</strong>
+                                    <span class="pull-right text-muted">80% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                        <span class="sr-only">80% Complete (danger)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>See All Tasks</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-tasks -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw" style="color:#283a75 "></i> <i class="fa fa-caret-down" style="color:#283a75 "></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="#" class = "login-link"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+
+  				</ul>
+
+  		</div>
+  	</nav>
+
+  </div>
+
+  <!-- END NAV -->
+
+
+
+
+	<!--main-->
+	<div class="container-fluid">
+		<div class = "row hud-row" id="settings-row" ></div>
+  	<div class = "row hud-row" id="filters-row" ></div>
+  	<div class = "row hud-row" id="sessions-row" ></div>
+
+		<div class="row" id="content-row">
+
+
+      <!--SIDE NAV-->
+
+      <nav class="main-menu" id="sidebar" style="position:fixed">
+
+
+
+      <div class="scrollbar" id="style-1">
+
+      <ul>
+
+<li>
+						<a id = "sidebar-filters">
+							<i class= " fa fa-filter fa-lg"> </i>
+							<span class="nav-text">Filters</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					<li>
+						<a id = "sidebar-settings">
+							<i class= " fa fa-cog fa-lg"> </i>
+							<span class="nav-text">Settings</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+
+					<li>
+<!-- 					<a class="save-link">-->
+					<a id = "sidebar-sessions">
+						<i class="fa fa-floppy-o fa-lg"></i>
+						<span class="nav-text">Save Session</span>
+						<i class="fa fa-caret-right fa-lg"></i>
+					</a>
+					</li>
+
+					<hr>
+              <li>
+              <a class = "home-link">
+              <i class="fa fa-home fa-lg"></i>
+              <span class="nav-text">Home</span>
+              </a>
+              </li>
+
+              <li>
+              <a class = "newSearch-link">
+              <i class="fa fa-search fa-lg"></i>
+              <span class="nav-text">New Search</span>
+              </a>
+              </li>
+
+
+              <li>
+              <a class = "results-link">
+              <i class="fa fa-list fa-lg"></i>
+              <span class="nav-text">Search Results</span>
+              </a>
+              </li>
+
+              <li>
+              <a class="visualization-link">
+              <i class="fa fa-area-chart fa-lg"></i>
+              <span class="nav-text">Visualize</span>
+              </a>
+              </li>
+
+              <li>
+              <a class="cluster-link">
+              <i class="fa fa-pie-chart fa-lg"></i>
+              <span class="nav-text">Clusters</span>
+              </a>
+              </li>
+
+              <li>
+              <a class="report-link">
+              <i class="fa fa-paper-plane-o fa-lg"></i>
+              <span class="nav-text">Report</span>
+              </a>
+              </li>
+              <li>
+					<a class="save-link">
+					<i class="fa fa-floppy-o fa-lg"></i>
+					<span class="nav-text">Save Session</span>
+					</a>
+					</li>
+
+          <li id="tutorial">
+            <!--<a  href="javascript:void(0);" onclick="javascript:introJs().start();"></a>-->
+            <a onclick="startIntro();">
+              <i class="fa fa-question fa-lg"></i>
+              <span class="nav-text">Tutorial</span>
+          </a>
+          </li>
+</ul></div>
+              </nav>
+
+      <!-- END NEW NAV -->
+
+
+			<div style = "padding: 70px 0 0 20px; margin: auto"class="col-md-11 ">
+				<div class="col-md-11 pull-right">
+					<div class="row"> <!-- content row -->
+						<!-- Begin  content panel -->
+						<div class="panel panel-default">
+							<div class="panel-heading"></div>
+							<!-- Begin panel-body -->
+							<div class="panel-body">
+
+								<div class = "row">
+									<div class = "col-xs-6">
+										<p id = "num-docs"></p>
+									</div>
+									<!-- <div class = "col-xs-6">
+										<button class = "btn btn-large btn-danger" style="width:100%;" id = "reset-button">Reset All Filters</button>
+									</div> -->
+								</div>
+								<div class="row">
+									<div class="col-xs-6 col-md-6"> <div  id="chartDocs">  </div> </div>
+									<div class="col-xs-6 col-md-6"> <div  id="chartYears">  </div> </div>
+								</div>
+								<div class="row">
+									<div class="container" height: 400px >
+									<div class="col-xs-6 col-md-6"> <div  id="chartInst">  </div> </div>
+									<div class="col-xs-6 col-md-6"> <div  id="chartRes">  </div> </div>
+									</div>
+								</div>
+								<div class="row">
+									<div id="mapContainer" style="max-width: 1000px"; height: 50%></div>
+								</div>
+							<!-- End panel-body -->
+							</div>
+						<!-- End panel -->
+						</div>
+					</div> <!-- /saved search row -->
+				</div>
+			</div> <!-- End content column -->
+		</div><!--/row-->
+	</div><!--/container-->
+
+  <script src="../../client_side/lib/introjs/intro.js?tachyon.1.19"></script>
+  <script type="text/javascript">
+
+  function startIntro(){
+    var intro = introJs().setOption('showStepNumbers', 'false');
+
+    intro.setOptions({
+        steps: [
+          {
+            intro: "Welcome."
+          },
+          {
+            //element: document.querySelector('#'),
+            intro: "The tutorial will be available in the near future!."
+            //position: 'left'
+          }
+        ]
+      });
+      intro.start();
+
+  }
+  </script>
+    <script>
+
+    function introResumeFromDoc(){
+      var intro = introJs().setOption('doneLabel', 'to Clusters!').setOption('showStepNumbers', 'false');
+
+      intro.setOptions({
+          steps: [
+            {
+            intro: "Resuming from Doc."
+            },
+            {
+              //element: document.querySelector('#'),
+              intro: "Here we have many charts and graphs to help you better understand your documents."
+              //position: 'left'
+            },
+            {
+              //element: document.querySelector('#'),
+              intro: "Lets check out clusters!"
+              //position: 'left'
+            }
+          ]
+        });
+        intro.start().oncomplete(function() {
+          window.location.href = '../institution/cluster.html?multipage=true';
+        });
+    }
+
+       if (RegExp('multipage', 'gi').test(window.location.search)) {
+         introResumeFromDoc();
+       }
+
+
+     </script>
+
+</body>
+	<script src="../../client_side/lib/jquery/jquery-3.2.1.js?tachyon.1.19"></script>
+	<script>$("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+});</script>
+	<script src="../../config.js?tachyon.1.19"></script>
+	<script src="../../client_side/lib/DataTables/media/js/jquery.dataTables.min.js?tachyon.1.19"></script>
+	<script src="../../client_side/lib/d3/js/d3.v3.min.js?tachyon.1.19"></script>
+    <script src="../../client_side/lib/bootstrap/js/bootstrap.min.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/highcharts.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/modules/map.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/modules/data.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/modules/exporting.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/mapdata/custom/world.js?tachyon.1.19"></script>
+	<script src="../../client_side/newviz/vizDemo2.js?tachyon.1.19"></script>
+	<script src="../hud/bootstrap-slider.js?tachyon.1.19"></script>
+	<script src="../hud/hud.js?tachyon.1.19"></script>
+</html>

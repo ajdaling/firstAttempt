@@ -1,0 +1,10 @@
+topicN,topicDesc,topicSel
+'topic0','regenerative','regenerative'
+'topic1','neurology','"neurology"'
+'topic2','cancer','"cancer"'
+'topic3','cardiovascular,'"cardiovascular"'
+'topic4','transplant','"transplant"'
+'topic5','musculoskeletal','"musculoskeletal"'
+'topic6','gastroenterology','"gastroenterology"'
+'topic7','none','"none"'
+'topic8','other','"other"'

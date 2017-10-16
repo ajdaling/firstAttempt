@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SuperH Index</title>
+
+	<link rel="stylesheet" href="../../client_side/lib/DataTables/media/css/jquery.dataTables.min.css?tachyon.1.19">
+
+
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css?tachyon.1.19">
+
+	<link rel="stylesheet" href="../hud/bootstrap-slider.css?tachyon.1.19">
+
+	<style type="text/css">
+	#mapContainer {
+	    height: 500px;
+	    min-width: 310px;
+	    max-width: 800px;
+	    margin: 0 auto;
+	}
+	#mybar {
+	    height: 400px;
+	    width: 300px;
+	    margin: 0 auto;
+	}
+	.loading {
+	    margin-top: 10em;
+	    text-align: center;
+	    color: gray;
+      .table-row{
+  		cursor:pointer;
+	}
+	</style>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css?tachyon.1.19" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css?tachyon.1.19" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <link href="../../client_side/lib/font-awesome/css/font-awesome.min.css?tachyon.1.19" rel="stylesheet" type="text/css">
+
+  <!-- MetisMenu CSS -->
+  <link href="/lib/metisMenu/metisMenu.min.css?tachyon.1.19" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../client_side/home/style.css?tachyon.1.19">
+
+<link rel = "stylesheet" type = "text/css" href="../../client_side/home/dashboard.css?tachyon.1.19">
+
+  <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?tachyon.1.19" rel="stylesheet">
+<link rel="stylesheet" href="../hud/hud.css">
+
+  <link href="../../client_side/lib/introjs/introjs.css?tachyon.1.19" rel="stylesheet">
+  <link href="../../client_side/lib/introjs/themes/introjs-modern.css?tachyon.1.19" rel="stylesheet">
+
+</head>
+
+<body>
+  <!--BEGIN NAV -->
+    <!--BEGIN NAV -->
+	<div class="row" id="content-row">
+		<nav class="navbar navbar-fixed-top" role="banner">
+  			<div class="container-fluid" style ="background-color:rgba(255,255,255,0.8)">
+				<a class="navbar-brand" href="//www.superHindex.com" target="_blank" style="display:"><img src="../../client_side/lib/images/super.png" style="color: blue; height: 44px; width:auto;"></a>
+  				<ul class = "nav navbar-nav navbar-left" style="margin-left: 20%;">
+  					<li>
+						<h2 style = "text-align: center" id="nav-session-title"></h2>
+					</li>
+  				</ul>
+  				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+                		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    		<i class="fa fa-user fa-fw" style="color:#283a75 "></i>
+                    		<i class="fa fa-caret-down" style="color:#283a75 "></i>
+                		</a>
+                		<ul class="dropdown-menu dropdown-user">
+                			<li><a class = "username-text"></a></li>
+                    		<li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+                    		<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
+                    		<li class="divider"></li>
+                    		<li><a href = "#" class = "login-link"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    		</li>
+						</ul>
+                	<!-- /.dropdown-user -->
+            		</li>
+            <!-- /.dropdown -->
+				</ul>
+  			</div>
+  		</nav>
+  	</div>
+  	<!-- END NAV -->
+
+	<!--main-->
+	<div class="container-fluid" id="content-container">
+<!-- Filters Modal -->
+	<div id="filters-modal" class="modal fade" role="dialog">
+		<div id = "filters-dialog" class="modal-dialog">
+			<div id = "filters-modal-content" class="modal-content">
+				<div id = "filters-modal-header" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id = "filters-modal-title" class="modal-title">Filters Header</h4>
+					<div id = "hud-loader" class="loader"></div>
+				</div>
+				<div id = "filters-modal-body" class="modal-body"></div>
+				<div id = "filters-modal-footer" class="modal-footer"></div>
+			</div>
+		</div>
+	</div>
+	<!-- Sessions Modal -->
+	<div id="sessions-modal" class="modal fade" role="dialog">
+		<div id = "sessions-dialog" class="modal-dialog">
+			<div id = "sessions-modal-content" class="modal-content">
+				<div id = "sessions-modal-header" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id = "sessions-modal-title" class="modal-title">Sessions Header</h4>
+				</div>
+				<div id = "sessions-modal-body" class="modal-body">
+				</div>
+				<div id = "sessions-modal-footer" class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Settings Modal -->
+	<div id="settings-modal" class="modal fade" role="dialog">
+		<div id = "settings-dialog" class="modal-dialog">
+			<div id = "settings-modal-content" class="modal-content">
+				<div id = "settings-modal-header" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id = "settings-modal-title" class="modal-title">Settings Header</h4>
+				</div>
+				<div id = "settings-modal-body" class="modal-body">
+				</div>
+				<div id = "settings-modal-footer" class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" id="content-row">
+		<!--SIDE NAV-->
+		<nav class="main-menu" id="sidebar"  data-spy="affix" data-offset-top="-1" style="position:fixed">
+			<div class="scrollbar" id="style-1" >
+				<ul>
+					<li>
+						<a id = "sidebar-filters">
+							<i class= " fa fa-filter fa-lg"> </i>
+							<span class="nav-text">Filters</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					<li>
+						<a class="save-link">
+							<i class="fa fa-floppy-o fa-lg"></i>
+							<span class="nav-text">Save Session</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					<li>
+						<a id = "sidebar-settings">
+							<i class= " fa fa-cog fa-lg"> </i>
+							<span class="nav-text">Settings</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					<li id="tutorial">
+						<a onclick="startIntro();">
+						<i class="fa fa-question fa-lg"></i>
+						<span class="nav-text">Tutorial</span>
+						</a>
+					</li>
+					<hr>
+					<li id="home">
+						<a class = "home-link">
+						<i class="fa fa-home fa-lg"></i>
+						<span class="nav-text">Home</span>
+						</a>
+					</li>
+					<li id="new">
+						<a class = "newSearch-link">
+						<i class="fa fa-search fa-lg"></i>
+						<span class="nav-text">New Search</span>
+						</a>
+					</li>
+					<li id="results">
+						<a class = "results-link">
+						<i class="fa fa-list fa-lg"></i>
+						<span class="nav-text">Search Results</span>
+						</a>
+					</li>
+					<li id="visualize">
+						<a class="visualization-link">
+						<i class="fa fa-area-chart fa-lg"></i>
+						<span class="nav-text">Visualize</span>
+						</a>
+					</li>
+					<li id="clusters">
+						<a class="cluster-link">
+						<i class="fa fa-pie-chart fa-lg"></i>
+						<span class="nav-text">Clusters</span>
+						</a>
+					</li>
+					<li id="report">
+						<a class="report-link" >
+						<i class="fa fa-paper-plane-o fa-lg"></i>
+						<span class="nav-text">Report</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+
+			<div style = "padding: 70px 0 0 20px; margin: auto"class="col-md-11 ">
+				<div class="col-md-11 pull-right">
+					<div class="row"> <!-- content row -->
+						<!-- Begin  content panel -->
+						<div class="panel panel-default">
+							<div class="panel-heading"></div>
+							<!-- Begin panel-body -->
+							<div class="panel-body">
+
+								<div class = "row">
+									<div class = "col-xs-6">
+										<p id = "num-docs"></p>
+									</div>
+									<div class = "col-xs-6">
+										<button class = "btn btn-large btn-danger" style="width:100%;" id = "reset-button">Reset All Filters</button>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-6 col-md-6"> <div  id="chartDocs">  </div> </div>
+									<div class="col-xs-6 col-md-6"> <div  id="chartYears">  </div> </div>
+								</div>
+								<div class="row">
+									<div class="container" height: 400px >
+									<div class="col-xs-6 col-md-6"> <div  id="chartInst">  </div> </div>
+									<div class="col-xs-6 col-md-6"> <div  id="chartRes">  </div> </div>
+									</div>
+								</div>
+								<div class="row">
+									<div id="mapContainer" style="max-width: 1000px"; height: 50%></div>
+								</div>
+							<!-- End panel-body -->
+							</div>
+						<!-- End panel -->
+						</div>
+					</div> <!-- /saved search row -->
+				</div>
+			</div> <!-- End content column -->
+		</div><!--/row-->
+	</div><!--/container-->
+
+  <script src="../../client_side/lib/introjs/intro.js?tachyon.1.19"></script>
+  <script type="text/javascript">
+
+  function startIntro(){
+    var intro = introJs().setOption('showStepNumbers', 'false');
+
+    intro.setOptions({
+        steps: [
+          {
+          intro: "These are your Document Visualizations."
+          },
+          {
+            //element: document.querySelector('#'),
+            intro: "Here, we have several different charts and graphs to help you better understand your documents."
+            //position: 'left'
+          },
+          {
+            element: document.querySelector('#chartDocs'),
+            intro: "This chart shows you how many documents are contributed from each associated library or source.",
+            position: 'right'
+          },
+          {
+            element: document.querySelector('#chartYears'),
+            intro: "Here, we see the breakdown of documents per year.",
+            position: 'left'
+          },
+          {
+            element: document.querySelector('#chartInst'),
+            intro: "...and by organization.",
+            position: 'right'
+          },
+          {
+            element: document.querySelector('#chartRes'),
+            intro: "This is a list of all the associated experts in the the field.",
+            position: 'left'
+          },
+          {
+            element: document.querySelector('#mapContainer'),
+            intro: "Finally, we have a map displays the number of documents per country!",
+            position: 'top'
+          }
+        ]
+      });
+      intro.start();
+
+  }
+  </script>
+    <script>
+
+    function introResumeFromDoc(){
+      var intro = introJs().setOption('doneLabel', 'Report!').setOption('showStepNumbers', 'false');
+
+      intro.setOptions({
+          steps: [
+            {
+            intro: "These are your Document Visualizations."
+            },
+            {
+              //element: document.querySelector('#'),
+              intro: "Here, we have several different charts and graphs to help you better understand your documents."
+              //position: 'left'
+            },
+            {
+              element: document.querySelector('#chartDocs'),
+              intro: "This chart shows you how many documents are contributed from each associated library or source.",
+              position: 'right'
+            },
+            {
+              element: document.querySelector('#chartYears'),
+              intro: "Here, we see the breakdown of documents per year.",
+              position: 'left'
+            },
+            {
+              element: document.querySelector('#chartInst'),
+              intro: "...and by organization.",
+              position: 'right'
+            },
+            {
+              element: document.querySelector('#chartRes'),
+              intro: "This is a list of all the associated experts in the the field.",
+              position: 'left'
+            },
+            {
+              element: document.querySelector('#mapContainer'),
+              intro: "Finally, we have a map displays the number of documents per country!",
+              position: 'top'
+            },
+            {
+              //element: document.querySelector('#'),
+              intro: "Lets report our data!"
+              //position: 'left'
+            }
+          ]
+        });
+        intro.start().oncomplete(function() {
+          window.location.href = '../institution/reportPageV2.html?multipage=true';
+        });
+    }
+
+       if (RegExp('multipage', 'gi').test(window.location.search)) {
+         introResumeFromDoc();
+       }
+
+
+     </script>
+
+</body>
+	<script src="../../client_side/lib/jquery/jquery-3.2.1.js?tachyon.1.19"></script>
+	<script>$("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+});</script>
+	<script src="../../client_side/lib/DataTables/media/js/jquery.dataTables.min.js?tachyon.1.19"></script>
+	<script src="../../client_side/lib/d3/js/d3.v3.min.js?tachyon.1.19"></script>
+	<script src="../../config.js?tachyon.1.19"></script>
+    <script src="../../client_side/lib/bootstrap/js/bootstrap.min.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/highcharts.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/modules/map.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/modules/data.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/modules/exporting.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/mapdata/custom/world.js?tachyon.1.19"></script>
+	<script src="../../client_side/newviz/vizDemo2.js?tachyon.1.19"></script>
+	<script src="../hud/bootstrap-slider.js?tachyon.1.19"></script>
+	<script src="../hud/hud.js?tachyon.1.19"></script>
+</html>

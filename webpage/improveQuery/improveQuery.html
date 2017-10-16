@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="cache-control" content="max-age=0" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+  <meta http-equiv="pragma" content="no-cache" />
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SuperH Index</title>
+
+
+  <link rel='stylesheet prefetch' href='https://ppl.wdsserve.com/1.0/ppl/ppl.min.css?tachyon.1.19'>
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css?tachyon.1.19">
+  <link rel='stylesheet prefetch' href='https://ppl.wdsserve.com/1.0/ppl/ppl.min.css?tachyon.1.19'>
+  <link rel="stylesheet" href="../../client_side/lib/css/facet.css?tachyon.1.19">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css?tachyon.1.19" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css?tachyon.1.19" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <link href="../../client_side/lib/font-awesome/css/font-awesome.min.css?tachyon.1.19" rel="stylesheet" type="text/css">
+  <link href="../../client_side/lib/metisMenu/metisMenu.min.css?tachyon.1.19" rel="stylesheet">
+  <link rel="stylesheet" href="../home/style.css?tachyon.1.19">
+  <link rel="stylesheet" type="text/css" href="../home/dashboard.css?tachyon.1.19">
+  <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?tachyon.1.19" rel="stylesheet">
+	<link rel="stylesheet" href="../hud/hud.css?tachyon.1.19">
+<link rel="stylesheet" href="docIndex.css?tachyon.1.19">
+  <link href="../../client_side/lib/introjs/introjs.css?tachyon.1.19" rel="stylesheet">
+  <link href="../../client_side/lib/introjs/themes/introjs-modern.css?tachyon.1.19" rel="stylesheet">
+  <link rel="stylesheet" href="../hud/bootstrap-slider.js?tachyon.1.19">
+  <link rel="stylesheet" type="text/css" href="../../client_side/lib/jqcloud/jqcloud.css?tachyon.1.19">
+  <link rel = "stylesheet" href = "../../client_side/lib/query-builder/query-builder.default.css?tachyon.1.19">
+  <link href="../../client_side/improveQuery/improveQuery.css?tachyon.1.19" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+  <!--BEGIN NAV -->
+	<div class="row" id="content-row">
+		<nav class="navbar navbar-fixed-top" role="banner">
+  			<div class="container-fluid" style ="background-color:rgba(255,255,255,0.8)">
+				<a class="navbar-brand" href="//www.superHindex.com" target="_blank" style="display:"><img src="../../client_side/lib/images/super.png" style="color: blue; height: 44px; width:auto;"></a>
+
+  				<ul class = "nav navbar-nav navbar-left" style="margin-left: 20%;">
+  					<li>
+						<h2 style = "text-align: center" id="nav-session-title"></h2>
+					</li>
+  				</ul>
+  				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+                		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    		<i class="fa fa-user fa-fw" style="color:#283a75 "></i>
+                    		<i class="fa fa-caret-down" style="color:#283a75 "></i>
+                		</a>
+                		<ul class="dropdown-menu dropdown-user">
+                			<li><a class = "username-text"></a></li>
+                    		<li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+                    		<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
+                    		<li class="divider"></li>
+                    		<li><a href = "#" class = "login-link"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    		</li>
+						</ul>
+                	<!-- /.dropdown-user -->
+            		</li>
+            <!-- /.dropdown -->
+				</ul>
+  			</div>
+  		</nav>
+  	</div>
+  	<!-- END NAV -->
+
+	<!--main-->
+<div class="container-fluid" id="content-container">
+<!-- Filters Modal -->
+	<div id="filters-modal" class="modal fade" role="dialog">
+		<div id = "filters-dialog" class="modal-dialog">
+			<div id = "filters-modal-content" class="modal-content">
+				<div id = "filters-modal-header" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id = "filters-modal-title" class="modal-title">Filters Header</h4>
+					<div id = "hud-loader" class="loader"></div>
+				</div>
+				<div id = "filters-modal-body" class="modal-body"></div>
+				<div id = "filters-modal-footer" class="modal-footer"></div>
+			</div>
+		</div>
+	</div>
+	<!-- Sessions Modal -->
+	<div id="sessions-modal" class="modal fade" role="dialog">
+		<div id = "sessions-dialog" class="modal-dialog">
+			<div id = "sessions-modal-content" class="modal-content">
+				<div id = "sessions-modal-header" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id = "sessions-modal-title" class="modal-title">Sessions Header</h4>
+				</div>
+				<div id = "sessions-modal-body" class="modal-body">
+				</div>
+				<div id = "sessions-modal-footer" class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Settings Modal -->
+	<div id="settings-modal" class="modal fade" role="dialog">
+		<div id = "settings-dialog" class="modal-dialog">
+			<div id = "settings-modal-content" class="modal-content">
+				<div id = "settings-modal-header" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id = "settings-modal-title" class="modal-title">Settings Header</h4>
+				</div>
+				<div id = "settings-modal-body" class="modal-body">
+				</div>
+				<div id = "settings-modal-footer" class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" id="content-row" style="margin-top: 5%;">
+		<!--SIDE NAV-->
+		<nav class="main-menu" id="sidebar"  data-spy="affix" data-offset-top="-1" style="position:fixed">
+			<div class="scrollbar" id="style-1" >
+				<ul>
+					<li>
+						<a id = "sidebar-filters">
+							<i class= " fa fa-filter fa-lg"> </i>
+							<span class="nav-text">Filters</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					<li>
+						<a class="save-link">
+							<i class="fa fa-floppy-o fa-lg"></i>
+							<span class="nav-text">Save Session</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					<li>
+						<a id = "sidebar-settings">
+							<i class= " fa fa-cog fa-lg"> </i>
+							<span class="nav-text">Settings</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					<li id="tutorial">
+						<a onclick="introPartOne();">
+						<i class="fa fa-question fa-lg"></i>
+						<span class="nav-text">Tutorial</span>
+						</a>
+					</li>
+					<hr>
+					<li id="home">
+						<a class = "home-link">
+						<i class="fa fa-home fa-lg"></i>
+						<span class="nav-text">Home</span>
+						</a>
+					</li>
+					<li id="new">
+						<a class = "newSearch-link">
+						<i class="fa fa-search fa-lg"></i>
+						<span class="nav-text">New Search</span>
+						</a>
+					</li>
+					<li id="results">
+						<a class = "results-link">
+						<i class="fa fa-list fa-lg"></i>
+						<span class="nav-text">Search Results</span>
+						</a>
+					</li>
+					<li id="visualize">
+						<a class="visualization-link">
+						<i class="fa fa-area-chart fa-lg"></i>
+						<span class="nav-text">Visualize</span>
+						</a>
+					</li>
+					<li id="clusters">
+						<a class="cluster-link">
+						<i class="fa fa-pie-chart fa-lg"></i>
+						<span class="nav-text">Clusters</span>
+						</a>
+					</li>
+					<li id="report">
+						<a class="report-link" >
+						<i class="fa fa-paper-plane-o fa-lg"></i>
+						<span class="nav-text">Report</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- END NEW NAV -->
+        <div class = "container-fluid">
+            <div class = "row"> <!--all row-->
+                <div class = "col-md-1">
+
+                </div><!--/spacer-->
+                <div class = "col-md-11"><!--all col-->
+                    <div class = "row well" id = "my-terms-row">
+                        <div class = "row" style="text-align: center;">
+                            <h4 class = "pull-left">My Search Terms:</h4>
+                            <div id = "qw-level-group" class = "btn-group pull-right">
+        						<button id = "qw-friendly" class = "btn qw-level-button btn-default active">Query Builder</button>
+        						<button id = "qw-advanced" class = "btn qw-level-button btn-default">Text</button>
+        					</div>
+                        </div>
+                        <div class = "col-md-2">
+                            <div class = "btn-group">
+                                <button id = "mq-submit" class = "btn btn-default">Submit</button>
+                                <button id = "mq-clear" class = "btn btn-danger">Clear</button>
+                            </div>
+                        </div>
+                        <div class = "col-md-10">
+                            <div id = "main-query-row" class = "row" >
+                                <div id = "main-query" style="max-height: 300px; overflow: scroll;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "row well"> <!-- top row -->
+                        <div class = "col-md-6">
+                            <div class = "panel panel-default">
+                                <div class = "panel-heading">
+                                    <h3>Document View</h3>
+                                </div>
+                                <div class = "panel-body">
+                                    <div id = "dt-panel" style="text-align: center"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id = "this-doc-col" class = "col-md-6">
+                            <div class = "row">
+                                <div id = "this-doc-panel" class = "panel panel-default">
+                                    <div class = "panel-heading" style="text-align: center">
+                                        <!-- Help Button Start -->
+
+                                        <h4 class = "doc-title"></h4>
+                                        <div class = "row">
+                                            <a href="#" target="_blank" id = "doc-link">View Original Document</a>
+                                        </div>
+                                        <div class = "row">
+                                            <a href = "../improveQuery/improveQuery.html" target = "_blank">Use This Document to Improve Query</a>
+                                        </div>
+                                    </div>
+                                    <div id = "this-doc-panel-body" class = "panel-body">
+                                        <ul class = "nav nav-pills">
+                                            <li class = "nav-item active">
+                                                <a href = "#doc-matches" data-toggle = "pill">Query Term Matches</a>
+                                            </li>
+                                            <li class = "nav-item">
+                                                <a href="#doc-info" data-toggle = "pill">Info</a>
+                                            </li>
+                                            <li class = "nav-item">
+                                                <a href = "#doc-abstract" data-toggle = "pill">Abstract</a>
+                                            </li>
+                                            <li class = "nav-item">
+                                                <a href = "#doc-inst" data-toggle = "pill">Organizations</a>
+                                            </li>
+                                            <li class = "nav-item">
+                                                <a href="#doc-res" data-toggle = "pill">Experts</a>
+                                            </li>
+                                            <li class = "nav-item">
+                                                <a href="#doc-mesh" data-toggle = "pill">MeSH Terms</a>
+                                            </li>
+                                        </ul>
+                                        <div id = "this-doc-body-content" class = "tab-content" style="max-height: 200px; overflow:scroll;">
+                                            <div id = "doc-matches" class = "tab-pane fade in active">
+                                                <div class = "row">
+                                                    <div id = "matches-well" style="height: 180px;"></div>
+                                                </div>
+                                            </div>
+                                            <div id = "doc-info" class = "tab-pane fade">
+                                                <div class ="row">
+                                                    <table id = "doc-info-table"></table>
+                                                </div>
+                                            </div>
+                                            <div class = "tab-pane fade" id = "doc-abstract">
+                                                <h5>Abstract</h5>
+                                                <p id = "doc-abstract-text"></p>
+                                            </div>
+                                            <div class = "tab-pane fade" id = "doc-inst">
+                                                <ul class = "columns four-columns" style = "list-style-type: none" id = "doc-inst-list">
+
+                                                </ul>
+                                            </div>
+                                            <div class = "tab-pane fade" id = "doc-res">
+                                                <ul class = "columns four-columns" style="list-style-type: none" id = "doc-res-list">
+
+                                                </ul>
+                                            </div>
+                                            <div class = "tab-pane fade" id = "doc-mesh">
+                                                <ul class = "columns four-columns" style = "list-style-type: none" id="doc-mesh-list">
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div id = "selected-docs-panel" class = "panel panel-default">
+                                    <div class = "panel-heading">
+                                        <div class = "btn-group pull-right">
+                                            <button id = "submit-selected-btn" class = "btn btn-success">Analyze</button>
+                                            <button id = "clear-selected-btn" class = "btn btn-danger">Clear</button>
+                                        </div>
+                                        <h4>Selected Documents</h4>
+                                    </div>
+                                    <div class = "panel-body">
+                                        <div id = "selected-docs-dt">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /top row -->
+                    <div id = "cluster-row" class = "well row">
+                        <div id = "cluster-well" class = "well col-md-6">
+                            <div class = "row">
+                                <h4>Cluster</h4>
+                                <div class = "jqcloud" style="height: 400px;" id = "clusters-text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "well col-md-6">
+                            <div class = "row"><!--tag cloud row-->
+                                <h4>Distinctive Terms</h4>
+                                <div class = "well" id = "terms-well" style="height: 400px;">
+                                </div>
+                            </div><!--/tag cloud row-->
+                        </div>
+                    </div>
+                </div> <!-- end all col -->
+            </div> <!--/all row-->
+        </div>
+    </div>
+    <!--/container-->
+</div>
+</body>
+<script src="../../client_side/lib/jquery/jquery-3.2.1.js?tachyon.1.19"></script>
+<script src="../../client_side/lib/js/facet.js?tachyon.1.19"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css?tachyon.1.19">
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js?tachyon.1.19"></script>
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.colVis.min.js?tachyon.1.19"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js?tachyon.1.19"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js?tachyon.1.19"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js?tachyon.1.19"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js?tachyon.1.19"></script>
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js?tachyon.1.19"></script>
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js?tachyon.1.19"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css?tachyon.1.19">
+<script src="../../client_side/lib/d3/js/d3.v3.min.js?tachyon.1.19"></script>
+<script src="../../config.js?tachyon.1.19"></script>
+<script src="../../client_side/lib/bootstrap/js/bootstrap.min.js?tachyon.1.19"></script>
+<script src = "../../client_side/lib/jqcloud/jqcloud.js?tachyon.1.19"></script>
+<script src = "../../client_side/rdp/rdp.js?tachyon.1.19"></script>
+<script src="../../client_side/lib/query-builder/query-builder.standalone.js?tachyon.1.19"></script>
+<script src="../../client_side/improveQuery/improveQuery.js?tachyon.1.19"></script>
+<script src="../hud/bootstrap-slider.js?tachyon.1.19"></script>
+<script src="../hud/hud.js?tachyon.1.19"></script>
+</html>

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="author" content="superH">
+<meta name="description" content="Data Visualization">
+<meta property="og:title" content="Sample Report">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Data Visualization">
+<meta property="og:url">
+<!-- <meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+ --><meta property="og:image"
+content="//link/test.png">
+<title>Visualization Report</title>
+
+<link type="text/css" href="lib/dc.css?tachyon.1.19" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="lib/colorbrewer.css?tachyon.1.19"/>
+<link rel = "stylesheet" type = "text/css" href="../home/dashboard.css?tachyon.1.19">
+<link rel="stylesheet" href="../home/style.css?tachyon.1.19">
+	<link rel="stylesheet" href="../hud/bootstrap-slider.css?tachyon.1.19">
+  <link rel="stylesheet" href="../hud/hud.css">
+  <link rel="stylesheet" href="./pbv.css?tachyon.1.19">
+  <style>
+    #holder {
+      width:850px;
+      margin:20px auto;
+    }
+    #holder>div {
+      padding:30px 0;
+      clear:both;
+    }
+    .map {
+      width:600px;
+      height:400px;
+    }
+    .pie {
+      margin-left:30px;
+    }
+  </style>
+<link rel="stylesheet" href="lib/bs_panel.css?tachyon.1.19">
+
+<style>
+
+
+.dropdown-menu li.active > a,
+.dropdown-menu li.active > a:hover,
+.dropdown-menu li.active > a:focus{
+
+}
+
+</style>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js?tachyon.1.19"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css?tachyon.1.19" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css?tachyon.1.19" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+<!--      <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js?tachyon.1.19"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js?tachyon.1.19"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/4.10.3/bootstrap-slider.min.js?tachyon.1.19"></script>
+    <script src="https://cdn.rawgit.com/cytoscape/cytoscape.js-cola/1.6.0/cola.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.min.js?tachyon.1.19"></script>
+    <script src="https://cdn.rawgit.com/cytoscape/cytoscape.js-qtip/2.7.0/cytoscape-qtip.js"></script>
+    <script src="https://cdn.rawgit.com/cytoscape/cytoscape.js-cola/1.6.0/cytoscape-cola.js"></script> -->
+
+<script src="../../client_side/lib/d3/js/d3.v3.min.js?tachyon.1.19"></script>
+<script src="lib/crossfilter/js/crossfilter.min.js?tachyon.1.19"></script>
+  <script src="../../client_side/institution/lib/superformula.js?tachyon.1.19"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,b-1.0.3,b-colvis-1.0.3,b-flash-1.0.3,b-html5-1.0.3,b-print-1.0.3,cr-1.2.0,fh-3.0.0,kt-2.0.0,r-1.0.7,rr-1.0.0,sc-1.3.0,se-1.0.1/datatables.min.css?tachyon.1.19"/>
+<script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,b-1.0.3,b-colvis-1.0.3,b-flash-1.0.3,b-html5-1.0.3,b-print-1.0.3,cr-1.2.0,fh-3.0.0,kt-2.0.0,r-1.0.7,rr-1.0.0,sc-1.3.0,se-1.0.1/datatables.min.js?tachyon.1.19"></script>
+
+<script type="text/javascript" src="yadcf-master/jquery.dataTables.yadcf.min.js?tachyon.1.19"></script>
+<link rel="stylesheet" href="yadcf-master/jquery.dataTables.yadcf.css?tachyon.1.19">
+
+<link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css?tachyon.1.19" rel="stylesheet" type="text/css" />
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js?tachyon.1.19"></script>
+<script src="lib/dc.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/highcharts.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/modules/map.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/modules/data.js?tachyon.1.19"></script>
+	<script src="//code.highcharts.com/maps/modules/exporting.js?tachyon.1.19"></script>
+<script src="../../client_side/lib/HighCharts/draggable-legend.js?tachyon.1.19"></script>
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js?tachyon.1.19"></script>
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js?tachyon.1.19"></script>
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js?tachyon.1.19"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css?tachyon.1.19">
+
+
+<style>
+.form-text{
+    padding:15px 0;
+}
+.dataTables_info{
+width:25%;
+min-width:20px;
+}
+select {
+width: 100px;
+}
+
+/* .container-fluid {
+    padding: 20px;
+} */
+.yadcf-filter {
+        width: 70%;
+}
+
+.yadcf-filter-wrapper {
+        width: 70%;
+}
+.myhidden
+{
+    display: none;
+}
+
+hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+
+
+.inner-container {
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, rgba(30, 87, 153, 0.2) 0%, rgba(125, 185, 232, 0) 50%);
+    background-repeat: repeat;
+    border-radius:10px;
+    margin: 30px;
+    padding: 30px;
+//   border: 30px solid transparent;
+}
+.classWithPad {
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, rgba(30, 87, 153, 0.2) 0%, rgba(125, 185, 232, 0) 50%);
+    background-repeat: repeat;
+    border-radius:10px;
+margin:10px;
+padding:10px; }
+
+</style>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    }
+    #cy {
+        width: 70%;
+        height: 400px;
+    }
+    #loading {
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 50%;
+    width: 70%;
+    text-align: center;
+    margin-top: -0.5em;
+    font-size: 2em;
+    color: #000;
+    }
+    #loading.loaded {
+    display: none;
+    }
+    #layoutButtons {
+        position: absolute;
+        top: 5%;
+        right: 2%;
+    }
+    input[type='button'] {
+        width: 70%;
+    }
+    #userSelection {
+        position: absolute;
+        top: 5%;
+        left: 2%;
+        width: 10%;
+        display: none;
+    }
+</style>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+
+<style>
+/* Tooltip */
+.test + .tooltip > .tooltip-inner {
+    background-color: #73AD21;
+    color: #FFFFFF;
+    border: 1px solid green;
+    padding: 15px;
+    font-size: 20px;
+}
+a.mytool:link { color:#FFF; text-decoration:none; font-weight:normal; }
+a.mytool:visited { color: #FFF; text-decoration:none; font-weight:normal; }
+a.mytool:hover { color: #FFF; text-decoration:underline; font-weight:normal; }
+a.mytool:active { color: #FFF; text-decoration:none; font-weight:normal; }
+
+</style>
+<link href="../../client_side/lib/font-awesome/css/font-awesome.min.css?tachyon.1.19" rel="stylesheet" type="text/css">
+
+<!-- MetisMenu CSS -->
+<link href="../../client_side/lib/metisMenu/metisMenu.min.css?tachyon.1.19" rel="stylesheet">
+
+<link rel="stylesheet" href="../../client_side/home/style.css?tachyon.1.19">
+
+<link rel = "stylesheet" type = "text/css" href="../../client_side/home/dashboard.css?tachyon.1.19">
+
+  <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css?tachyon.1.19" rel="stylesheet">
+
+<link rel = "stylesheet" href="reportPage.css?tachyon.1.19">
+<link href="../../client_side/lib/introjs/introjs.css?tachyon.1.19" rel="stylesheet">
+<link href="../../client_side/lib/introjs/themes/introjs-modern.css?tachyon.1.19" rel="stylesheet">
+
+</head>
+<body>
+
+<!--BEGIN NAV -->
+	<div class="row" id="content-row">
+		<nav class="navbar navbar-fixed-top" role="banner">
+  			<div class="container-fluid" style ="background-color:rgba(255,255,255,0.8)">
+				<a class="navbar-brand" href="//www.superHindex.com" target="_blank" style="display:"><img src="../../client_side/lib/images/super.png" style="color: blue; height: 44px; width:auto;"></a>
+  				<ul class = "nav navbar-nav navbar-left" style="margin-left: 20%;">
+  					<li>
+						<h2 style = "text-align: center" id="nav-session-title"></h2>
+					</li>
+  				</ul>
+  				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+                		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    		<i class="fa fa-user fa-fw" style="color:#283a75 "></i>
+                    		<i class="fa fa-caret-down" style="color:#283a75 "></i>
+                		</a>
+                		<ul class="dropdown-menu dropdown-user">
+                			<li><a class = "username-text"></a></li>
+                    		<li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+                    		<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
+                    		<li class="divider"></li>
+                    		<li><a href = "#" class = "login-link"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    		</li>
+						</ul>
+                	<!-- /.dropdown-user -->
+            		</li>
+            <!-- /.dropdown -->
+				</ul>
+  			</div>
+  		</nav>
+  	</div>
+  	<!-- END NAV -->
+
+	<!--main-->
+	<div class="container-fluid" id="content-container">
+<!-- Filters Modal -->
+	<div id="filters-modal" class="modal fade" role="dialog">
+		<div id = "filters-dialog" class="modal-dialog">
+			<div id = "filters-modal-content" class="modal-content">
+				<div id = "filters-modal-header" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id = "filters-modal-title" class="modal-title">Filters Header</h4>
+					<div id = "hud-loader" class="loader"></div>
+				</div>
+				<div id = "filters-modal-body" class="modal-body"></div>
+				<div id = "filters-modal-footer" class="modal-footer"></div>
+			</div>
+		</div>
+	</div>
+	<!-- Sessions Modal -->
+	<div id="sessions-modal" class="modal fade" role="dialog">
+		<div id = "sessions-dialog" class="modal-dialog">
+			<div id = "sessions-modal-content" class="modal-content">
+				<div id = "sessions-modal-header" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id = "sessions-modal-title" class="modal-title">Sessions Header</h4>
+				</div>
+				<div id = "sessions-modal-body" class="modal-body">
+				</div>
+				<div id = "sessions-modal-footer" class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Settings Modal -->
+	<div id="settings-modal" class="modal fade" role="dialog">
+		<div id = "settings-dialog" class="modal-dialog">
+			<div id = "settings-modal-content" class="modal-content">
+				<div id = "settings-modal-header" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id = "settings-modal-title" class="modal-title">Settings Header</h4>
+				</div>
+				<div id = "settings-modal-body" class="modal-body">
+				</div>
+				<div id = "settings-modal-footer" class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" id="content-row">
+		<!--SIDE NAV-->
+		<nav class="main-menu" id="sidebar"  data-spy="affix" data-offset-top="-1" style="position:fixed">
+			<div class="scrollbar" id="style-1" >
+				<ul>
+					<li>
+						<a id = "sidebar-filters">
+							<i class= " fa fa-filter fa-lg"> </i>
+							<span class="nav-text">Filters</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					<li>
+						<a class="save-link">
+							<i class="fa fa-floppy-o fa-lg"></i>
+							<span class="nav-text">Save Session</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					<li>
+						<a id = "sidebar-settings">
+							<i class= " fa fa-cog fa-lg"> </i>
+							<span class="nav-text">Settings</span>
+							<i class="fa fa-caret-right fa-lg"></i>
+						</a>
+					</li>
+					<li id="tutorial">
+						<a onclick="startIntro();">
+						<i class="fa fa-question fa-lg"></i>
+						<span class="nav-text">Tutorial</span>
+						</a>
+					</li>
+					<hr>
+					<li id="home">
+						<a class = "home-link">
+						<i class="fa fa-home fa-lg"></i>
+						<span class="nav-text">Home</span>
+						</a>
+					</li>
+					<li id="new">
+						<a class = "newSearch-link">
+						<i class="fa fa-search fa-lg"></i>
+						<span class="nav-text">New Search</span>
+						</a>
+					</li>
+					<li id="results">
+						<a class = "results-link">
+						<i class="fa fa-list fa-lg"></i>
+						<span class="nav-text">Search Results</span>
+						</a>
+					</li>
+					<li id="visualize">
+						<a class="visualization-link">
+						<i class="fa fa-area-chart fa-lg"></i>
+						<span class="nav-text">Visualize</span>
+						</a>
+					</li>
+					<li id="clusters">
+						<a class="cluster-link">
+						<i class="fa fa-pie-chart fa-lg"></i>
+						<span class="nav-text">Clusters</span>
+						</a>
+					</li>
+					<li id="report">
+						<a class="report-link" >
+						<i class="fa fa-paper-plane-o fa-lg"></i>
+						<span class="nav-text">Report</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- END NEW NAV -->
+<div class = "col-xs-11 pull-right" id = "main-col">
+	<div class="row" >
+		<div class="page-header" style="padding-left:200px;">
+			<h2> <p id="title">Report Page</p> </h2>
+			<button onclick = "toggleAnnotations()" class = "annot-button disabled btn btn-primary btn-md">Toggle Annotations</button>
+<!-- 			<button onclick = "saveAnnotations()" class = "annot-button disabled btn btn-success btn-md">Save Annotations</button>
+ -->			<button onclick = "resetAnnotations()" style = "margin-left: 30px;" class = "disabled annot-button btn btn-danger btn-md">Reset Annotations</button>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class = "col-xs-10" style="padding-left:15%;">
+			<div class = "well">
+				<div id = "my_rate_spinner" class="spinner">
+    				<img id="img-spinner" src="../lib/images/dna_loader.gif" alt="Loading"/>
+				</div>
+				<div id=my_rate class = "rep-viz"></div>
+				<div class="form-group row annotation">
+			    	   <label style = "margin-left:10%;" for="my_rate_text1">Figure 1.1</label>
+			    	   <textarea class=" form-control " id="my_rate_text1" style = "width: 80%; margin-left: 10%;"></textarea>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+
+        <div class="row">
+                <div class = "col-xs-10" style="padding-left:15%;">
+                        <div class="well" id = "subrates-well">
+                                <div class="spinner">
+                                <img id="img-spinner" src="../lib/images/dna_loader.gif" alt="Loading"/>
+                                </div>
+                                <div id=rates-col0 class = "rep-viz"></div>
+                        </div>
+                </div>
+        </div>
+
+	<div class="row">
+		<div class = "col-xs-12" style="padding-left: 2%;">
+			<div class = "well" >
+			        <div id = "bullseye_topN_spinner"  class="spinner">
+    				   <img id="img-spinner" src="../lib/images/dna_loader.gif" alt="Loading"/>
+				</div>
+				<div class = "row">
+					<h4>IP Bullseye - Top Organizations</h4>
+				</div>
+				<div class = "row">
+				   <div class = "col-md-8">
+				      <div class = "row">
+                                          <div id=bullseye_topN class = "rep-viz"></div>
+                                      </div>
+ 				   </div>
+                                   <div class = "col-md-4">
+																		 	<div class = "row">
+																					<div id=bullseye_topN_table class = "rep-viz"></div>
+																			 </div>
+																			 <div class = "row" style = "padding-top: 5%;">
+                                          <div id="bullseyeData_topN"></div>
+                                      </div>
+                                      
+                                   </div>
+ 				</div>
+                                <div class = "row" style = "padding-top: 20px;">
+                                   <div class="form-group row annotation">
+                                      <label  for="my_bullseye_topN_text">Figure 3.2</label>
+  			    	      <textarea class=" form-control " id="my_bullseye_topN_text" style = "width: 80%; margin-left: 10%;"></textarea>
+                                   </div>
+                                </div>
+			</div>
+		</div>
+
+	</div> 
+	<div id = "bull-well" class = "row panel panel-default" >
+		<div id = "bull-nav-col" class = "col-lg-3">
+			<div id = "bull-nav"></div>
+		</div>
+		<div class = "col-lg-9">
+			<div id = "bull-row" class = "row" style="overflow: scroll;">
+				<div id = "bull" class = "chart"></div>
+			</div>
+		</div>
+	</div>
+	
+<script src="raphael.js?tachyon.1.19" type="text/javascript"></script>
+<script src="raphael.bullseye.js?tachyon.1.19" type="text/javascript"></script>
+
+	<div class="row">
+		<div class = "well">
+		<div id = "accel_topN_spinner" class="spinner">
+    				<img id="img-spinner" src="../lib/images/dna_loader.gif" alt="Loading"/>
+				</div>
+			<div class = "row">
+				<div id=accel class = "rep-viz"></div>
+			</div>
+			<div class = "row" style = "padding-top: 30px;">
+				<div class="form-group row annotation">
+	   				<label style = "margin-left: 10%;" for="my-accel-text">Figure 4.1</label>
+	   				<textarea class=" form-control " id="my_accel_text"  style = "width: 80%; margin-left: 10%;"></textarea>
+ 				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- 	<div class="row">
+		<div class = "well">
+		<div id="vol_topN_spinner" class="spinner">
+    				<img id="img-spinner" src="../lib/images/dna_loader.gif" alt="Loading"/>
+				</div>
+			<div class="row">
+				<div id=vol_topN class = "rep-viz"></div>
+			</div>
+			<div class = "row" style = "padding-top: 30px;">
+				<div class="form-group row annotation">
+	   				<label style = "margin-left: 10%;" for="my_vol_topN_text">Figure 5.2</label>
+	   				<textarea class=" form-control " id="my_vol_topN_text"  style = "width: 80%; margin-left: 10%;"></textarea>
+ 				</div>
+			</div>
+		</div>
+	</div>
+-->
+	<div class="row">
+   		<div class="classWithPad panel panel-primary rep-viz">
+      		<div class="panel-heading"><strong>
+<button type="button" class="btn btn-primary" data-toggle="tooltip"
+data-placement="right"
+title="The ranking of each organization takes into account that organization's activity
+in publications, patents, grants,
+and VC rounds, as well as funding amount, peak yearly activity, and overall acceleration.">
+Organization Ranking
+</button>
+		</strong></div>
+      		<div class = "panel-body">
+      		<div id="table-spinner" class="spinner">
+    				<img id="img-spinner" src="../lib/images/dna_loader.gif" alt="Loading"/>
+				</div>
+      			<table id="resultsTable" class="display  table-bordered table-hover table-condensed dt-right">
+	        	 	<thead>
+	       	 			<tr class="header">
+						<th>Name</th>
+	                  	<th>Source</th>
+	                  	<th>Topic</th>
+	                  	<th>Peak Year</th>
+	                  	<th>Pubs</th>
+	                  	<th>Patents</th>
+	                  	<th>VC</th>
+	                  	<th>CTrials</th>
+	                  	<th>Grants</th>
+	                  	<th>Grant$</th>
+	                  	<th>FDA</th>
+	                  	<th>Rank</th>
+	    	 			</tr>
+	        	 	</thead>
+     			</table>
+     			<div class = "row" style = "padding-top: 30px;">
+					<div class="form-group row annotation">
+	   					<label style = "margin-left: 10%;" for="my-table-text">Figure 6</label>
+	   					<textarea class=" form-control " id="my_table_text" style = "width: 80%; margin-left: 10%;"></textarea>
+ 					</div>
+				</div>
+      		</div>
+      	</div>
+   	</div>
+
+</div><!--/container-fluid -->
+
+
+
+</div>
+
+<script src="../../client_side/lib/introjs/intro.js?tachyon.1.19"></script>
+<script type="text/javascript">
+
+function startIntro(){
+  var intro = introJs().setOption('showStepNumbers', 'false');
+
+  intro.setOptions({
+      steps: [
+				{
+				intro: "On this page, you can save and send your research!"
+			},
+			{
+			intro: "Note: This page will only display if you have 6 or more topics in your search."
+			}
+      ]
+    });
+    intro.start();
+
+}
+</script>
+  <script>
+
+  function introResumeFromViz(){
+    var intro = introJs().setOption('doneLabel', 'Next page').setOption('showStepNumbers', 'false');
+
+    intro.setOptions({
+        steps: [
+          {
+          intro: "On this page, you can save and send your research!"
+				},
+				{
+				intro: "Note: This page will only display if you have 6 or more topics in your search."
+				}
+        ]
+      });
+      /*intro.start().oncomplete(function() {
+        window.location.href = 'reportPageCombined.html?multipage=true';
+      });*/
+  }
+
+     if (RegExp('multipage', 'gi').test(window.location.search)) {
+       introResumeFromViz();
+     }
+
+
+   </script>
+
+</body>
+<script src="https://unpkg.com/lodash@4.17.4?tachyon.1.19"></script>
+<script src="../../config.js?tachyon.1.19"></script>
+<script src="./jquery.pbv.js?tachyon.1.19"></script>
+<script src="reportPageCombined.js?tachyon.1.19"></script>
+<script src="../hud/bootstrap-slider.js?tachyon.1.19"></script>
+<script src="../hud/hud.js?tachyon.1.19"></script>
+</html>

@@ -1,0 +1,6 @@
+.spinner {
+    left: 50%;
+    text-align:center;
+    z-index:1234;
+    overflow: auto;
+}

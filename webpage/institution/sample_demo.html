@@ -1,0 +1,1618 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Super-H demo</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="pbv.css">
+</head>
+<body>
+
+  <div class="chart"></div>
+
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="https://unpkg.com/lodash@4.17.4"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script src="jquery_original.pbv.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      var data = [
+        [
+          4,
+          "Pubmed",
+          "Texas",
+          1620,
+          0,
+          "#8c510a"
+        ],
+        [
+          4,
+          "Patents",
+          "Texas",
+          6,
+          0,
+          "#8c510a"
+        ],
+        [
+          4,
+          "Clinical Trials",
+          "Texas",
+          262,
+          0,
+          "#8c510a"
+        ],
+        [
+          4,
+          "Grants",
+          "Texas",
+          441,
+          0,
+          "#8c510a"
+        ],
+        [
+          4,
+          "Pubmed",
+          "University Of Pennsylvania",
+          277,
+          8,
+          "#bf812d"
+        ],
+        [
+          4,
+          "Clinical Trials",
+          "University Of Pennsylvania",
+          15,
+          8,
+          "#bf812d"
+        ],
+        [
+          4,
+          "Grants",
+          "University Of Pennsylvania",
+          237,
+          8,
+          "#bf812d"
+        ],
+        [
+          4,
+          "Pubmed",
+          "University Of Michigan",
+          225,
+          12,
+          "#dfc27d"
+        ],
+        [
+          4,
+          "Clinical Trials",
+          "University Of Michigan",
+          20,
+          12,
+          "#dfc27d"
+        ],
+        [
+          4,
+          "Grants",
+          "University Of Michigan",
+          233,
+          12,
+          "#dfc27d"
+        ],
+        [
+          4,
+          "Pubmed",
+          "Stanford University",
+          249,
+          11,
+          "#f6e8c3"
+        ],
+        [
+          4,
+          "Clinical Trials",
+          "Stanford University",
+          14,
+          11,
+          "#f6e8c3"
+        ],
+        [
+          4,
+          "Grants",
+          "Stanford University",
+          310,
+          11,
+          "#f6e8c3"
+        ],
+        [
+          4,
+          "Pubmed",
+          "Memorial Sloan-kettering Cancer Center",
+          778,
+          5,
+          "#c7eae5"
+        ],
+        [
+          4,
+          "Patents",
+          "Memorial Sloan-kettering Cancer Center",
+          1,
+          5,
+          "#c7eae5"
+        ],
+        [
+          4,
+          "Clinical Trials",
+          "Memorial Sloan-kettering Cancer Center",
+          54,
+          5,
+          "#c7eae5"
+        ],
+        [
+          4,
+          "Pubmed",
+          "National Cancer Institute",
+          858,
+          3,
+          "#80cdc1"
+        ],
+        [
+          4,
+          "Clinical Trials",
+          "National Cancer Institute",
+          403,
+          3,
+          "#80cdc1"
+        ],
+        [
+          4,
+          "Pubmed",
+          "Dana-farber Cancer Institute",
+          209,
+          6,
+          "#35978f"
+        ],
+        [
+          4,
+          "Clinical Trials",
+          "Dana-farber Cancer Institute",
+          71,
+          6,
+          "#35978f"
+        ],
+        [
+          4,
+          "Grants",
+          "Dana-farber Cancer Institute",
+          63,
+          6,
+          "#35978f"
+        ],
+        [
+          4,
+          "Pubmed",
+          "Fred Hutchinson Cancer Research Center",
+          110,
+          4,
+          "#01665e"
+        ],
+        [
+          4,
+          "Clinical Trials",
+          "Fred Hutchinson Cancer Research Center",
+          7,
+          4,
+          "#01665e"
+        ],
+        [
+          4,
+          "Grants",
+          "Fred Hutchinson Cancer Research Center",
+          207,
+          4,
+          "#01665e"
+        ],
+        [
+          4,
+          "Pubmed",
+          "Johns Hopkins University",
+          168,
+          10,
+          "#d53e4f"
+        ],
+        [
+          4,
+          "Clinical Trials",
+          "Johns Hopkins University",
+          7,
+          10,
+          "#d53e4f"
+        ],
+        [
+          4,
+          "Grants",
+          "Johns Hopkins University",
+          152,
+          10,
+          "#d53e4f"
+        ],
+        [
+          4,
+          "Pubmed",
+          "Oregon",
+          111,
+          2,
+          "#f46d43"
+        ],
+        [
+          4,
+          "Patents",
+          "Oregon",
+          1,
+          2,
+          "#f46d43"
+        ],
+        [
+          4,
+          "Clinical Trials",
+          "Oregon",
+          6,
+          2,
+          "#f46d43"
+        ],
+        [
+          4,
+          "Grants",
+          "Oregon",
+          165,
+          2,
+          "#f46d43"
+        ],
+        [
+          4,
+          "Pubmed",
+          "Ohio",
+          203,
+          1,
+          "#fdae61"
+        ],
+        [
+          4,
+          "Clinical Trials",
+          "Ohio",
+          10,
+          1,
+          "#fdae61"
+        ],
+        [
+          4,
+          "Grants",
+          "Ohio",
+          144,
+          1,
+          "#fdae61"
+        ],
+        [
+          4,
+          "Pubmed",
+          "University Of Washington",
+          184,
+          9,
+          "#fee08b"
+        ],
+        [
+          4,
+          "Clinical Trials",
+          "University Of Washington",
+          12,
+          9,
+          "#fee08b"
+        ],
+        [
+          4,
+          "Grants",
+          "University Of Washington",
+          130,
+          9,
+          "#fee08b"
+        ],
+        [
+          4,
+          "Pubmed",
+          "National Cancer Institute (nci)",
+          9,
+          7,
+          "#ffffbf"
+        ],
+        [
+          4,
+          "Clinical Trials",
+          "National Cancer Institute (nci)",
+          402,
+          7,
+          "#ffffbf"
+        ],
+        [
+          1,
+          "Pubmed",
+          "Texas",
+          3724,
+          0,
+          "#8c510a"
+        ],
+        [
+          1,
+          "Patents",
+          "Texas",
+          27,
+          0,
+          "#8c510a"
+        ],
+        [
+          1,
+          "Clinical Trials",
+          "Texas",
+          219,
+          0,
+          "#8c510a"
+        ],
+        [
+          1,
+          "Grants",
+          "Texas",
+          707,
+          0,
+          "#8c510a"
+        ],
+        [
+          1,
+          "Pubmed",
+          "University Of Pennsylvania",
+          645,
+          8,
+          "#bf812d"
+        ],
+        [
+          1,
+          "Clinical Trials",
+          "University Of Pennsylvania",
+          46,
+          8,
+          "#bf812d"
+        ],
+        [
+          1,
+          "Grants",
+          "University Of Pennsylvania",
+          509,
+          8,
+          "#bf812d"
+        ],
+        [
+          1,
+          "Pubmed",
+          "Johns Hopkins University",
+          576,
+          10,
+          "#d53e4f"
+        ],
+        [
+          1,
+          "Clinical Trials",
+          "Johns Hopkins University",
+          14,
+          10,
+          "#d53e4f"
+        ],
+        [
+          1,
+          "Grants",
+          "Johns Hopkins University",
+          617,
+          10,
+          "#d53e4f"
+        ],
+        [
+          1,
+          "Pubmed",
+          "University Of Michigan",
+          605,
+          12,
+          "#dfc27d"
+        ],
+        [
+          1,
+          "Clinical Trials",
+          "University Of Michigan",
+          33,
+          12,
+          "#dfc27d"
+        ],
+        [
+          1,
+          "Grants",
+          "University Of Michigan",
+          458,
+          12,
+          "#dfc27d"
+        ],
+        [
+          1,
+          "Pubmed",
+          "Stanford University",
+          516,
+          11,
+          "#f6e8c3"
+        ],
+        [
+          1,
+          "Clinical Trials",
+          "Stanford University",
+          44,
+          11,
+          "#f6e8c3"
+        ],
+        [
+          1,
+          "Grants",
+          "Stanford University",
+          449,
+          11,
+          "#f6e8c3"
+        ],
+        [
+          1,
+          "Pubmed",
+          "Fred Hutchinson Cancer Research Center",
+          308,
+          4,
+          "#01665e"
+        ],
+        [
+          1,
+          "Clinical Trials",
+          "Fred Hutchinson Cancer Research Center",
+          51,
+          4,
+          "#01665e"
+        ],
+        [
+          1,
+          "Grants",
+          "Fred Hutchinson Cancer Research Center",
+          437,
+          4,
+          "#01665e"
+        ],
+        [
+          1,
+          "Pubmed",
+          "National Cancer Institute",
+          1865,
+          3,
+          "#80cdc1"
+        ],
+        [
+          1,
+          "Clinical Trials",
+          "National Cancer Institute",
+          1110,
+          3,
+          "#80cdc1"
+        ],
+        [
+          1,
+          "Grants",
+          "National Cancer Institute",
+          10,
+          3,
+          "#80cdc1"
+        ],
+        [
+          1,
+          "Pubmed",
+          "Dana-farber Cancer Institute",
+          706,
+          6,
+          "#35978f"
+        ],
+        [
+          1,
+          "Clinical Trials",
+          "Dana-farber Cancer Institute",
+          75,
+          6,
+          "#35978f"
+        ],
+        [
+          1,
+          "Grants",
+          "Dana-farber Cancer Institute",
+          123,
+          6,
+          "#35978f"
+        ],
+        [
+          1,
+          "Pubmed",
+          "Memorial Sloan-kettering Cancer Center",
+          1467,
+          5,
+          "#c7eae5"
+        ],
+        [
+          1,
+          "Patents",
+          "Memorial Sloan-kettering Cancer Center",
+          1,
+          5,
+          "#c7eae5"
+        ],
+        [
+          1,
+          "Clinical Trials",
+          "Memorial Sloan-kettering Cancer Center",
+          128,
+          5,
+          "#c7eae5"
+        ],
+        [
+          1,
+          "Pubmed",
+          "University Of Washington",
+          452,
+          9,
+          "#fee08b"
+        ],
+        [
+          1,
+          "Clinical Trials",
+          "University Of Washington",
+          32,
+          9,
+          "#fee08b"
+        ],
+        [
+          1,
+          "Grants",
+          "University Of Washington",
+          251,
+          9,
+          "#fee08b"
+        ],
+        [
+          1,
+          "Pubmed",
+          "Ohio",
+          605,
+          1,
+          "#fdae61"
+        ],
+        [
+          1,
+          "Patents",
+          "Ohio",
+          19,
+          1,
+          "#fdae61"
+        ],
+        [
+          1,
+          "Clinical Trials",
+          "Ohio",
+          23,
+          1,
+          "#fdae61"
+        ],
+        [
+          1,
+          "Grants",
+          "Ohio",
+          251,
+          1,
+          "#fdae61"
+        ],
+        [
+          1,
+          "Pubmed",
+          "Oregon",
+          200,
+          2,
+          "#f46d43"
+        ],
+        [
+          1,
+          "Clinical Trials",
+          "Oregon",
+          4,
+          2,
+          "#f46d43"
+        ],
+        [
+          1,
+          "Grants",
+          "Oregon",
+          187,
+          2,
+          "#f46d43"
+        ],
+        [
+          1,
+          "Pubmed",
+          "National Cancer Institute (nci)",
+          18,
+          7,
+          "#ffffbf"
+        ],
+        [
+          1,
+          "Clinical Trials",
+          "National Cancer Institute (nci)",
+          1084,
+          7,
+          "#ffffbf"
+        ],
+        [
+          0,
+          "Pubmed",
+          "Texas",
+          769,
+          0,
+          "#8c510a"
+        ],
+        [
+          0,
+          "Clinical Trials",
+          "Texas",
+          202,
+          0,
+          "#8c510a"
+        ],
+        [
+          0,
+          "Grants",
+          "Texas",
+          218,
+          0,
+          "#8c510a"
+        ],
+        [
+          0,
+          "Pubmed",
+          "Johns Hopkins University",
+          131,
+          10,
+          "#d53e4f"
+        ],
+        [
+          0,
+          "Clinical Trials",
+          "Johns Hopkins University",
+          13,
+          10,
+          "#d53e4f"
+        ],
+        [
+          0,
+          "Grants",
+          "Johns Hopkins University",
+          219,
+          10,
+          "#d53e4f"
+        ],
+        [
+          0,
+          "Pubmed",
+          "Fred Hutchinson Cancer Research Center",
+          140,
+          4,
+          "#01665e"
+        ],
+        [
+          0,
+          "Clinical Trials",
+          "Fred Hutchinson Cancer Research Center",
+          45,
+          4,
+          "#01665e"
+        ],
+        [
+          0,
+          "Grants",
+          "Fred Hutchinson Cancer Research Center",
+          177,
+          4,
+          "#01665e"
+        ],
+        [
+          0,
+          "Pubmed",
+          "University Of Washington",
+          149,
+          9,
+          "#fee08b"
+        ],
+        [
+          0,
+          "Clinical Trials",
+          "University Of Washington",
+          18,
+          9,
+          "#fee08b"
+        ],
+        [
+          0,
+          "Grants",
+          "University Of Washington",
+          157,
+          9,
+          "#fee08b"
+        ],
+        [
+          0,
+          "Pubmed",
+          "Stanford University",
+          137,
+          11,
+          "#f6e8c3"
+        ],
+        [
+          0,
+          "Clinical Trials",
+          "Stanford University",
+          15,
+          11,
+          "#f6e8c3"
+        ],
+        [
+          0,
+          "Grants",
+          "Stanford University",
+          216,
+          11,
+          "#f6e8c3"
+        ],
+        [
+          0,
+          "Pubmed",
+          "National Cancer Institute",
+          354,
+          3,
+          "#80cdc1"
+        ],
+        [
+          0,
+          "Clinical Trials",
+          "National Cancer Institute",
+          289,
+          3,
+          "#80cdc1"
+        ],
+        [
+          0,
+          "Grants",
+          "National Cancer Institute",
+          3,
+          3,
+          "#80cdc1"
+        ],
+        [
+          0,
+          "Pubmed",
+          "University Of Pennsylvania",
+          172,
+          8,
+          "#bf812d"
+        ],
+        [
+          0,
+          "Clinical Trials",
+          "University Of Pennsylvania",
+          10,
+          8,
+          "#bf812d"
+        ],
+        [
+          0,
+          "Grants",
+          "University Of Pennsylvania",
+          203,
+          8,
+          "#bf812d"
+        ],
+        [
+          0,
+          "Pubmed",
+          "University Of Michigan",
+          164,
+          12,
+          "#dfc27d"
+        ],
+        [
+          0,
+          "Clinical Trials",
+          "University Of Michigan",
+          9,
+          12,
+          "#dfc27d"
+        ],
+        [
+          0,
+          "Grants",
+          "University Of Michigan",
+          171,
+          12,
+          "#dfc27d"
+        ],
+        [
+          0,
+          "Pubmed",
+          "Memorial Sloan-kettering Cancer Center",
+          208,
+          5,
+          "#c7eae5"
+        ],
+        [
+          0,
+          "Patents",
+          "Memorial Sloan-kettering Cancer Center",
+          1,
+          5,
+          "#c7eae5"
+        ],
+        [
+          0,
+          "Clinical Trials",
+          "Memorial Sloan-kettering Cancer Center",
+          24,
+          5,
+          "#c7eae5"
+        ],
+        [
+          0,
+          "Pubmed",
+          "Ohio",
+          205,
+          1,
+          "#fdae61"
+        ],
+        [
+          0,
+          "Clinical Trials",
+          "Ohio",
+          8,
+          1,
+          "#fdae61"
+        ],
+        [
+          0,
+          "Grants",
+          "Ohio",
+          62,
+          1,
+          "#fdae61"
+        ],
+        [
+          0,
+          "Pubmed",
+          "Dana-farber Cancer Institute",
+          138,
+          6,
+          "#35978f"
+        ],
+        [
+          0,
+          "Clinical Trials",
+          "Dana-farber Cancer Institute",
+          44,
+          6,
+          "#35978f"
+        ],
+        [
+          0,
+          "Grants",
+          "Dana-farber Cancer Institute",
+          25,
+          6,
+          "#35978f"
+        ],
+        [
+          0,
+          "Pubmed",
+          "Oregon",
+          65,
+          2,
+          "#f46d43"
+        ],
+        [
+          0,
+          "Clinical Trials",
+          "Oregon",
+          9,
+          2,
+          "#f46d43"
+        ],
+        [
+          0,
+          "Grants",
+          "Oregon",
+          94,
+          2,
+          "#f46d43"
+        ],
+        [
+          0,
+          "Pubmed",
+          "National Cancer Institute (nci)",
+          4,
+          7,
+          "#ffffbf"
+        ],
+        [
+          0,
+          "Clinical Trials",
+          "National Cancer Institute (nci)",
+          285,
+          7,
+          "#ffffbf"
+        ],
+        [
+          3,
+          "Pubmed",
+          "Texas",
+          5457,
+          0,
+          "#8c510a"
+        ],
+        [
+          3,
+          "Patents",
+          "Texas",
+          53,
+          0,
+          "#8c510a"
+        ],
+        [
+          3,
+          "Clinical Trials",
+          "Texas",
+          211,
+          0,
+          "#8c510a"
+        ],
+        [
+          3,
+          "Grants",
+          "Texas",
+          1461,
+          0,
+          "#8c510a"
+        ],
+        [
+          3,
+          "Pubmed",
+          "University Of Pennsylvania",
+          1118,
+          8,
+          "#bf812d"
+        ],
+        [
+          3,
+          "Clinical Trials",
+          "University Of Pennsylvania",
+          77,
+          8,
+          "#bf812d"
+        ],
+        [
+          3,
+          "Grants",
+          "University Of Pennsylvania",
+          1008,
+          8,
+          "#bf812d"
+        ],
+        [
+          3,
+          "Pubmed",
+          "University Of Michigan",
+          1331,
+          12,
+          "#dfc27d"
+        ],
+        [
+          3,
+          "Clinical Trials",
+          "University Of Michigan",
+          72,
+          12,
+          "#dfc27d"
+        ],
+        [
+          3,
+          "Grants",
+          "University Of Michigan",
+          869,
+          12,
+          "#dfc27d"
+        ],
+        [
+          3,
+          "Pubmed",
+          "Johns Hopkins University",
+          842,
+          10,
+          "#d53e4f"
+        ],
+        [
+          3,
+          "Clinical Trials",
+          "Johns Hopkins University",
+          19,
+          10,
+          "#d53e4f"
+        ],
+        [
+          3,
+          "Grants",
+          "Johns Hopkins University",
+          907,
+          10,
+          "#d53e4f"
+        ],
+        [
+          3,
+          "Pubmed",
+          "Stanford University",
+          797,
+          11,
+          "#f6e8c3"
+        ],
+        [
+          3,
+          "Clinical Trials",
+          "Stanford University",
+          71,
+          11,
+          "#f6e8c3"
+        ],
+        [
+          3,
+          "Grants",
+          "Stanford University",
+          668,
+          11,
+          "#f6e8c3"
+        ],
+        [
+          3,
+          "Pubmed",
+          "National Cancer Institute",
+          2077,
+          3,
+          "#80cdc1"
+        ],
+        [
+          3,
+          "Clinical Trials",
+          "National Cancer Institute",
+          1351,
+          3,
+          "#80cdc1"
+        ],
+        [
+          3,
+          "Grants",
+          "National Cancer Institute",
+          28,
+          3,
+          "#80cdc1"
+        ],
+        [
+          3,
+          "Pubmed",
+          "Fred Hutchinson Cancer Research Center",
+          543,
+          4,
+          "#01665e"
+        ],
+        [
+          3,
+          "Clinical Trials",
+          "Fred Hutchinson Cancer Research Center",
+          56,
+          4,
+          "#01665e"
+        ],
+        [
+          3,
+          "Grants",
+          "Fred Hutchinson Cancer Research Center",
+          737,
+          4,
+          "#01665e"
+        ],
+        [
+          3,
+          "Pubmed",
+          "Dana-farber Cancer Institute",
+          1021,
+          6,
+          "#35978f"
+        ],
+        [
+          3,
+          "Clinical Trials",
+          "Dana-farber Cancer Institute",
+          142,
+          6,
+          "#35978f"
+        ],
+        [
+          3,
+          "Grants",
+          "Dana-farber Cancer Institute",
+          296,
+          6,
+          "#35978f"
+        ],
+        [
+          3,
+          "Pubmed",
+          "University Of Washington",
+          929,
+          9,
+          "#fee08b"
+        ],
+        [
+          3,
+          "Clinical Trials",
+          "University Of Washington",
+          65,
+          9,
+          "#fee08b"
+        ],
+        [
+          3,
+          "Grants",
+          "University Of Washington",
+          482,
+          9,
+          "#fee08b"
+        ],
+        [
+          3,
+          "Pubmed",
+          "Memorial Sloan-kettering Cancer Center",
+          1771,
+          5,
+          "#c7eae5"
+        ],
+        [
+          3,
+          "Patents",
+          "Memorial Sloan-kettering Cancer Center",
+          1,
+          5,
+          "#c7eae5"
+        ],
+        [
+          3,
+          "Clinical Trials",
+          "Memorial Sloan-kettering Cancer Center",
+          187,
+          5,
+          "#c7eae5"
+        ],
+        [
+          3,
+          "Pubmed",
+          "Ohio",
+          1040,
+          1,
+          "#fdae61"
+        ],
+        [
+          3,
+          "Patents",
+          "Ohio",
+          18,
+          1,
+          "#fdae61"
+        ],
+        [
+          3,
+          "Clinical Trials",
+          "Ohio",
+          52,
+          1,
+          "#fdae61"
+        ],
+        [
+          3,
+          "Grants",
+          "Ohio",
+          608,
+          1,
+          "#fdae61"
+        ],
+        [
+          3,
+          "Pubmed",
+          "National Cancer Institute (nci)",
+          18,
+          7,
+          "#ffffbf"
+        ],
+        [
+          3,
+          "Clinical Trials",
+          "National Cancer Institute (nci)",
+          1315,
+          7,
+          "#ffffbf"
+        ],
+        [
+          3,
+          "Pubmed",
+          "Oregon",
+          370,
+          2,
+          "#f46d43"
+        ],
+        [
+          3,
+          "Patents",
+          "Oregon",
+          3,
+          2,
+          "#f46d43"
+        ],
+        [
+          3,
+          "Clinical Trials",
+          "Oregon",
+          9,
+          2,
+          "#f46d43"
+        ],
+        [
+          3,
+          "Grants",
+          "Oregon",
+          257,
+          2,
+          "#f46d43"
+        ],
+        [
+          2,
+          "Pubmed",
+          "Texas",
+          1704,
+          0,
+          "#8c510a"
+        ],
+        [
+          2,
+          "Patents",
+          "Texas",
+          10,
+          0,
+          "#8c510a"
+        ],
+        [
+          2,
+          "Clinical Trials",
+          "Texas",
+          142,
+          0,
+          "#8c510a"
+        ],
+        [
+          2,
+          "Grants",
+          "Texas",
+          425,
+          0,
+          "#8c510a"
+        ],
+        [
+          2,
+          "Pubmed",
+          "Johns Hopkins University",
+          341,
+          10,
+          "#d53e4f"
+        ],
+        [
+          2,
+          "Clinical Trials",
+          "Johns Hopkins University",
+          9,
+          10,
+          "#d53e4f"
+        ],
+        [
+          2,
+          "Grants",
+          "Johns Hopkins University",
+          395,
+          10,
+          "#d53e4f"
+        ],
+        [
+          2,
+          "Pubmed",
+          "Stanford University",
+          251,
+          11,
+          "#f6e8c3"
+        ],
+        [
+          2,
+          "Clinical Trials",
+          "Stanford University",
+          17,
+          11,
+          "#f6e8c3"
+        ],
+        [
+          2,
+          "Grants",
+          "Stanford University",
+          310,
+          11,
+          "#f6e8c3"
+        ],
+        [
+          2,
+          "Pubmed",
+          "University Of Michigan",
+          183,
+          12,
+          "#dfc27d"
+        ],
+        [
+          2,
+          "Clinical Trials",
+          "University Of Michigan",
+          11,
+          12,
+          "#dfc27d"
+        ],
+        [
+          2,
+          "Grants",
+          "University Of Michigan",
+          320,
+          12,
+          "#dfc27d"
+        ],
+        [
+          2,
+          "Pubmed",
+          "University Of Pennsylvania",
+          233,
+          8,
+          "#bf812d"
+        ],
+        [
+          2,
+          "Clinical Trials",
+          "University Of Pennsylvania",
+          20,
+          8,
+          "#bf812d"
+        ],
+        [
+          2,
+          "Grants",
+          "University Of Pennsylvania",
+          296,
+          8,
+          "#bf812d"
+        ],
+        [
+          2,
+          "Pubmed",
+          "Dana-farber Cancer Institute",
+          390,
+          6,
+          "#35978f"
+        ],
+        [
+          2,
+          "Clinical Trials",
+          "Dana-farber Cancer Institute",
+          54,
+          6,
+          "#35978f"
+        ],
+        [
+          2,
+          "Grants",
+          "Dana-farber Cancer Institute",
+          132,
+          6,
+          "#35978f"
+        ],
+        [
+          2,
+          "Pubmed",
+          "National Cancer Institute",
+          568,
+          3,
+          "#80cdc1"
+        ],
+        [
+          2,
+          "Clinical Trials",
+          "National Cancer Institute",
+          556,
+          3,
+          "#80cdc1"
+        ],
+        [
+          2,
+          "Grants",
+          "National Cancer Institute",
+          2,
+          3,
+          "#80cdc1"
+        ],
+        [
+          2,
+          "Pubmed",
+          "Memorial Sloan-kettering Cancer Center",
+          802,
+          5,
+          "#c7eae5"
+        ],
+        [
+          2,
+          "Patents",
+          "Memorial Sloan-kettering Cancer Center",
+          1,
+          5,
+          "#c7eae5"
+        ],
+        [
+          2,
+          "Clinical Trials",
+          "Memorial Sloan-kettering Cancer Center",
+          66,
+          5,
+          "#c7eae5"
+        ],
+        [
+          2,
+          "Pubmed",
+          "University Of Washington",
+          255,
+          9,
+          "#fee08b"
+        ],
+        [
+          2,
+          "Clinical Trials",
+          "University Of Washington",
+          12,
+          9,
+          "#fee08b"
+        ],
+        [
+          2,
+          "Grants",
+          "University Of Washington",
+          241,
+          9,
+          "#fee08b"
+        ],
+        [
+          2,
+          "Pubmed",
+          "Fred Hutchinson Cancer Research Center",
+          131,
+          4,
+          "#01665e"
+        ],
+        [
+          2,
+          "Clinical Trials",
+          "Fred Hutchinson Cancer Research Center",
+          8,
+          4,
+          "#01665e"
+        ],
+        [
+          2,
+          "Grants",
+          "Fred Hutchinson Cancer Research Center",
+          218,
+          4,
+          "#01665e"
+        ],
+        [
+          2,
+          "Pubmed",
+          "Ohio",
+          320,
+          1,
+          "#fdae61"
+        ],
+        [
+          2,
+          "Clinical Trials",
+          "Ohio",
+          16,
+          1,
+          "#fdae61"
+        ],
+        [
+          2,
+          "Grants",
+          "Ohio",
+          181,
+          1,
+          "#fdae61"
+        ],
+        [
+          2,
+          "Pubmed",
+          "National Cancer Institute (nci)",
+          5,
+          7,
+          "#ffffbf"
+        ],
+        [
+          2,
+          "Clinical Trials",
+          "National Cancer Institute (nci)",
+          553,
+          7,
+          "#ffffbf"
+        ],
+        [
+          2,
+          "Pubmed",
+          "Oregon",
+          103,
+          2,
+          "#f46d43"
+        ],
+        [
+          2,
+          "Patents",
+          "Oregon",
+          1,
+          2,
+          "#f46d43"
+        ],
+        [
+          2,
+          "Clinical Trials",
+          "Oregon",
+          6,
+          2,
+          "#f46d43"
+        ],
+        [
+          2,
+          "Grants",
+          "Oregon",
+          208,
+          2,
+          "#f46d43"
+        ]
+      ];
+
+      var options = {
+        data: data
+      };
+
+      $('.chart').pbv(options);
+    });
+  </script>
+
+</body>
+</html>

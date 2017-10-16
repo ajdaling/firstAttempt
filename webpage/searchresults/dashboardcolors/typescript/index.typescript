@@ -1,0 +1,113 @@
+ko.bindingHandlers.sparkline = {
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+
+    },
+    update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        value = value();
+      console.log(value);
+        if (value) {
+            var setMuteClass = false;
+            if (!value.length) {
+                setMuteClass = true;
+                value = [1, 1];
+            }
+            var w = $(element).width(), h = $(element).height(), padding = 1;
+            h = h - (padding * 2);
+            //w = w - (padding * 2);
+            var yWind = d3.scale.linear().domain([d3.min(value), d3.max(value)]).range([0, h]),
+                x = d3.scale.linear().domain([0, value.length - 1]).range([0, w]);
+
+            var vis = d3.select(element)
+                .html("")
+                .append("svg:svg")
+                .attr("width", w + (padding * 2))
+                .attr("height", h + (padding * 2));
+
+            var g = vis.append("svg:g")
+	            .attr("transform", "translate(0, " + h + ")");
+
+            var lineWind = d3.svg.line()
+	            .x(function (d, i) { return x(i); })
+	            .y(function (d) { return -1 * yWind(d); });
+            if (setMuteClass == true) {
+                g.append("svg:path").attr("d", lineWind(value)).attr("class", "muted");
+            } else {
+                g.append("svg:path").attr("d", lineWind(value));
+            }
+        }
+    }
+};
+
+
+module elmah {
+  export class log {
+    public Id = ko.observable(1);
+    public Name = ko.observable('Elmah.io');
+    public Color = ko.observable('Orange');
+    public Access = ko.observable('Administrator');
+    public DailyDigestEmail = ko.observable(false);
+    public NewErrorEmail = ko.observable(false);
+    public editing = ko.observable(false);
+    public css = ko.computed(()=>{return this.editing() ? 'flipped' : ''});
+    public colorStyle = ko.computed(()=>{return this.Color().toLowerCase() + '-bg'});
+    public sparklinedata = ko.observableArray([0,1,2,5,4,2,0,1,0,0, 0,0,2,3,5,8,4,4,3,1,1,0,0,0]);
+  }
+  export class dashboard {
+    
+    public logs = ko.observableArray();
+
+    constructor(){
+      this.logs.push(new elmah.log());
+      this.logs.push(new elmah.log());
+      this.logs.push(new elmah.log());
+      
+      this.logs()[0].Color('green');
+      this.logs()[1].Color('lightgreen');
+      this.logs()[2].Color('lime');
+      
+      this.logs()[1].Name('Codepen.io');
+      this.logs()[2].Name('Google.dk');
+      
+    }
+    
+    public selectColor = (n,t)=>{
+        n.Color($(t.target).attr("class").replace("-bg","").replace("-",""));
+    }
+
+    public editLog = (obj)=>{
+      this.logs().forEach((obj)=>{obj.editing(false);});
+      obj.editing(true);
+    }
+    public saveLog = (obj)=>{
+      obj.editing(false);
+    }
+  }
+}
+
+var vm = new elmah.dashboard();
+ko.applyBindings(vm);
+
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+
+
+$(".user-switch").tooltip();
+$(".user-switch").on('click', function(){
+  $(this).toggleClass("selected");
+});
+
+
+
+// run demo if in searchresult preview
+function demo(){
+    setTimeout(function(){
+      $(".log-box").eq(2).addClass('flipped');
+    }, 1000);
+}
+$(document).ready(function(){
+  if (document.location.pathname.indexOf('fullcpgrid')>-1){
+    demo();
+  }
+});

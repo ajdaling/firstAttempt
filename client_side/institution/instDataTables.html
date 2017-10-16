@@ -1,0 +1,98 @@
+<!-- Demo at //jsbin.com/neximaf/1/edit?html,js,output -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <script src="https://code.jquery.com/jquery.min.js?tachyon.1.19"></script>
+  <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css?tachyon.1.19" rel="stylesheet" type="text/css" />
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css?tachyon.1.19" rel="stylesheet" type="text/css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js?tachyon.1.19"></script>
+  <script src="https://code.jquery.com/jquery-3.1.0.js?tachyon.1.19"></script>
+  <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js?tachyon.1.19"></script>
+  <script src="..../../config.js?tachyon.1.19"></script>
+</head>
+
+<body>
+  <div class="container">
+    <table id="output" class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Ingredients</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+  <table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th>Year</th>
+        <th>Type</th>
+        <th>Institution</th>
+        <th>Investigator</th>
+        <th>Title</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th>Year</th>
+        <th>Type</th>
+        <th>Institution</th>
+        <th>Investigator</th>
+        <th>Title</th>
+      </tr>
+    </tfoot>
+  </table>
+
+</body>
+
+</html>
+<script>
+  function getSearchParameters() {
+    var prmstr = window.location.search.substr(1);
+    return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+  }
+
+  function transformToAssocArray(prmstr) {
+    var params = {};
+    var prmarr = prmstr.split("&");
+    for (var i = 0; i < prmarr.length; i++) {
+      var tmparr = prmarr[i].split("=");
+      params[tmparr[0]] = tmparr[1];
+    }
+    return params;
+  }
+  var pars = getSearchParameters()
+  console.log(pars.instName);
+  $(function() {
+
+    var url =
+      oTable = $('#example').dataTable({
+        "bServerSide": true,
+        //	 "fnSetFilteringDelay": 2000,
+        //    "sAjaxSource": "//localhost:8931/datatables_inst.sjs?instName="+pars.instName,
+        "sAjaxSource": "//10.1.10.58:8501/datatables_inst.sjs?instName=" + pars.instName,
+        "columnDefs": [
+
+          {
+            // The `data` parameter refers to the data for the cell (defined by the
+            // `data` option, which defaults to the column being worked with, in
+            // this case `data: 0`.
+            "render": function(data, type, row) {
+              return '<a href="' + row[5] + '" target="_blank">' + data + '</a>';
+            },
+            "targets": 4
+          }
+        ]
+
+
+      });
+
+  });
+</script>

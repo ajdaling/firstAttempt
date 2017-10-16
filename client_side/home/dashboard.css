@@ -1,0 +1,76 @@
+#content-row{
+	position: relative;
+}
+
+body {
+ padding-top:0 0 0 0;
+}
+
+#session-tab-content{
+    border: 2px solid #293973;
+    border-radius: 6px;
+}
+
+.jumbotron{
+	/* background: #F2752E; */
+	background: #293973;
+	border: none;
+	color: white;
+	
+}
+.affix{
+	position: fixed;
+	top: 0;
+}
+
+#jumbo-dash{
+    padding-left: 15%;
+}
+
+
+#sessions-row{
+	max-height: 500px;
+    overflow: scroll;
+    padding: 5px 5px 25px 5px;
+    border: 5px solid #F2752E;
+    border-radius: 6px;
+}
+#left-col{
+	
+}
+#right-col{
+	
+}
+
+
+#dash-stack{
+	border: 2px solid #293973;
+    border-radius: 6px;
+    max-height: 980px;
+	min-height: 280px;
+    overflow: scroll;
+}
+#session-tab-content{
+	
+}
+
+#session-btns-col{
+	margin-top: 50px;
+}
+#session-btns-col > .btn{
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+#session-tab-content{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#session-tab-content table td, th{
+    text-align: center;
+    padding-top: 10px;
+}
+#session-tab-content .active table{
+    width: 100%;
+}

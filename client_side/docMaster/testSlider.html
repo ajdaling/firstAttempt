@@ -1,0 +1,36 @@
+
+<head>
+		<link rel="stylesheet" href="bootstrap-slider.css?tachyon.1.19">
+		
+	
+</head>
+<body>
+<div class="container-fluid">
+	<div class = "row" style="margin-top: 100px; margin-left: 200px;">
+	
+		<div class = "col-xs-12">
+					<span id="year-slider-label" style="background: orange;"></span>
+					<input id="year-slider" type="text"/>
+			
+		</div>
+	</div>
+	
+</div>
+</body>
+	
+			
+				<script src="../../client_side/lib/jquery/jquery-3.2.1.js?tachyon.1.19"></script>
+	
+			<script src="bootstrap-slider.js?tachyon.1.19"></script>
+	<script>
+
+		var slider = $("#year-slider").slider({ 
+					min: 1980, 
+					max: 2017, 
+					value: [1980, 2017], 
+					focus: true,
+					labelledBy: 'year-slider-label',
+					});
+		//var sliderB = new Slider("#ex16b", { min: 0, max: 10, value: [0, 10], focus: true });
+	
+	</script>	
